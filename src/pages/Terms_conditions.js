@@ -4,20 +4,20 @@ export default function Terms_conditions() {
   return (
     <>
       {/* Pricing Section two */}
-      <section class="pricing-section-two">
-        <div class="auto-container">
-          <div class="sec-title text-center mb-0">
+      <section className="pricing-section-two">
+        <div className="auto-container">
+          <div className="sec-title text-center mb-0">
             <h2>Terms & Conditions</h2>
-            {/* <span class="devider">
+            {/* <span className="devider">
               <span></span>
             </span> */}
           </div>
         </div>
       </section>
       <section>
-        <div class="auto-container">
-          <div class="sec-title text-left mb-1">
-            <p class="text">
+        <div className="auto-container">
+          <div className="sec-title text-left mb-1">
+            <p className="text">
               These terms and conditions (collectively, the “Agreement”)
               constitute a legal agreement between you and Auto Fix (the
               “Company”, “we”, or “us”), a Dubai-based company. In order to use
@@ -29,35 +29,35 @@ export default function Terms_conditions() {
               Company (collectively, the “Application”), you hereby expressly
               acknowledge and agree to be bound by the Agreement, and any future
               amendments and additions to the Agreement as published from time
-              to time at https://www.autofix.ae
+              to time at https://www.dev2.sbagh.com
             </p>
-            <p class="text">
+            <p className="text">
               The Company reserves the right to modify the Agreement or its
               policies relating to the Service or Application at any time,
               effective from the time of posting of an updated version of this
-              Agreement at https://www.autofix.ae or through the Service. You
+              Agreement at https://www.dev2.sbagh.com or through the Service. You
               are responsible for regularly reviewing this Agreement. Continued
               use of the Service or Application after any such changes shall
               constitute your consent to such changes.
             </p>
 
-            <h3 class="bold-text text-dark big-text mt-5">
+            <h3 className="bold-text text-dark big-text mt-5">
               Key Content-related Terms
             </h3>
           </div>
         </div>
       </section>
       <section>
-        <div class="slider_section_description mb-5">
-          <div class="auto-container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="content_container_about_us">
-                      <div class="row">
-                        <div class="col-md-12 d-block my-auto">
-                          <div class="main_content">
+        <div className="slider_section_description mb-5">
+          <div className="auto-container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="content_container_about_us">
+                      <div className="row">
+                        <div className="col-md-12 d-block my-auto">
+                          <div className="main_content">
                             <ul>
                               <li>
                                 “Content” means text, graphics, images, music,
@@ -86,7 +86,7 @@ export default function Terms_conditions() {
                               </li>
                             </ul>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Representations and Warranties
                             </h3>
                             <p>
@@ -121,7 +121,7 @@ export default function Terms_conditions() {
                               with an incompatible or unauthorized device.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               By using the website or the Service, you agree
                               that:
                             </h3>
@@ -201,7 +201,7 @@ export default function Terms_conditions() {
                               and rights expressly granted in this section.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               License Granted by User
                             </h3>
                             <p>
@@ -246,7 +246,7 @@ export default function Terms_conditions() {
                               violation of any applicable law or regulation.
                             </p>
 
-                            <h3 class="big-text mt-5">Copyright Policy</h3>
+                            <h3 className="big-text mt-5">Copyright Policy</h3>
                             <p>
                               Company respects copyright law and expects its
                               users to do the same. It is Company’s policy to
@@ -256,7 +256,7 @@ export default function Terms_conditions() {
                               rights of copyright holders.
                             </p>
 
-                            <h3 class="big-text mt-5">Payment Terms</h3>
+                            <h3 className="big-text mt-5">Payment Terms</h3>
                             <p>
                               Any fees that the Company may charge you for the
                               Service, are due immediately and are
@@ -300,9 +300,9 @@ export default function Terms_conditions() {
                               hours of receipt.
                             </p>
 
-                            <h3 class="big-text mt-5">Delivery Policy</h3>
+                            <h3 className="big-text mt-5">Delivery Policy</h3>
                             <p>
-                              Autofix.ae will NOT deal or provide any services
+                              dev2.sbagh.com will NOT deal or provide any services
                               or products to any of OFAC (Office of Foreign
                               Assets Control) sanctions countries in accordance
                               with the law of UAE.
@@ -319,7 +319,7 @@ export default function Terms_conditions() {
                               service charges.
                             </p>
 
-                            <h3 class="big-text mt-5">Pricing Policy</h3>
+                            <h3 className="big-text mt-5">Pricing Policy</h3>
                             <ul>
                               <li>
                                 VAT will be displayed and charged at the
@@ -350,7 +350,7 @@ export default function Terms_conditions() {
                               </li>
                             </ul>
 
-                            <h3 class="big-text mt-5">Promotions Policy</h3>
+                            <h3 className="big-text mt-5">Promotions Policy</h3>
                             <ul>
                               <li>
                                 When redeeming a promotional code (or voucher
@@ -434,7 +434,7 @@ export default function Terms_conditions() {
                               </li>
                             </ul>
 
-                            <h3 class="big-text mt-5">Warranty Policy</h3>
+                            <h3 className="big-text mt-5">Warranty Policy</h3>
                             <p>
                               Warranties are applicable only for the parts and
                               services that autofix has provided.
@@ -451,7 +451,7 @@ export default function Terms_conditions() {
                               examined, verified and processed.
                             </p>
 
-                            <h3 class="big-text mt-5">Child Seat Policy</h3>
+                            <h3 className="big-text mt-5">Child Seat Policy</h3>
                             <p>
                               If you have ordered any autofix interior cleaning
                               service for your car, it is your responsibility to
@@ -464,7 +464,7 @@ export default function Terms_conditions() {
                               the service.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Intellectual Property Ownership
                             </h3>
                             <p>
@@ -486,7 +486,7 @@ export default function Terms_conditions() {
                               right or license is granted to use them.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Third Party Interactions
                             </h3>
                             <p>
@@ -544,7 +544,7 @@ export default function Terms_conditions() {
                               with through the Service.
                             </p>
 
-                            <h3 class="big-text mt-5">Conduct of Users</h3>
+                            <h3 className="big-text mt-5">Conduct of Users</h3>
                             <p>
                               By entering into this Agreement or using the or
                               the Service you agree that you will comply with
@@ -554,7 +554,7 @@ export default function Terms_conditions() {
                               this provision.
                             </p>
 
-                            <h3 class="big-text mt-5">Indemnification</h3>
+                            <h3 className="big-text mt-5">Indemnification</h3>
                             <p>
                               By entering into this Agreement and using the
                               website or Service, you agree that you shall
@@ -576,7 +576,7 @@ export default function Terms_conditions() {
                               Service.
                             </p>
 
-                            <h3 class="mt-5 big-text">Agreement Validity</h3>
+                            <h3 className="mt-5 big-text">Agreement Validity</h3>
                             <p>
                               This agreement of service is considered to in
                               force from the date and time, you sign up with the
@@ -588,7 +588,7 @@ export default function Terms_conditions() {
                               the two parties.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Disclaimer of Warranties
                             </h3>
                             <p>
@@ -641,7 +641,7 @@ export default function Terms_conditions() {
                               by law.{" "}
                             </p>
 
-                            <h3 class="big-text mt-5">Internet Delays</h3>
+                            <h3 className="big-text mt-5">Internet Delays</h3>
                             <p>
                               The company’s service and website may be subject
                               to limitations, delays, and other problems
@@ -651,7 +651,7 @@ export default function Terms_conditions() {
                               resulting from such problems.{" "}
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Limitation of Liability
                             </h3>
                             <p>
@@ -687,7 +687,7 @@ export default function Terms_conditions() {
                               damages.{" "}
                             </p>
 
-                            <h3 class="big-text mt-5">Notice</h3>
+                            <h3 className="big-text mt-5">Notice</h3>
                             <p>
                               The Company may give notice by means of a general
                               notice on the Service, electronic mail to your
@@ -702,28 +702,28 @@ export default function Terms_conditions() {
                               email). You may give notice to the Company (such
                               notice shall be deemed given when received by the
                               Company) at any time by emailing to
-                              cuatomer@autofix.ae
+                              cuatomer@dev2.sbagh.com
                             </p>
 
-                            <h3 class="big-text mt-5">Assignment</h3>
+                            <h3 className="big-text mt-5">Assignment</h3>
                             <p>
                               This Agreement may not be assigned by you without
                               the prior written approval of the Company but may
                               be assigned without your consent by the Company to
                               (i) a parent or subsidiary, (ii) an acquirer of
-                              https://www.autofix.ae or (iii) a successor by
+                              https://www.dev2.sbagh.com or (iii) a successor by
                               merger. Any purported assignment in violation of
                               this section shall be void.
                             </p>
 
-                            <h3 class="big-text mt-5">Governing Law</h3>
+                            <h3 className="big-text mt-5">Governing Law</h3>
                             <p>
                               This Agreement is governed by the laws of Dubai
                               and the laws of the United Arab Emirates as
                               applied in Dubai.
                             </p>
 
-                            <h3 class="big-text mt-5">Dispute Resolution</h3>
+                            <h3 className="big-text mt-5">Dispute Resolution</h3>
                             <p>
                               Any dispute, claim or controversy arising out of
                               or in connection with this Agreement, including a
@@ -742,7 +742,7 @@ export default function Terms_conditions() {
                               by arbitration under UAE law.
                             </p>
 
-                            <h3 class="big-text mt-5">General</h3>
+                            <h3 className="big-text mt-5">General</h3>
                             <p>
                               No joint venture, partnership, employment, or
                               agency relationship exists between you, the
@@ -798,7 +798,7 @@ export default function Terms_conditions() {
                               damage incurred.
                             </p>
 
-                            <h3 class="big-text mt-5">
+                            <h3 className="big-text mt-5">
                               Notification of changes
                             </h3>
                             <p>
@@ -812,7 +812,7 @@ export default function Terms_conditions() {
                               by way of an email.
                             </p>
 
-                            <h3 class="big-text mt-5">Contacting us</h3>
+                            <h3 className="big-text mt-5">Contacting us</h3>
                             <p>
                               This Privacy Policy sets out in broad terms how we
                               handle your personal information and safeguard our
@@ -820,7 +820,7 @@ export default function Terms_conditions() {
                               Privacy Policy contact us
                             </p>
                             <p>Toll Free Number 800AUTOFIX</p>
-                            <p>Email: customer@autofix.ae</p>
+                            <p>Email: customer@dev2.sbagh.com</p>
                             <p>
                               To Locate our showroom on map, kindly check our
                               contact us page.

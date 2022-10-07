@@ -1,6 +1,151 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Packages() {
+
+
+  const asia=[
+    {
+      title:"Lube Service - 5000 Kms (4CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"15.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet"],
+      
+    },
+    {
+      title:"Lube Service - 5000 Kms (6 CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"17.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet"],
+      
+    },
+    {
+      title:"Lube Service - 5000 Kms (8 CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"21.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet"],
+      
+    },
+    {
+      title:"Lube Service - 5000 Kms (4 CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"20.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"
+      ],
+      
+    },
+    {
+      title:"Lube Service - 5000 Kms (6 CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"25.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"
+      ],
+      
+    },
+    {
+      title:"Lube Service - 5000 Kms (8 CYL)",
+      continent:"(Japanese /Korean/ChineseBrands)",
+      price:"30.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"
+      ],
+      
+    },
+
+
+    {
+      title:"Lube Service - 5000 Kms (4 CYL)",
+      continent:"(American & European Brands)",
+      price:"20.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    },
+    {
+      title:"Lube Service - 5000 Kms (6 CYL)",
+      continent:"(American & European Brands)",
+      price:"22.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    },
+    {
+      title:"Lube Service - 5000 Kms (8 CYL)",
+      continent:"(American & European Brands)",
+      price:"25.00",
+      items:
+        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "20 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    },
+    {
+      title:"Lube Service - 10000 Kms (4 CYL)",
+      continent:"(American & European Brands)",
+      price:"24.00",
+      items:
+        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    },
+    {
+      title:"Lube Service - 10000 Kms (6 CYL)",
+      continent:"(American & European Brands)",
+      price:"31.00",
+      items:
+        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    },
+    {
+      title:"Lube Service - 10000 Kms (8 CYL)",
+      continent:"(American & European Brands)",
+      price:"37.00",
+      items:
+        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
+        "Replacement of Oil Filter",
+        "Clean Air filter",
+        "30 Check points as percheck sheet",
+        "Body wash & vacuum"],
+    }          
+  ];
   return (
     <>
       {/* Pricing Section two */}
@@ -57,213 +202,42 @@ export default function Packages() {
                       className="row no-gutters justify-content-center"
                       id="allPackages"
                     >
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
+                      {asia.map((value, index)=>(
+                      <div className="col-lg-4 col-md-4 col-sm-6 col-12" key={index}>
                         <div className="pricing-block-two">
                           <div className="inner-box">
-                            <span className="title">
-                              Service contracts
+                            <span className="title bold-text">
+                              {value.title}
                             </span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>199
-                            </h4>
+
+                            <span className="price_wrapper d-block mt-2 mb-2 text-center">
+                            <span className="medium-text">OMR &nbsp;</span>
+                            <span className="biggest-text bold-text primary-color">
+                            {value.price}
+                            </span>
+                          </span>
                             <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>Periodic Service contract</span>
+                            {value.items.map((subitem, i)=>(
+                              <li className="included abs_content_wrapper" key={i}>
+                                <span >{subitem}</span>
                               </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Comprehensive service contracts</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Customized service contracts</span>
-                              </li>
+                            ))}
                               
                             </ul>
                             <div className="btn_container">
-                              <a
-                                href="book-service.html"
+                              <Link
+                                to="/booking-service"
                                 package-id="63"
                                 package-type="SP"
                                 className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
                               >
                                 <span className="btn-title">Book Now</span>
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title">Car Care and Detailing</span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>1
-                            </h4>
-                            <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>Aromatics-Antibacterial treatment</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body polish & Upholstery cleaning</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Injector clearing & Engine flush</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Underbody-Antirust coating</span>
-                              </li>
-                            </ul>
-                            <div className="btn_container">
-                              <a
-                                href="book-service.html"
-                                package-id="64"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
-                              >
-                                <span className="btn-title">Book Now</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title">Paint protection Coatings</span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>399
-                            </h4>
-                            <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>GLASS COAT paint protection coating. </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span> GARDX-Ceramic coating</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>CILA JET-Aviation Grade paint protection coating</span>
-                              </li>
-                              
-                            </ul>
-                            <div className="btn_container">
-                              <a
-                                href="book-service.html"
-                                package-id="65"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
-                              >
-                                <span className="btn-title">Book Now</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title">
-                            Window Film
-                            </span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>349
-                            </h4>
-                            <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  ‘NEX FILL ‘ window filim form Europe  
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>‘GLOBAL ‘window film</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>‘3M’ window filim from US </span>
-                              </li>
-                              
-                            </ul>
-                            <div className="btn_container">
-                              <a
-                                href="book-service.html"
-                                package-id="22"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
-                              >
-                                <span className="btn-title">Book Now</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title">
-                            Full Body Paint 
-                            </span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>499
-                            </h4>
-                            <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                Full body painting
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Vehicle color Change</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Customized painting based on client requirement</span>
-                              </li>
-                              
-                            </ul>
-                            <div className="btn_container">
-                              <a
-                                href="book-service.html"
-                                package-id="21"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
-                              >
-                                <span className="btn-title">Book Now</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title">PDO-Modification &OPAL certifications</span>
-                            <h4 className="price">
-                              <span className="big-text">OMR &nbsp;</span>150
-                            </h4>
-                            <ul className="features dropdown_inner limitBox">
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                PDO-Modification as Per OPAL specification
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                PDO-OPAL certification for modified vehicles                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>PDO –OPAL passing and certificate renewal</span>
-                              </li>
-                            
-                            </ul>
-                            <div className="btn_container">
-                              <a
-                                href="book-service.html"
-                                package-id="18"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
-                              >
-                                <span className="btn-title">Book Now</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>

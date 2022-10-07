@@ -15,30 +15,13 @@ export default function About_us() {
       </section>
       <section>
         <div className="auto-container">
+          <h3>History/ purpose/ Brand story</h3>
           <div className="sec-title text-left">
             <p className="text">
-              Established in 2008, Auto Fix aims to provide high-quality Car
-              services for all brands in the United Arab Emirates. All our
-              facilities have the quality of service and operations processes
-              set to manufacturer standards. Our facilities are equipped with
-              high-tech equipment and use only high-quality parts sourced from
-              OEM’s, dealers, or highly reputed suppliers. Our personnel
-              regularly undergo training at authorized service centers and are
-              professionally certified. These initiatives ensure the highest
-              standards of service to our customers. Our staff has been trained
-              to understand customers' concerns and address them to ensure the
-              highest customer satisfaction.{" "}
-            </p>
-            <p className="text">
-              With facilities at Dubai Al Quoz, Dubai DIC, Abu Dhabi Musaffah &
-              at Al Ain. We believe that taking care of your car should be easy
-              and economical. We have served thousands of customers who trust us
-              for the quality of service and visit us for their everyday
-              servicing and repairs. At Auto Fix, we believe that our service
-              represents all of our customer's highest hopes and most stringent
-              expectations for car service; that our company is the ultimate in
-              convenience, friendly service, expertise, and pricing that is both
-              competitive and gives control to the customer.
+            Bahwan Automobiles & Trading LLC (BAT) is a flagship company of Bahwan International Group (BIG). BAT commenced its operations in April 2019 with an objective to provide Transparent, Trustworthy &Tailor-made service to all brand make and model at a Competitive price, Convenient facility with Committed quality. 
+In a short span of time, BAT has spread its customer reach to 10 locations across Oman and is in the process of further expansion.
+BAT facilities are equipped with high technology tools and equipment’s, assimilating human resource training and certification and part wares, to obtain manufacturer operation standards and highest standards of deliverables to our customers.
+Testimonials of thousands of customers whom we have served drives us to innovate and improvise our services. We reflect our Groups Vision, Mission and Values in all the endeavours we make
             </p>
           </div>
         </div>
@@ -58,7 +41,7 @@ export default function About_us() {
                               <div className="image_wrapper">
                                 <img
                                   className="img-fluid d-block mx-auto"
-                                  src="assets/front/uploads/generalSection/L3RtcC9waHA0Z3BHSHQ%3d.jpg"
+                                  src="assets/front/uploads/about/one.png"
                                 />
                               </div>
                             </div>
@@ -66,17 +49,22 @@ export default function About_us() {
                         </div>
                         <div className="col-md-6 d-block my-auto">
                           <div className="main_content">
-                            <h3 className="big-text">Purpose</h3>
+                            <h3 className="big-text">Vision</h3>
                             <ul>
                               <li>
-                                Create and retain customers so as to have a
-                                societally valued and perpetually sustainable
-                                business organization, it being clear that
-                                customers, employees, and the regulatory
-                                framework provide the organization with its
-                                primary societal context
+                              “A globally recognized business group creating customers for life.”
                               </li>
                             </ul>
+
+                            <br/>
+
+                            <h3 className="big-text">Mission</h3>
+                            <ul>
+                              <li>
+                              “Diversify and innovatively deliver world-class products and services, through empowered employees by creating value for our stakeholders”.
+                              </li>
+                            </ul>
+
                           </div>
                         </div>
                       </div>
@@ -91,7 +79,7 @@ export default function About_us() {
                               <div className="image_wrapper">
                                 <img
                                   className="img-fluid d-block mx-auto"
-                                  src="public/front/uploads/generalSection/L3RtcC9waHB3eUk2SmQ%3d.jpg"
+                                  src="assets/front/uploads/about/two.png"
                                 />
                               </div>
                             </div>
@@ -99,18 +87,12 @@ export default function About_us() {
                         </div>
                         <div className="col-md-6 d-block my-auto">
                           <div className="main_content">
-                            <h3 className="big-text">Our Vision & Values</h3>
+                            <h3 className="big-text">Values </h3>
                             <ul>
-                              <li>
-                                Build, own, and partner with world-class
-                                businesses and brands, internationally.
-                              </li>
-                              <li>
-                                Customer First: Our Customers see us as people
-                                who are fair, honest, and who live up to their
-                                commitments and promises more than our
-                                competitors do.
-                              </li>
+                              <li>  Integrity </li>
+                              <li>	Ownership </li>
+                              <li>	Passion </li>
+                              <li>	Excellence </li>
                             </ul>
                           </div>
                         </div>

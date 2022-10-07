@@ -3,27 +3,27 @@ import React from "react";
 export default function Privacy_policy() {
   return (
     <>
-      <section class="pricing-section-two">
-        <div class="auto-container">
-          <div class="sec-title text-center mb-0">
+      <section className="pricing-section-two">
+        <div className="auto-container">
+          <div className="sec-title text-center mb-0">
             <h2>Privacy Policy</h2>
-            {/* <span class="devider">
+            {/* <span className="devider">
               <span></span>
             </span> */}
           </div>
         </div>
       </section>
       <section>
-        <div class="auto-container">
-          <div class="sec-title text-left mb-4">
-            <p class="text">
+        <div className="auto-container">
+          <div className="sec-title text-left mb-4">
+            <p className="text">
               Privacy of your personal information is very important to us. We
               do not disclose your personal information to third parties for
               their marketing purposes. Please read this Privacy Policy to learn
               more about the ways in which we use and protect your personal
               information.
             </p>
-            <p class="text">
+            <p className="text">
               The privacy practices of this statement apply to our services
               available under the domain and sub-domains of www.autofix.ae (Auto
               fix or "Site") and apply generally to our parent, affiliates,
@@ -31,7 +31,7 @@ export default function Privacy_policy() {
               policies are available from their Privacy pages.
             </p>
 
-            <p class="text">
+            <p className="text">
               By visiting this Site you agree to be bound by the terms and
               conditions of this Privacy Policy. If you do not agree please do
               not use or access our Site. This Privacy Policy describes the
@@ -45,17 +45,17 @@ export default function Privacy_policy() {
         </div>
       </section>
       <section>
-        <div class="slider_section_description mb-5">
-          <div class="auto-container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="content_container_about_us">
-                      <div class="row">
-                        <div class="col-md-12 d-block my-auto">
-                          <div class="main_content">
-                            <h3 class="big-text">
+        <div className="slider_section_description mb-5">
+          <div className="auto-container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="content_container_about_us">
+                      <div className="row">
+                        <div className="col-md-12 d-block my-auto">
+                          <div className="main_content">
+                            <h3 className="big-text">
                               1. Your Privacy - Our Commitment
                             </h3>
                             <p>
@@ -70,7 +70,7 @@ export default function Privacy_policy() {
                               treated as you make full use of our Site.
                             </p>
 
-                            <h3 class="mt-5 big-text">
+                            <h3 className="mt-5 big-text">
                               2. Auto Fix Privacy Guarantee
                             </h3>
                             <p>
@@ -84,7 +84,7 @@ export default function Privacy_policy() {
                               trust and confidence are our highest priority.
                             </p>
 
-                            <h3 class="mt-5 big-text">
+                            <h3 className="mt-5 big-text">
                               3. Information we collect
                             </h3>
                             <p>
@@ -145,7 +145,7 @@ export default function Privacy_policy() {
                               such information into a file specific to you.
                             </p>
 
-                            <h3 class="mt-5 big-text">
+                            <h3 className="mt-5 big-text">
                               4. Our use of your information
                             </h3>
                             <p>
@@ -197,7 +197,7 @@ export default function Privacy_policy() {
                               profile.
                             </p>
 
-                            <h3 class="mt-5 big-text">
+                            <h3 className="mt-5 big-text">
                               5. Our disclosure of your information
                             </h3>
                             <p>
@@ -210,7 +210,7 @@ export default function Privacy_policy() {
                             </p>
                             <ul>
                               <li>
-                                <h3 class="bid-text">Advertisements</h3>
+                                <h3 className="bid-text">Advertisements</h3>
                                 <p>
                                   Where a user enters information on any form of
                                   an advertiser, the information is
@@ -233,7 +233,7 @@ export default function Privacy_policy() {
                               </li>
 
                               <li>
-                                <h3 class="bid-text">Classifieds Listings</h3>
+                                <h3 className="bid-text">Classifieds Listings</h3>
                                 <ul>
                                   <li>
                                     When a user lists a classified
@@ -310,7 +310,7 @@ export default function Privacy_policy() {
                               </li>
                             </ul>
 
-                            <h3 class="mt-5 big-text">
+                            <h3 className="mt-5 big-text">
                               6. Other Corporate Entities
                             </h3>
                             <p>
@@ -337,7 +337,7 @@ export default function Privacy_policy() {
                               respect to your personal information.
                             </p>
 
-                            <h3 class="mt-5 big-text">7. Legal Requests</h3>
+                            <h3 className="mt-5 big-text">7. Legal Requests</h3>
                             <p>
                               We cooperate with law enforcement inquiries, as
                               well as other third parties to enforce laws, such
@@ -390,7 +390,7 @@ export default function Privacy_policy() {
                               communications will always remain private.
                             </p>
 
-                            <h3 class="mt-5 big-text">8. Your Obligations</h3>
+                            <h3 className="mt-5 big-text">8. Your Obligations</h3>
                             <p>
                               You agree, undertake and confirm that while
                               providing your information on the Site you will
@@ -442,7 +442,7 @@ export default function Privacy_policy() {
                               </li>
                             </ul>
 
-                            <h3 class="mt-5">
+                            <h3 className="mt-5">
                               Your use of other users' information
                             </h3>
                             <p>
@@ -488,7 +488,7 @@ export default function Privacy_policy() {
                               </li>
                             </ul>
 
-                            <h3 class="mt-5 big-text">9. Your consent</h3>
+                            <h3 className="mt-5 big-text">9. Your consent</h3>
                             <p>
                               By using the Site, you consent to the collection
                               and use of the information you disclose on the
