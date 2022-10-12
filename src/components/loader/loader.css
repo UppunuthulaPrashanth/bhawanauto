@@ -7,9 +7,9 @@
 .loading {
   position: absolute;
   left: calc(50% - 35px);
-  top: 50%;
-  width: 55px;
-  height: 55px;
+  top: 25%;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;

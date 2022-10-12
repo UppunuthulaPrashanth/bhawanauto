@@ -1,5 +1,5 @@
-import React from "react";
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Homepage from "./pages/Homepage";
 import About_us from "./pages/About_us";
@@ -32,54 +32,114 @@ import Gear_box from "./pages/service-pages/Gear_box";
 import Pod_modification from "./pages/service-pages/Pod_modification";
 import Wheel_alignment_balancing from "./pages/service-pages/Wheel_alignment_balancing";
 import Off_road_accessories from "./pages/service-pages/Off_road_accessories";
-
+import Myaccount from "./pages/Myaccount";
+import { useDispatch } from "react-redux";
+import { getProfile } from "./redux/features/profile/profileSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
+
   return (
     <div className="App">
       <Router>
-      <ScrollToTop />
+        <ScrollToTop />
         <Layout>
           <Routes>
-            <Route exact path="/" element={<Homepage/>}/>
-            <Route exact path="about" element={<About_us/>}/>
-            <Route exact path="blog" element={<Blogs/>}/>
-            <Route exact path="contact-us" element={<Contact_us/>}/>
-            <Route exact path="gallery" element={<Gallery/>}/>
-            <Route exact path="get-quote" element={<Get_quote/>}/>
-            <Route exact path="packages" element={<Packages/>}/>
-            <Route exact path="privacy-policy" element={<Privacy_policy/>}/>
-            <Route exact path="terms-and-conditions" element={<Terms_conditions/>}/>
-            <Route exact path="booking-service" element={<Book_service/>}/>
-            <Route exact path="repair-car-quote" element={<Repair_car_quote/>}/>
+            <Route exact path="/" element={<Homepage />} />
+            <Route exact path="about" element={<About_us />} />
+            <Route exact path="blog" element={<Blogs />} />
+            <Route exact path="contact-us" element={<Contact_us />} />
+            <Route exact path="gallery" element={<Gallery />} />
+            <Route exact path="get-quote" element={<Get_quote />} />
+            <Route exact path="packages" element={<Packages />} />
+            <Route exact path="privacy-policy" element={<Privacy_policy />} />
+            <Route
+              exact
+              path="terms-and-conditions"
+              element={<Terms_conditions />}
+            />
+            <Route exact path="booking-service/:id" element={<Book_service />} />
+            <Route
+              exact
+              path="repair-car-quote"
+              element={<Repair_car_quote />}
+            />
 
-            
+            {/* services routes */}
+            <Route path="/services">
+              <Route path="" element={<Services />} />
+              <Route
+                exact
+                path="periodic-maintenance"
+                element={<Periodic_maintenance />}
+              />
+              <Route
+                exact
+                path="prepurchase-inspection"
+                element={<Prepurchase_inspection />}
+              />
+              <Route
+                exact
+                path="general-maintenance"
+                element={<General_maintenance />}
+              />
+              <Route
+                exact
+                path="car-battery-tire-replacement"
+                element={<Car_battery_tire_replacement />}
+              />
+              <Route exact path="car-scanning" element={<Car_scanning />} />
+              <Route exact path="engine-repair" element={<Engine_repair />} />
+              <Route
+                exact
+                path="transmission_repair"
+                element={<Transmission_repair />}
+              />
+              <Route exact path="car-ac-repair" element={<Car_ac_repair />} />
+              <Route
+                exact
+                path="body-repair-repainting"
+                element={<Body_repair_repainting />}
+              />
+              <Route
+                exact
+                path="car-care-car-detailing"
+                element={<Car_care_car_detailing />}
+              />
+              <Route exact path="window-film" element={<Window_film />} />
+              <Route
+                exact
+                path="customized-body-fabrication"
+                element={<Customized_body_fabrication />}
+              />
+              <Route exact path="gear-box" element={<Gear_box />} />
+              <Route
+                exact
+                path="pod-modification"
+                element={<Pod_modification />}
+              />
+              <Route
+                exact
+                path="wheel-alignment-balancing"
+                element={<Wheel_alignment_balancing />}
+              />
+              <Route
+                exact
+                path="off-road-accessories"
+                element={<Off_road_accessories />}
+              />
+            </Route>
 
-              {/* services routes */}
-              <Route path="/services">
-                <Route path="" element={<Services/>}/>
-                <Route exact path="periodic-maintenance" element={<Periodic_maintenance/>}/>
-                <Route exact path="prepurchase-inspection" element={<Prepurchase_inspection/>}/>
-                <Route exact path="general-maintenance" element={<General_maintenance/>}/>
-                <Route exact path="car-battery-tire-replacement" element={<Car_battery_tire_replacement/>}/>
-                <Route exact path="car-scanning" element={<Car_scanning/>}/>
-                <Route exact path="engine-repair" element={<Engine_repair/>}/>
-                <Route exact path="transmission_repair" element={<Transmission_repair/>}/>
-                <Route exact path="car-ac-repair" element={<Car_ac_repair/>}/>
-                <Route exact path="body-repair-repainting" element={<Body_repair_repainting/>}/>
-                <Route exact path="car-care-car-detailing" element={<Car_care_car_detailing/>}/>
-                <Route exact path="window-film" element={<Window_film/>}/>
-                <Route exact path="customized-body-fabrication" element={<Customized_body_fabrication/>}/>
-                <Route exact path="gear-box" element={<Gear_box/>}/>
-                <Route exact path="pod-modification" element={<Pod_modification/>}/>
-                <Route exact path="wheel-alignment-balancing" element={<Wheel_alignment_balancing/>}/>
-                <Route exact path="off-road-accessories" element={<Off_road_accessories/>}/>
-              </Route>
-
+            {/* myaccoutn routes */}
+            <Route path="/myaccount">
+              <Route path="" element={<Myaccount />} />
+            </Route>
           </Routes>
         </Layout>
       </Router>
-        
     </div>
   );
 }

@@ -10,11 +10,11 @@ import Loader from './components/loader/Loader';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Suspense fallback={<Loader/>}>
-    <React.StrictMode>
+    {/* <React.StrictMode> */}
       <Provider store={store}>
         <App />
       </Provider>
-    </React.StrictMode>
+    {/* </React.StrictMode> */}
   </Suspense>
 );
 

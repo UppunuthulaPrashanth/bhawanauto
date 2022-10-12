@@ -746,6 +746,8 @@ $(document).ready(function () {
     $("#loginForm").hide();
   });
 
+  
+
 
 
   function validateEmail(email) {
@@ -804,17 +806,17 @@ $(document).ready(function () {
 
 
 
-  $(".listenMe").on("keyup", function (event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      // Trigger the button element with a click
-      //document.getElementById("myBtn").click();
-      var triggerAction = $(this).attr("btnToListen");
-      $("#" + triggerAction).trigger("click");
-    }
-  });
+  // $(".listenMe").on("keyup", function (event) {
+  //   // Number 13 is the "Enter" key on the keyboard
+  //   if (event.keyCode === 13) {
+  //     // Cancel the default action, if needed
+  //     event.preventDefault();
+  //     // Trigger the button element with a click
+  //     //document.getElementById("myBtn").click();
+  //     var triggerAction = $(this).attr("btnToListen");
+  //     $("#" + triggerAction).trigger("click");
+  //   }
+  // });
 
   // Prepare sections by setting the `data-parsley-group` attribute to 'block-0', 'block-1', etc.
   $sections.each(function (index, section) {
@@ -905,5 +907,14 @@ $(document).ready(function () {
     $(window).on("popstate", function () {
       location.reload();
     });
+  }
+
+  var userToken=localStorage.getItem('userToken')
+  if(userToken){
+    $("#signUpform").hide();
+    $("#loginForm").hide();
+    $("#signupSignInForm").hide();
+    $('#signupSignInForm').modal('hide');
+
   }
 })();

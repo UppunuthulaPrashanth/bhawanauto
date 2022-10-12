@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import 'react-toastify/dist/ReactToastify.css'; // import first
-import { ToastContainer, toast } from 'react-toastify'; // then this
+import { ToastContainer } from 'react-toastify'; // then this
 
 class Layout extends React.Component {
   render() {
+    var userToken=localStorage.getItem('userToken')
+
     return (
       <div className="page-wrapper">
         <ToastContainer /> {/* <- add line */}
@@ -26,6 +28,23 @@ class Layout extends React.Component {
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
+                            {userToken ?
+                            <> 
+                            <Link
+                            to="myaccount"
+                            className="border-sm-left border-sm-right px-3"
+                          >
+                           <i className="fa fa-user"></i> My account
+                          </Link>
+
+                          <Link
+                          to="#"
+                          className="border-sm-left border-sm-right px-3"
+                          >
+                          Log out
+                          </Link>
+                          </>
+                            :
                             <Link
                               to="#"
                               className="border-sm-left border-sm-right px-3"
@@ -34,6 +53,9 @@ class Layout extends React.Component {
                             >
                               Login or Signup{" "}
                             </Link>
+                            }
+
+
                           </div>
                           <div className="social_icons_wrapper d-none d-sm-block">
                             <ul className="social-icon-four">

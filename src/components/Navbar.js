@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { login, register } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 
@@ -11,10 +11,10 @@ export default function Navbar() {
   const [formSignupValues, setFormSignupValues] = useState({});
   const [formSigninValues, setFormSigninValues] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
 
-  
+
+
   // dispatch the form data  for register
   const dispatch = useDispatch();
   const onChangeSignup = (e) => {
@@ -508,7 +508,7 @@ export default function Navbar() {
                         className="form-wrapper hiddenInitial"
                         id="loginForm"
                       >
-                        <form method="post" action="#">
+                        <form>
                           {/* ***********************************Signup Form**************************************** */}
                           <div
                             className="form-container-login w-100"

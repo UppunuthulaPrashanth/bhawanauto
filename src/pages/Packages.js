@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Loader from "../components/loader/Loader";
+import { getPackage } from "../redux/features/booking-data/packagesSlice";
 
 export default function Packages() {
 
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getPackage())
+  },[])
+
+  const {loading,data} = JSON.parse(
+    JSON.stringify(useSelector((state) => state.package))
+  );
 
   const asia=[
     {
@@ -146,6 +158,14 @@ export default function Packages() {
         "Body wash & vacuum"],
     }          
   ];
+
+  if(loading=="PENDING"){
+    return <Loader/>
+  }
+
+  
+
+
   return (
     <>
       {/* Pricing Section two */}
@@ -202,12 +222,12 @@ export default function Packages() {
                       className="row no-gutters justify-content-center"
                       id="allPackages"
                     >
-                      {asia.map((value, index)=>(
+                      {data ?data.map((value, index)=>(
                       <div className="col-lg-4 col-md-4 col-sm-6 col-12" key={index}>
                         <div className="pricing-block-two">
                           <div className="inner-box">
                             <span className="title bold-text">
-                              {value.title}
+                              {value.name}
                             </span>
 
                             <span className="price_wrapper d-block mt-2 mb-2 text-center">
@@ -217,16 +237,16 @@ export default function Packages() {
                             </span>
                           </span>
                             <ul className="features dropdown_inner limitBox">
-                            {value.items.map((subitem, i)=>(
+                            
+                            { value.features.split(',').map((subitem, i)=>(
                               <li className="included abs_content_wrapper" key={i}>
                                 <span >{subitem}</span>
                               </li>
                             ))}
-                              
                             </ul>
                             <div className="btn_container">
                               <Link
-                                to="/booking-service"
+                                to={"/booking-service/"+value.id}
                                 package-id="63"
                                 package-type="SP"
                                 className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
@@ -237,7 +257,7 @@ export default function Packages() {
                           </div>
                         </div>
                       </div>
-                      ))}
+                      )):null}
                     </div>
                   </div>
                 </div>

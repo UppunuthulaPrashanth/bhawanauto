@@ -1,6 +1,119 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Loader from "../components/loader/Loader";
+import { getAddon } from "../redux/features/booking-data/addonSlice";
+import { getLocation } from "../redux/features/booking-data/locationSlice";
+import { getModal } from "../redux/features/booking-data/makeModelSlice";
+import { getMake } from "../redux/features/booking-data/makeSlice";
+import { getPackage } from "../redux/features/booking-data/packagesSlice";
+import { getState } from "../redux/features/booking-data/stateSlice";
+import { getTimeslot } from "../redux/features/booking-data/timeslotSlice";
+import { getYear } from "../redux/features/booking-data/yearSlice";
 
 export default function Book_service() {
+  const [modal_data, setModal_data] = useState(null);
+  const [time_slot, setTime_slot] = useState(null);
+  const [active_addons, setActive_addons] = useState([]);
+  const params = useParams();
+  const [active_package, setActive_package] = useState(parseInt(params.id));
+
+  const disptach = useDispatch();
+  useEffect(() => {
+    disptach(getMake());
+    disptach(getLocation());
+    disptach(getYear());
+    disptach(getState());
+    disptach(getPackage());
+    disptach(getAddon());
+  }, []);
+
+  const make_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.make))
+  );
+  const location_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.location))
+  );
+  const year_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.year))
+  );
+  const state_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.state))
+  );
+  const addon_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.addon))
+  );
+  const package_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.package))
+  );
+
+  // user changing make
+  const onChangeMake = (e) => {
+    const { value } = e.target;
+    disptach(getModal(value)).then((res) => {
+      setModal_data(res.payload);
+    });
+  };
+
+  // user changing location
+  const onChangeLocation = (e) => {
+    const { value } = e.target;
+    disptach(getTimeslot(value)).then((res) => {
+      setTime_slot(res.payload);
+    });
+  };
+
+  // select addon
+  const onChangeAddon = (value) => {
+    var index = active_addons.findIndex(x => x.id==value.id); 
+    if(index==-1){
+      setActive_addons([...active_addons, {'id':value.id, "name":value.name, "price":value.price, 'active':1}])
+    }else{
+      active_addons.splice(active_addons.findIndex(a => a.id === value.id) , 1)
+    }
+  };
+  active_addons.map((activeAddon)=>{
+  addon_data.data.map((addonItem)=>{
+      if(addonItem.id==activeAddon.id){
+        addonItem.active=1
+      }else{
+        addonItem.active=0
+      }
+    })
+  })
+
+  console.log(addon_data.data)
+  // select plan
+  const onChangePlan = (value) => {
+    setActive_package(value.id);
+  };
+  var package_price=0
+  var package_name="loading"
+if(package_data){
+  for(var item of package_data.data){
+    if(item.id===active_package){
+      package_price=item.price
+      package_name=item.name
+    }
+  }
+}
+
+  const without_tax_total =  package_price;
+  const tax = (without_tax_total * 5) / 100;
+  const total_with_tax = without_tax_total + tax;
+
+  // Api loading
+  if (
+    make_data.loading == "PENDING" ||
+    location_data == "PENDING" ||
+    year_data == "PENDING" ||
+    state_data == "PENDING" ||
+    addon_data == "PENDING" ||
+    package_data == "PENDING"
+  ) {
+    return <Loader />;
+  }
+
   return (
     <div className="container">
       <form action="#" id="booking_form" data-parsley-validate="">
@@ -26,6 +139,7 @@ export default function Book_service() {
                         <label>Choose Make</label>
                         <select
                           name="carMake"
+                          onChange={onChangeMake}
                           id="carMake"
                           className="inp_field select2_initialize"
                           required=""
@@ -34,57 +148,15 @@ export default function Book_service() {
                           <option disabled="" defaultValue="">
                             Select Make
                           </option>
-                          <option defaultValue="1056">Ashok Leyland</option>
-                          <option defaultValue="33">Audi</option>
-                          <option defaultValue="63">Baic</option>
-                          <option defaultValue="67">Bentley</option>
-                          <option defaultValue="78">Bmw</option>
-                          <option defaultValue="119">Bugatti</option>
-                          <option defaultValue="1082">Cherry</option>
-                          <option defaultValue="159">Chevrolet</option>
-                          <option defaultValue="196">Citroen</option>
-                          <option defaultValue="1136">Daihatsu</option>
-                          <option defaultValue="1090">Fiat</option>
-                          <option defaultValue="267">Ford</option>
-                          <option defaultValue="292">Foton</option>
-                          <option defaultValue="1182">GAC</option>
-                          <option defaultValue="1095">Geely</option>
-                          <option defaultValue="1177">Great Wall</option>
-                          <option defaultValue="324">Haval</option>
-                          <option defaultValue="329">Honda</option>
-                          <option defaultValue="345">Hummer</option>
-                          <option defaultValue="348">Hyundai</option>
-                          <option defaultValue="376">Infiniti</option>
-                          <option defaultValue="399">Isuzu</option>
-                          <option defaultValue="1157">Iveco</option>
-                          <option defaultValue="1041">JAC</option>
-                          <option defaultValue="409">Jaguar</option>
-                          <option defaultValue="423">Jeep</option>
-                          <option defaultValue="432">Kia</option>
-                          <option defaultValue="1165">King Long</option>
-                          <option defaultValue="454">Lamborghini</option>
-                          <option defaultValue="461">Land rover</option>
-                          <option defaultValue="476">Lexus</option>
-                          <option defaultValue="1051">Maxus</option>
-                          <option defaultValue="528">Mazda</option>
-                          <option defaultValue="554">Mercedes-benz</option>
-                          <option defaultValue="1149">MG</option>
-                          <option defaultValue="639">Mitsubishi</option>
-                          <option defaultValue="664">Nissan</option>
-                          <option defaultValue="1125">Opel</option>
-                          <option defaultValue="1204">Opel</option>
-                          <option defaultValue="711">Peugeot</option>
-                          <option defaultValue="733">Porsche</option>
-                          <option defaultValue="753">Renault</option>
-                          <option defaultValue="1146">Seat</option>
-                          <option defaultValue="795">Skoda</option>
-                          <option defaultValue="1108">Subaru</option>
-                          <option defaultValue="821">Suzuki</option>
-                          <option defaultValue="1072">Tata</option>
-                          <option defaultValue="846">Toyota</option>
-                          <option defaultValue="1168">United Diesel</option>
-                          <option defaultValue="874">Volkswagen</option>
-                          <option defaultValue="898">Volvo</option>
+                          {make_data
+                            ? make_data.data.map((element, key) => {
+                                return (
+                                  <option value={element.id} key={key}>
+                                    {element.name}
+                                  </option>
+                                );
+                              })
+                            : null}
                         </select>
                       </div>
                     </div>
@@ -98,10 +170,18 @@ export default function Book_service() {
                           required=""
                           data-parsley-required-message="Please Choose Model"
                         >
-                          undefined
                           <option disabled="" defaultValue="">
                             Choose Model
                           </option>
+                          {modal_data
+                            ? modal_data.map((element, key) => {
+                                return (
+                                  <option value={element.id} key={key}>
+                                    {element.name}
+                                  </option>
+                                );
+                              })
+                            : null}
                         </select>
                       </div>
                     </div>
@@ -117,30 +197,13 @@ export default function Book_service() {
                           <option disabled="" defaultValue="">
                             Select Year
                           </option>
-                          <option defaultValue="2022">2022</option>
-                          <option defaultValue="2021">2021</option>
-                          <option defaultValue="2020">2020</option>
-                          <option defaultValue="2019">2019</option>
-                          <option defaultValue="2018">2018</option>
-                          <option defaultValue="2017">2017</option>
-                          <option defaultValue="2016">2016</option>
-                          <option defaultValue="2015">2015</option>
-                          <option defaultValue="2014">2014</option>
-                          <option defaultValue="2013">2013</option>
-                          <option defaultValue="2012">2012</option>
-                          <option defaultValue="2011">2011</option>
-                          <option defaultValue="2010">2010</option>
-                          <option defaultValue="2009">2009</option>
-                          <option defaultValue="2008">2008</option>
-                          <option defaultValue="2007">2007</option>
-                          <option defaultValue="2006">2006</option>
-                          <option defaultValue="2005">2005</option>
-                          <option defaultValue="2004">2004</option>
-                          <option defaultValue="2003">2003</option>
-                          <option defaultValue="2002">2002</option>
-                          <option defaultValue="2001">2001</option>
-                          <option defaultValue="2000">2000</option>
-                          <option defaultValue="1999">1999</option>{" "}
+                          {year_data.data.map((element, key) => {
+                            return (
+                              <option value={element.id} key={key}>
+                                {element.name}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>
@@ -158,18 +221,13 @@ export default function Book_service() {
                           <option disabled="" defaultValue="">
                             Select Vehicle Registration State
                           </option>
-                          <option defaultValue="1">Abu Dhabi</option>
-                          <option defaultValue="12">Ajman</option>
-                          <option defaultValue="23">Bahrain</option>
-                          <option defaultValue="2">Dubai</option>
-                          <option defaultValue="13">Fujairah</option>
-                          <option defaultValue="24">KSA</option>
-                          <option defaultValue="25">Kuwait</option>
-                          <option defaultValue="22">OMAN</option>
-                          <option defaultValue="26">Qatar</option>
-                          <option defaultValue="6">Ras Al Khaimah</option>
-                          <option defaultValue="3">Sharjah</option>
-                          <option defaultValue="4">Umm Al Quwain</option>
+                          {state_data.data.map((element, key) => {
+                            return (
+                              <option value={element.id} key={key}>
+                                {element.name}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>
@@ -202,8 +260,6 @@ export default function Book_service() {
                         />
                       </div>
                     </div>
-
-                    
                   </div>
                 </div>
               </div>
@@ -217,25 +273,25 @@ export default function Book_service() {
                           name="locationId"
                           className="inp_field select2_initialize"
                           id="locationId"
+                          onChange={onChangeLocation}
                           required=""
                         >
-                          undefined
                           <option disabled="" defaultValue="">
                             Choose Location
                           </option>
-                          <option defaultValue="31">Abu Dhabi Musaffah M-13</option>
-                          <option defaultValue="32">Al Ain Office</option>
-                          <option defaultValue="33">Dubai Al Quoz</option>
-                          <option defaultValue="34">Dubai DIC</option>
-                          <option defaultValue="36">Dubai Umm Ramool</option>
-                          <option defaultValue="37">Sharjah</option>
-                          <option defaultValue="38">Ras Al Khaimah</option>
-                          <option defaultValue="39">Fujairah</option>
+                          {location_data
+                            ? location_data.data.map((element, key) => {
+                                return (
+                                  <option value={element.id} key={key}>
+                                    {element.name}
+                                  </option>
+                                );
+                              })
+                            : null}
                         </select>
                       </div>
                     </div>
 
-                   
                     <div className="col-lg-4 mt-4 col-sm-6 col-12">
                       <div className="form_field_wrapper">
                         <label>Select Date</label>
@@ -248,10 +304,7 @@ export default function Book_service() {
                           required=""
                         />
                       </div>
-
-                      
                     </div>
-
 
                     <div className="col-lg-4 mt-4 col-sm-6 col-12">
                       <div className="form_field_wrapper">
@@ -265,6 +318,18 @@ export default function Book_service() {
                           <option defaultValue="" disabled="">
                             Select Time Slot
                           </option>
+
+                          {time_slot
+                            ? time_slot.map((element) => {
+                                return element.timings.map((time, timekey) => {
+                                  return (
+                                    <option value={time} key={timekey}>
+                                      {time}
+                                    </option>
+                                  );
+                                });
+                              })
+                            : null}
                         </select>
                       </div>
                     </div>
@@ -283,381 +348,85 @@ export default function Book_service() {
                   </div>
                 </div>
               </div>
+
+              {/* Packages section */}
               <div className="col-12 col-xl-12 d-block mx-auto ">
                 <div className="form_wrapper_booking checkBox_wrapper packagesWrapper">
                   <div className="row">
                     <div className="col-12 mt-5">
-                      <h3 className="common_heading">Packages</h3>
+                      <h3 className="common_heading">Selected Package</h3>
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">
-                          Quick Oil Change Service (*Nissan Patrol Only)
-                        </label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>Engine Oil Filter Replacement</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    General Inspection and Health Check
+                    {package_data
+                      ? package_data.data.map((element, key) => {
+                          return (
+                            <div
+                              className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 "
+                              key={key}
+                              onClick={() => onChangePlan(element)}
+                            >
+                              <div
+                                className={
+                                  element.id === active_package
+                                    ? "packages_wrapper_service text-center active"
+                                    : "packages_wrapper_service text-center"
+                                }
+                              >
+                                <label className="label_name">
+                                  {element.name}
+                                </label>
+                                <div className="d-inline-block ml-2 dropdown_wrapper">
+                                  <i className="fas fa-info-circle"></i>
+                                  <div className="hidden-inital dropdown_container dropdown_sm">
+                                    <div className="dropdown_inner ">
+                                      <h3 className="text-center normal-text bold-text mb-3 text-primary">
+                                        Service Includes
+                                      </h3>
+                                      <ul>
+                                        {element.features
+                                          .split(",")
+                                          .map((subitem, i) => {
+                                            return (
+                                              <li
+                                                className="included abs_content_wrapper text-dark"
+                                                key={i}
+                                              >
+                                                <span>{subitem}</span>
+                                              </li>
+                                            );
+                                          })}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <span className="d-block mt-3 mb-4">
+                                  <span className="small-text">OMR</span>
+                                  <span className="bold-text big-text price_text">
+                                    {element.price}
                                   </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>5w30 Fully Synthetic Oil</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Body Wash And Vacuum</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">199</span>
-                        </span>
+                                </span>
 
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="63"
-                            type="radio"
-                            price_value="199"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 active">
-                      <div className="packages_wrapper_service active text-center">
-                        <label className="label_name">Free Ac Check </label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>Inspection of car’s A/C system</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Run diagnostics of car’s A/C system
-                                  </span>
-                                </li>
-                              </ul>
+                                <label className="label_booking">
+                                  <input
+                                    name="packages"
+                                    data-parsley-required-message="Please Choose At least One Service"
+                                    className="trigger_checkbox"
+                                    defaultValue="64"
+                                    type="radio"
+                                    price_value="1"
+                                    data-parsley-multiple="packages"
+                                  />
+                                </label>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">1</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="64"
-                            type="radio"
-                            price_value="1"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">Auto Detailing package</label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>Full interior Cleaning </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span> Car Sanitization</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Full Body polishing</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>*Terms &amp; Conditions apply</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>*Valid for a limited period</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">399</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="65"
-                            type="radio"
-                            price_value="399"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">
-                          Periodic Maintenance (Sedan)
-                        </label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Replacement of Engine Oil(10K 5W30 Synthetic
-                                    Oil){" "}
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Replacement of Engine Oil Filter</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Inspection of Brakes</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Comprehensive Inspection and health check
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Body Wash and Vacuum</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">349</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="22"
-                            type="radio"
-                            price_value="349"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">
-                          Periodic Maintenance (SUV)
-                        </label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Replacement of Engine Oil(10K 5W30 Synthetic
-                                    Oil){" "}
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Replacement of Engine Oil Filter</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Inspection of Brakes</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Comprehensive Inspection and health check
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Body Wash and Vacuum</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">499</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="21"
-                            type="radio"
-                            price_value="499"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">
-                          Lube Car Service (Sedan)
-                        </label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Valid on Japanese/Korean/Chinese Brands
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Replacement of Engine Oil(with 10w40Semi
-                                    Synthetic
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Replacement of Engine Oil Filter</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Air Filter Cleaning </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    General Inspection and health check
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Body Wash and Vacuum</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">150</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="18"
-                            type="radio"
-                            price_value="150"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 d-none">
-                      <div className="packages_wrapper_service  text-center">
-                        <label className="label_name">Lube Car Service (SUV)</label>
-                        <div className="d-inline-block ml-2 dropdown_wrapper">
-                          <i className="fas fa-info-circle"></i>
-                          <div className="hidden-inital dropdown_container dropdown_sm">
-                            <div className="dropdown_inner ">
-                              <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                Service Includes
-                              </h3>
-                              <ul>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Valid on Japanese/Korean/Chinese Brands
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    Replacement of Engine Oil(with 10w40Semi
-                                    Synthetic
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Replacement of Engine Oil Filter</span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Air Filter Cleaning </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>
-                                    General Inspection and health check
-                                  </span>
-                                </li>
-                                <li className="text-left color-black">
-                                  <span>Body Wash and Vacuum</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">220</span>
-                        </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="packages"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            className="trigger_checkbox"
-                            defaultValue="17"
-                            type="radio"
-                            price_value="220"
-                            data-parsley-multiple="packages"
-                          />
-                        </label>
-                      </div>
-                    </div>
+                          );
+                        })
+                      : null}
                   </div>
                 </div>
               </div>
+              {/* end Packages section */}
+
+              {/* Addon section */}
               <div className="col-12 col-xl-12 d-block mx-auto mb-4 ">
                 <div className="form_wrapper_booking checkBox_wrapper">
                   <div className="row">
@@ -666,97 +435,144 @@ export default function Book_service() {
                         Add Extra Services To Your Package
                       </h3>
                     </div>
+                    {addon_data
+                      ? addon_data.data.map((element, key) => {
 
-                    <div className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4">
-                      <div className="services_wrapper   text-center">
-                        <label className="label_name">Headlamp Polishing</label>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">99</span>
+                        
+                            
+
+
+                          return (
+                            <div
+                              className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4"
+                              key={key}
+                            >
+                              <div
+                                className={element.active?"services_wrapper text-center active":"services_wrapper text-center"}
+                                onClick={() => onChangeAddon(element)}
+                              >
+                                <label className="label_name">
+                                  {element.name}
+                                </label>
+                                <span className="d-block mt-3 mb-4">
+                                  <span className="small-text">OMR</span>{" "}
+                                  <span className="bold-text big-text price_text">
+                                    {element.price}
+                                  </span>
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })
+                      : null}
+                  </div>
+                </div>
+              </div>
+              {/* end Addon section*/}
+
+              {/* Payment section */}
+
+              <div class="col-12 mb-5 mt-5">
+                <div class="row">
+                  <div class="offset-lg-6 col-lg-6 sum_wrapper">
+                    <div class="row">
+                      <div class="col-8 text-right">
+                        <span class="title" id="packageChoosenName">
+                          {package_name}
                         </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="services_choosen[]"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            defaultValue="42"
-                            className="trigger_checkbox"
-                            type="checkbox"
-                            price_value="99"
-                            data-parsley-multiple="services_choosen"
-                          />
-                        </label>
+                      </div>
+                      <div class="col-4 text-right">
+                        <span>
+                        <span class="unit_name">OMR  &nbsp;</span> 
+                          <span class="price_value mr-2" id="packageChoosenVal">
+                            {package_price}
+                          </span>
+                        </span>
                       </div>
                     </div>
-                    <div className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4">
-                      <div className="services_wrapper   text-center">
-                        <label className="label_name">
-                          Vehicle AC Car Service{" "}
-                        </label>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">149</span>
-                        </span>
 
-                        <label className="label_booking">
-                          <input
-                            name="services_choosen[]"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            defaultValue="46"
-                            className="trigger_checkbox"
-                            type="checkbox"
-                            price_value="149"
-                            data-parsley-multiple="services_choosen"
-                          />
-                        </label>
+                    {/* {addon_name ?
+                    <div class="row">
+                    <div class="col-8 text-right">
+                      <span class="title" id="packageChoosenName">
+                        {addon_name}
+                      </span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span>
+                      <span class="unit_name">OMR  &nbsp;</span> 
+                        <span class="price_value mr-2" id="packageChoosenVal">
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  :null
+                  
+                  } */}
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="all_services_choosen"></div>
                       </div>
                     </div>
-                    <div className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4">
-                      <div className="services_wrapper   text-center">
-                        <label className="label_name">Body Polishing</label>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">249</span>
+                    <div class="row">
+                      <div class="col-8 text-right">
+                        <span class="title">TOTAL</span>
+                      </div>
+                      <div class="col-4 text-right">
+                        <span>
+                        <span class="unit_name">OMR  &nbsp;</span> 
+                          <span class="price_value mr-2" id="packageChoosenVal">
+                            {package_price}
+                          </span>
                         </span>
+                      </div>
 
-                        <label className="label_booking">
-                          <input
-                            name="services_choosen[]"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            defaultValue="16"
-                            className="trigger_checkbox"
-                            type="checkbox"
-                            price_value="249"
-                            data-parsley-multiple="services_choosen"
-                          />
-                        </label>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 text-right">
+                        <span class="title">TAX 5%</span>
+                      </div>
+                      <div class="col-4 text-right">
+                        <span>
+                        <span class="unit_name">OMR  &nbsp;</span> 
+                          <span class="price_value mr-2" id="packageChoosenVal">
+                            {package_price}
+                          </span>
+                        </span>
                       </div>
                     </div>
-                    <div className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4">
-                      <div className="services_wrapper   text-center">
-                        <label className="label_name">Interior Detailing</label>
-                        <span className="d-block mt-3 mb-4">
-                          <span className="small-text">AED</span>{" "}
-                          <span className="bold-text big-text price_text">249</span>
+                    <div class="row mt-4">
+                      <div class="col-8 text-right">
+                        <span class="title total">Grand Total</span>
+                      </div>
+                      <div class="col-4 text-right">
+                        <span>
+                        <span class="unit_name">OMR  &nbsp;</span> 
+                          <span class="price_value mr-2" id="packageChoosenVal">
+                            {package_price}
+                          </span>
                         </span>
-
-                        <label className="label_booking">
-                          <input
-                            name="services_choosen[]"
-                            data-parsley-required-message="Please Choose At least One Service"
-                            defaultValue="15"
-                            className="trigger_checkbox"
-                            type="checkbox"
-                            price_value="249"
-                            data-parsley-multiple="services_choosen"
-                          />
-                        </label>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-6">
+                      </div>
+                      <div class="col-6">
+                        <button
+                          class="pay_now_btn submitBtn"
+                          type="submit"
+                          value="pay_now"
+                        >
+                          Pay Now <i class="fas fa-money"></i>
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            
+
+              {/* end Paymenet */}
             </div>
           </div>
         </div>

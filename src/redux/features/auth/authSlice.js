@@ -30,7 +30,10 @@ export const login = createAsyncThunk(
         `${API_URL}/${namespace}/login`,
         formData
       );
-      toast.success(data.message);
+      if (data.token) {
+        localStorage.setItem("userToken", JSON.stringify(data.token));
+        toast.success(data.message);
+      }
       return data;
     } catch (error) {
       return Checkerror(error);
@@ -72,7 +75,8 @@ export const loginSlice = createSlice({
     },
     [login.fulfilled](state, action) {
       state.loading = HTTP_STATUS.PENDING;
-      state.data = HTTP_STATUS.FULFILLED;
+           state.data = action.payload;
+
     },
     [login.rejected](state, action) {
       state.loading = HTTP_STATUS.REJECTED;
