@@ -10,14 +10,17 @@ import { getPackage } from "../redux/features/booking-data/packagesSlice";
 import { getState } from "../redux/features/booking-data/stateSlice";
 import { getTimeslot } from "../redux/features/booking-data/timeslotSlice";
 import { getYear } from "../redux/features/booking-data/yearSlice";
+import { CURRENCY, TAX_PERCENTAGE } from "../config/Constants";
 
 export default function Book_service() {
+  // states
   const [modal_data, setModal_data] = useState(null);
   const [time_slot, setTime_slot] = useState(null);
   const [active_addons, setActive_addons] = useState([]);
   const params = useParams();
   const [active_package, setActive_package] = useState(parseInt(params.id));
 
+  // hitting booking related data from apis
   const disptach = useDispatch();
   useEffect(() => {
     disptach(getMake());
@@ -28,6 +31,7 @@ export default function Book_service() {
     disptach(getAddon());
   }, []);
 
+  // getting state values
   const make_data = JSON.parse(
     JSON.stringify(useSelector((state) => state.make))
   );
@@ -78,6 +82,7 @@ export default function Book_service() {
       setActive_addons(updated_addons);
     }
   };
+
   // dynamic active selected addons
   var addons_total = 0;
   active_addons.map((activeAddon) => {
@@ -104,16 +109,11 @@ export default function Book_service() {
     }
   }
 
+  // calculating payments
   const total_without_tax =
     parseFloat(package_price) + parseFloat(addons_total);
-  const tax = (parseFloat(total_without_tax) * 5) / 100;
+  const tax = (parseFloat(total_without_tax) * TAX_PERCENTAGE) / 100;
   const total_with_tax = parseFloat(total_without_tax) + parseFloat(tax);
-
-  // console.log("addons total", parseFloat(addons_total).toFixed(3));
-  // console.log("package price", parseFloat(package_price).toFixed(3));
-  // console.log("tax", parseFloat(tax).toFixed(3));
-  // console.log("total_without_tax", parseFloat(total_with_tax).toFixed(3));
-  // console.log("total_with_tax", parseFloat(total_without_tax).toFixed(3));
 
   // Api loading
   if (
@@ -127,6 +127,7 @@ export default function Book_service() {
     return <Loader />;
   }
 
+  // render view
   return (
     <div className="container">
       <div className="booking_form">
@@ -411,7 +412,7 @@ export default function Book_service() {
                                 </div>
                               </div>
                               <span className="d-block mt-3 mb-4">
-                                <span className="small-text">OMR</span>
+                                <span className="small-text">{CURRENCY}</span>
                                 <span className="bold-text big-text price_text">
                                   {element.price}
                                 </span>
@@ -466,7 +467,7 @@ export default function Book_service() {
                                 {element.name}
                               </label>
                               <span className="d-block mt-3 mb-4">
-                                <span className="small-text">OMR</span>{" "}
+                                <span className="small-text">{CURRENCY}</span>{" "}
                                 <span className="bold-text big-text price_text">
                                   {element.price}
                                 </span>
@@ -493,7 +494,7 @@ export default function Book_service() {
                           <div className="row gutters">
                             <div className="col-lg-12 col-md-12 col-sm-12">
                               <div className="table-responsive">
-                                <table className="table custom-table m-0">
+                                <table className="table custom-table m-0 payment-table">
                                   <thead>
                                     <tr>
                                       <th>Items</th>
@@ -504,11 +505,11 @@ export default function Book_service() {
                                     {/* package */}
                                     <tr>
                                       <td>
-                                        <p className="m-0">
-                                          {package_name}
-                                        </p>
+                                        <p className="m-0">{package_name}</p>
                                       </td>
-                                      <td>OMR {package_price}</td>
+                                      <td>
+                                        <span>{CURRENCY}</span> {package_price}
+                                      </td>
                                     </tr>
                                     {/* end package */}
 
@@ -522,13 +523,15 @@ export default function Book_service() {
                                                   {singleItem.name}
                                                 </p>
                                               </td>
-                                              <td>OMR {singleItem.price}</td>
+                                              <td>
+                                                <span>{CURRENCY}</span>{" "}
+                                                {singleItem.price}
+                                              </td>
                                             </tr>
                                           );
                                         })
                                       : null}
                                     {/* end addons */}
-                                    
 
                                     <tr>
                                       <td>
@@ -544,13 +547,22 @@ export default function Book_service() {
                                       </td>
                                       <td>
                                         <p>
-                                          OMR {parseFloat(total_without_tax).toFixed(3)}
+                                          <span>{CURRENCY}</span>{" "}
+                                          {parseFloat(
+                                            total_without_tax
+                                          ).toFixed(3)}
                                           <br />
-                                         OMR {parseFloat(tax).toFixed(3)}
+                                          <span>{CURRENCY}</span>{" "}
+                                          {parseFloat(tax).toFixed(3)}
                                           <br />
                                         </p>
                                         <h5 className="text-success">
-                                          <strong>OMR {parseFloat(total_with_tax).toFixed(3)}</strong>
+                                          <strong>
+                                            <span>{CURRENCY}</span>{" "}
+                                            {parseFloat(total_with_tax).toFixed(
+                                              3
+                                            )}
+                                          </strong>
                                         </h5>
                                       </td>
                                     </tr>
@@ -563,13 +575,15 @@ export default function Book_service() {
                       </div>
                     </div>
                   </div>
-                  <button
-                    className="pay_now_btn submitBtn"
-                    type="submit"
-                    value="pay_now"
-                  >
-                    Pay Now <i className="fas fa-money"></i>
-                  </button>
+                  <div className="payment-button text-center mb-5">
+                    <button
+                      className="btn btn-primary btn-lg submitBtn"
+                      type="submit"
+                      value="pay_now"
+                    >
+                      Pay Now <i className="fas fa-money"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

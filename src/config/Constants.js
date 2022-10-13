@@ -19,3 +19,6 @@ export const authConstants = {
   LOGOUT_SUCCESS: "LOGOUT_SUCCESS",
   LOGOUT_FAILURE: "LOGOUT_FAILURE",
 };
+
+export const CURRENCY = "OMR"
+export const TAX_PERCENTAGE=5

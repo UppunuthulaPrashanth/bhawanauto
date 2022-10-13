@@ -95,7 +95,6 @@ export default function Navbar() {
       <li className="nav-item">
         <Link
           to="/"
-          reloadDocument={true}
           className={location.pathname === "/" ? "nav-link active" : "nav-link"}
         >
           <span>Home</span>

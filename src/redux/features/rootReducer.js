@@ -11,6 +11,7 @@ import { getStateSlice } from "./booking-data/stateSlice";
 import { getTimeslotSlice } from "./booking-data/timeslotSlice";
 import { getYearSlice } from "./booking-data/yearSlice";
 import { getModalSlice } from "./booking-data/makeModelSlice";
+import { getHomePackageSlice } from "./booking-data/homePackagesSlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -29,5 +30,6 @@ export default combineReducers({
     state:getStateSlice.reducer,
     addon:getAddonSlice.reducer,
     package:getPackageSlice.reducer,
+    homePackage:getHomePackageSlice.reducer
 
 })

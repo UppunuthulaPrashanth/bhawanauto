@@ -10809,6 +10809,23 @@ img {
   color:#000000 !important;
 }
 
+.payment-table span{
+  font-size: 13px !important;
+}
+
+
+/* test */
+
+.owl-theme .owl-nav.disabled + .owl-dots {
+  margin: 0 !important;
+}
+.rect-owel .owl-stage-outer {
+  margin-bottom: -60px !important;
+  margin-top: -40px !important;
+
+}
+
+
 
 
 

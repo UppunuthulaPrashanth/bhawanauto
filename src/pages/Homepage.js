@@ -1,6 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/loader/Loader";
+import { getHomePackage } from "../redux/features/booking-data/homePackagesSlice";
 import Services from "./Services";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import { CURRENCY } from "../config/Constants";
+
 export default function Homepage() {
   var faqs = [
     {
@@ -29,91 +36,26 @@ export default function Homepage() {
         "On receipt of information on vehicle ready status and final invoice value, you may make payment through cash or by credit/debit card swipe or through online payment link. Vehicle shall be delivered on realization of payment or authorized payment confirmation.",
     },
   ];
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getHomePackage());
+  }, []);
+
+  const { loading, data } = JSON.parse(
+    JSON.stringify(useSelector((state) => state.homePackage))
+  );
+
+  if (loading === "PENDING") {
+    return <Loader />;
+  }
+
   return (
     <>
-      {/* Home Banner */}
       {/* Banner Section */}
-      <section className="banner-section-three">
-        <div className="banner-carousel-index owl-carousel owl-theme">
-          <div className="item">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="0"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner1.jpg"
-                    alt="Car Ac Package "
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="0"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner2.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner2.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner2.png"
-                    alt="Flexi Service Contract"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item">
-            <div className="af_slider">
-              <a
-                href="our-packages.html"
-                package-id="0"
-                package-type="SP"
-                className=""
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner3.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner3.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner3.png"
-                    alt="GRAND WINTER OFFER"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item">
+        <OwlCarousel className="owl-theme" items={1} slideBy={1} loop={true} autoplay={true}>
+          <div className="item one">
             <div className="af_slider">
               <a
                 href="book-service.html"
@@ -139,385 +81,176 @@ export default function Homepage() {
               </a>
             </div>
           </div>
-        </div>
-      </section>
-      {/*End Banner Section */}
-      {/* <section>
-   <div className="packages_wrapper">
-      <div className="auto-container">
-         <div className="row">
-            <div className="col-12 mt-3 mb-3">
-               <div className="row no-gutters justify-content-center">
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>Trust</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>Quality</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>Customer Satisfaction</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>Affordable Price</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>Transparent Cost</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="col-lg col-md-4 mt-2 col-sm-6 col-6">
-                     <div className="each_af_features bg_light border_radius_10 mx-1">
-                        <div className="icon_container ">
-                           <i className="fas normal-text fa-check"></i>
-                        </div>
-                        <div className="text_container">
-                           <h3>All Brands</h3>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+          <div className="item two">
+            <div className="af_slider">
+              <a
+                href="book-service.html"
+                package-id="0"
+                package-type="SP"
+                className="takeMeToBooking"
+              >
+                <picture>
+                  <source
+                    media="(min-width:991px)"
+                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
+                  />
+                  <source
+                    media="(min-width:575px)"
+                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
+                  />
+                  <img
+                    src="assets/front/uploads/homeBanner/banner1.jpg"
+                    alt="Car Ac Package "
+                    className="img-fluid"
+                  />
+                </picture>
+              </a>
             </div>
-         </div>
-      </div>
-   </div>
-</section> */}
-      {/* Home Banner ends*/}
+          </div>
+          <div className="item three">
+            <div className="af_slider">
+              <a
+                href="book-service.html"
+                package-id="0"
+                package-type="SP"
+                className="takeMeToBooking"
+              >
+                <picture>
+                  <source
+                    media="(min-width:991px)"
+                    srcSet="assets/front/uploads/homeBanner/banner2.png"
+                  />
+                  <source
+                    media="(min-width:575px)"
+                    srcSet="assets/front/uploads/homeBanner/banner2.png"
+                  />
+                  <img
+                    src="assets/front/uploads/homeBanner/banner2.png"
+                    alt="Flexi Service Contract"
+                    className="img-fluid"
+                  />
+                </picture>
+              </a>
+            </div>
+          </div>
+          <div className="item four">
+            <div className="af_slider">
+              <a
+                href="our-packages.html"
+                package-id="0"
+                package-type="SP"
+                className=""
+              >
+                <picture>
+                  <source
+                    media="(min-width:991px)"
+                    srcSet="assets/front/uploads/homeBanner/banner3.png"
+                  />
+                  <source
+                    media="(min-width:575px)"
+                    srcSet="assets/front/uploads/homeBanner/banner3.png"
+                  />
+                  <img
+                    src="assets/front/uploads/homeBanner/banner3.png"
+                    alt="GRAND WINTER OFFER"
+                    className="img-fluid"
+                  />
+                </picture>
+              </a>
+            </div>
+          </div>
+          <div className="item five">
+            <div className="af_slider">
+              <a
+                href="book-service.html"
+                package-id="23"
+                package-type="SP"
+                className="takeMeToBooking"
+              >
+                <picture>
+                  <source
+                    media="(min-width:991px)"
+                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                  />
+                  <source
+                    media="(min-width:575px)"
+                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                  />
+                  <img
+                    src="assets/front/uploads/homeBanner/banner4.png"
+                    alt="Values"
+                    className="img-fluid"
+                  />
+                </picture>
+              </a>
+            </div>
+          </div>
+        </OwlCarousel>
+      {/*End Banner Section */}
+
+      {/* Packages*/}
       <div className="mt-sm-5">
-        {/* Home Packages */}
         <section>
           <div className="packages_wrapper">
             <div className="auto-container">
               <div className="sec-title text-center mt-3 mb-0">
                 <h2>Service Packages</h2>
-                {/* <span className="devider">
-              <span></span>
-            </span> */}
               </div>
-
               {/* Asian Brands */}
               <div className="text-center m-1">
                 <h5 className="mx-auto">Japanese/Korean/Chinese Brands</h5>
               </div>
-              <div className="row">
-                <div className="col-12 packages_caroseul_dsg_dots">
-                  <div className="packages_caroseul_dsg owl-theme owl-carousel">
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_1">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (4 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              15.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="63"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_2">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (6 CYL){" "}
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              17.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="64"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_3">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              21.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="65"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_4">
-                          <h3 className="bold-text">
-                            Periodic Service - 10000 Kms (4 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              20.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="22"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_5">
-                          <h3 className="bold-text">
-                            Periodic Service - 1000 Kms(8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              25.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body Wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="21"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_6">
-                          <h3 className="bold-text">
-                            Periodic Service - 1000 Kms (8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              30.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil){" "}
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span> Body wash & Vacuum </span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="18"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="row rect-owel">
+                  <OwlCarousel className="owl-theme" slideBy={1} loop={true} margin={20} autoplay={true}>
+                    {data.Japanese_Korean_Chinese
+                      ? data.Japanese_Korean_Chinese.map(
+                          (packageDetails, key) => {
+                            return (
+                              <div className="item japan" key={key}>
+                                <div className="each_package_container  ">
+                                  <div
+                                    className="content_package"
+                                    id={"package_" + key}
+                                  >
+                                    <h3 className="bold-text">
+                                      {packageDetails.name}
+                                    </h3>
+                                    <span className="price_wrapper d-block mt-4 mb-4 text-center">
+                                      <span className="medium-text">
+                                        {CURRENCY} &nbsp;
+                                      </span>
+                                      <span className="biggest-text bold-text primary-color">
+                                        {packageDetails.price}
+                                      </span>
+                                    </span>
+                                    <div className="points_container mt-3">
+                                      <ul>
+                                      { packageDetails.features.split(',').map((subitem, i)=>(
+                                        <li className="included abs_content_wrapper" key={i}>
+                                          <span >{subitem}</span>
+                                        </li>
+                                      ))}
+                                      </ul>
+                                    </div>
+                                    <p className="btn_container pt-4">
+                                      <a
+                                        href="booking-service"
+                                        package-id="63"
+                                        package-type="SP"
+                                        className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
+                                      >
+                                        Book Now
+                                        <i className="fas fa-arrow-right"></i>
+                                      </a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+                        )
+                      : null}
+                  </OwlCarousel>
               </div>
               {/* End Asian Brands */}
 
@@ -525,295 +258,58 @@ export default function Homepage() {
               <div className="text-center m-1">
                 <h5 className="mx-auto">American & European Brands</h5>
               </div>
-              <div className="row">
+              <div className="row ">
                 <div className="col-12 packages_caroseul_dsg_dots">
-                  <div className="packages_caroseul_dsg owl-theme owl-carousel">
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_1">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (4 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              20.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="63"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_2">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (6 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              22.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="64"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_3">
-                          <h3 className="bold-text">
-                            Lube Service - 5000 Kms (8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              25.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 20w50
-                                  Mineral Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>20 Check points as per check sheet</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Body wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="65"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_4">
-                          <h3 className="bold-text">
-                            Periodic Service - 10000 Kms (4 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              24.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet </span>
-                              </li>
-
-                              <li className="included abs_content_wrapper">
-                                <span>Body Wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="22"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_5">
-                          <h3 className="bold-text">
-                            Periodic Service - 1000 Kms(8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              31.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet</span>
-                              </li>
-
-                              <li className="included abs_content_wrapper">
-                                <span>Body Wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="21"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="each_package_container  ">
-                        <div className="content_package" id="package_6">
-                          <h3 className="bold-text">
-                            Periodic Service - 1000 Kms (8 CYL)
-                          </h3>
-                          <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                              37.00
-                            </span>
-                          </span>
-                          <div className="points_container mt-3">
-                            <ul>
-                              <li className="included abs_content_wrapper">
-                                <span>
-                                  Replacement of Engine Oil&nbsp;(with 5w30
-                                  Synthetic Oil)
-                                </span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Replacement of Oil Filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>Clean Air filter</span>
-                              </li>
-                              <li className="included abs_content_wrapper">
-                                <span>30 Check points as per check sheet</span>
-                              </li>
-
-                              <li className="included abs_content_wrapper">
-                                <span>Body Wash & Vacuum</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <p className="btn_container pt-4">
-                            <a
-                              href="booking-service"
-                              package-id="18"
-                              package-type="SP"
-                              className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                            >
-                               Book Now <i className="fas fa-arrow-right"></i>
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <OwlCarousel className="owl-theme" slideBy={1} loop={true} margin={20} autoplay={true}  >
+                    {data.Americana_European
+                      ? data.Americana_European.map(
+                          (packageDetails, key) => {
+                            return (
+                              <div className="item us">
+                                <div className="each_package_container" key={key}>
+                                  <div
+                                    className="content_package"
+                                    id={"package_" + key}
+                                  >
+                                    <h3 className="bold-text">
+                                      {packageDetails.name}
+                                    </h3>
+                                    <span className="price_wrapper d-block mt-4 mb-4 text-center">
+                                      <span className="medium-text">
+                                        {CURRENCY} &nbsp;
+                                      </span>
+                                      <span className="biggest-text bold-text primary-color">
+                                        {packageDetails.price}
+                                      </span>
+                                    </span>
+                                    <div className="points_container mt-3">
+                                      <ul>
+                                      { packageDetails.features.split(',').map((subitem, i)=>(
+                                        <li className="included abs_content_wrapper" key={i}>
+                                          <span >{subitem}</span>
+                                        </li>
+                                      ))}
+                                      </ul>
+                                    </div>
+                                    <p className="btn_container pt-4">
+                                      <a
+                                        href="booking-service"
+                                        package-id="63"
+                                        package-type="SP"
+                                        className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
+                                      >
+                                        Book Now
+                                        <i className="fas fa-arrow-right"></i>
+                                      </a>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+                        )
+                      : null}
+                  </OwlCarousel>
                 </div>
               </div>
               {/*End American & European Brands */}
@@ -821,28 +317,10 @@ export default function Homepage() {
           </div>
         </section>
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-12 d-none">
-            <div className="call-btn-wrapper">
-              {/* <a href="tel:8002886349" className="call-btn-design-side text-center d-none mx-auto " style="width: 400px; max-width:100%;" target="_blank"><span className="icon-container text-center"><i className="fas fa-phone rotated"></i></span><span>Call Us: 8002886349</span></a> */}
-              <p className="btn_container mb-5 mt-4 mb-4 text-center">
-                <a
-                  href="tel:8002886349"
-                  data-number="8002886349"
-                  className="theme-btn btn-style-one blue takeMeToBooking d-inline-block text-center text-uppercase callNowBtn"
-                >
-                  <span className="btn-title">
-                    <i className="fas fa-phone rotated mr-2"></i> Call Us Today
-                  </span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Popular Services */}
-      {/* Popular Services ends*/}
+      {/* End Packages */}
+
+
+      {/* How it's work  */}
       <div className="mt-4">
         <section className="how_it_works_main_container">
           <div className="container-fluid">
@@ -862,9 +340,6 @@ export default function Homepage() {
                     proactive information is given on the vehicle readiness with
                     invoice details for convenience and transparency.”
                   </div>
-                  {/* <span className="devider">
-                    <span></span>
-                  </span> */}
                 </div>
                 <div className="row">
                   <div className="col-12">
@@ -1024,7 +499,9 @@ export default function Homepage() {
           </div>
         </section>
       </div>
-      {/* About Us */}
+      {/* End How it's work */}
+
+      {/* Car Brands We Work With */}
       <section className="certificate-section pt-4 pb-0 pt-sm-5">
         <div className="auto-container">
           <div className="sec-title text-center">
@@ -1033,9 +510,6 @@ export default function Homepage() {
               “Bahwan Automobiles Trading car service, repair all car makes and
               models at the most affordable prices in Oman. “
             </div>
-            {/* <span className="devider">
-              <span></span>
-            </span> */}
           </div>
           <div className="row">
             <div className="col-12">
@@ -1353,7 +827,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-      {/* End About Us */}
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -1367,42 +840,24 @@ export default function Homepage() {
                     <i className="far fa-calendar-check mr-2"></i> Book Now
                   </span>
                 </a>
-                <a
-                  href="tel:8002886349"
-                  data-number="8002886349"
-                  className="d-none theme-btn btn-style-one blue takeMeToBooking d-inline-blocktext-center text-uppercase callNowBtn"
-                >
-                  <span className="btn-title">
-                    <i className="fas fa-phone rotated mr-2"></i> Call Us Today
-                  </span>
-                </a>
               </p>
             </div>
           </div>
         </div>
       </div>
-      {/* Pricing Section two */}
-      {/*End Pricing Section */}
-
-      {/* new why choose us */}
-      {/* enc */}
-
-      {/* About Us */}
+      {/* End Car Brands We Work With */}
+    
+      {/* WHY CHOOSE US */}
       <div className="mt-sm-5 mt-3">
         <section className="about-section-two pt-4 pb-0 pt-sm-5">
           <div className="auto-container">
             <div className="container clearfix mb-4">
-              {/* Content Column */}
               <div className="inner-column">
                 <div className="no_after sec-title text-center text-lg-left">
                   <h2>WHY CHOOSE US?</h2>
-                  {/* <span className="devider">
-                      <span></span>
-                    </span> */}
                   <div className="text" style={{ fontSize: "15px" }}></div>
                 </div>
                 <div className="row">
-                  {/* Feature Block */}
                   <div className="row col-md-6">
                     <div className="feature-block-three m-4 ">
                       <div className="inner-box">
@@ -1506,11 +961,11 @@ export default function Homepage() {
                     <div className="feature-block-three m-4 mr-3">
                       <div className="inner-box">
                         <div className="icon-box">
-                        <img
+                          <img
                             src="assets/front/uploads/whychoose/Convenience.png"
                             style={{ height: "35px" }}
-                          />         
-                       </div>
+                          />
+                        </div>
                         <h4>
                           <a href="#">Convenience</a>
                         </h4>
@@ -1536,10 +991,11 @@ export default function Homepage() {
                     <div className="feature-block-three m-4">
                       <div className="inner-box">
                         <div className="icon-box">
-                        <img
+                          <img
                             src="assets/front/uploads/whychoose/value_Customer.png"
                             style={{ height: "35px" }}
-                          />                        </div>
+                          />{" "}
+                        </div>
                         <h4>
                           <a href="#">Customer Oriented</a>
                         </h4>
@@ -1563,8 +1019,9 @@ export default function Homepage() {
           </div>
         </section>
       </div>
-      {/* End About Us */}
-      {/* Associates */}
+      {/* End WHY CHOOSE US */}
+
+      {/*Our Car Service Partners */}
       <section className="py-5 bg_light">
         <div className="auto-container">
           <div className="sec-title text-center mb-5">
@@ -1577,8 +1034,8 @@ export default function Homepage() {
           <div className="row clearfix">
             <div className="col-12">
               <div className="our_partners_wrapper">
-                <div className="owl-carousel owl-theme">
-                  <div className="item">
+                <OwlCarousel className="owl-theme" autoplaySpeed={10} items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
+                  <div className="item one">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1587,7 +1044,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item two">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1596,7 +1053,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item three">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1605,7 +1062,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item four">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1614,7 +1071,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item five">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1623,7 +1080,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item six">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1632,7 +1089,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item seven">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1641,7 +1098,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item nine">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1650,7 +1107,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item ten">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1659,7 +1116,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item levan">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1668,7 +1125,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item twel">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1677,7 +1134,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item thirteen">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1686,16 +1143,15 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                </div>
+                </OwlCarousel>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* End Associates */}
+      {/* End Our Car Service Partners */}
 
       {/* our client */}
-
       <section className="py-5 bg_light_ourclients">
         <div className="auto-container">
           <div className="sec-title text-center mb-5">
@@ -1705,7 +1161,7 @@ export default function Homepage() {
           <div className="row clearfix">
             <div className="col-12">
               <div className="our_partners_wrapper">
-                <div className="owl-carousel owl-theme">
+              <OwlCarousel className="owl-theme" items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
                   <div className="item">
                     <div className="each_item_wrapper">
                       <img
@@ -1760,64 +1216,13 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                </div>
+                </OwlCarousel>
               </div>
             </div>
           </div>
         </div>
       </section>
       {/* end our client */}
-
-      {/* Call To Action Three */}
-      {/* <section className="call-to-action-two normal-text-small-screen py-5">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-12 min1200 max1200 d-block mx-auto">
-              <div className="row">
-                <div className="col-md-6 d-block mx-auto text-left d-block my-auto">
-                  <div className="content">
-                    <h2 className="color-white mb-0">Join Our newsletter</h2>
-                    <p className="color-white small-text">
-                      Enter your email address to receive news and updates
-                    </p>
-                    <form
-                      id="newsletterSubscriptionForm"
-                      method="POST"
-                      action="#"
-                    >
-                      <div className="input-group mt-4">
-                        <input
-                          className="form-control form-control-sm updateMe inputFieldSmall"
-                          type="email"
-                          id="newsletter"
-                          name="newsletter"
-                        />
-                        <div className="input-group-append">
-                          <button
-                            className="theme-btn btn-style-one submitNewsletterSubscription"
-                            type="submit"
-                          >
-                            <span className="btn-title">SUBMIT</span>
-                          </button>
-                        </div>
-                      </div>
-                      <p className=" mt-3" id="newsletterResponse"></p>
-                    </form>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="call_to_action_image_wrapper">
-                    <img
-                      className="img-fluid d-block mx-auto"
-                      src="assets/front/uploads/img-car-move.png"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {/* FAQ's Section */}
       <section className="faq-section pt-4 pt-sm-5 pb-0">
@@ -1828,9 +1233,6 @@ export default function Homepage() {
             <div className="text">
               Car Service Questions Answered at Auto Fix
             </div>
-            {/* <span className="devider">
-              <span></span>
-            </span> */}
           </div>
           <div className="row clearfix">
             {/* Content Column */}
@@ -1902,20 +1304,18 @@ export default function Homepage() {
         </div>
       </section>
       {/* End FAQ's Section */}
+
       {/* Testimonials */}
       <section className="py-5 bg_light mt-0 mt-md-5">
         <div className="auto-container">
           <div className="sec-title text-center mb-5">
             <h2>Customer Reviews</h2>
             <div className="text"></div>
-            {/* <span className="devider">
-              <span></span>
-            </span> */}
           </div>
           <div className="row clearfix">
             <div className="col-12">
               <div className="testimonials_container">
-                <div className="owl-carousel owl-theme">
+              <OwlCarousel className="owl-theme" items={3} slideBy={1} loop={true} autoplay={true} dots={false}  >
                   <div className="item">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
@@ -2123,16 +1523,16 @@ export default function Homepage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </OwlCarousel>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* News Section */}
+      {/* End Testimonial */}
 
+      {/* Sevices*/}
       <Services />
-      {/* End News Section */}
       <div className="container">
         <div className="row">
           <div className="col-12 mt-3">
@@ -2146,20 +1546,13 @@ export default function Homepage() {
                     <i className="far fa-calendar-check mr-2"></i> Book Now
                   </span>
                 </a>
-                <a
-                  href="tel:9573346036"
-                  data-number="9573346036"
-                  className="d-none theme-btn btn-style-one blue takeMeToBooking d-inline-blocktext-center text-uppercase callNowBtn"
-                >
-                  <span className="btn-title">
-                    <i className="fas fa-phone rotated mr-2"></i> Call Us Today
-                  </span>
-                </a>
               </p>
             </div>
           </div>
         </div>
       </div>
+      {/*End services  */}
+
     </>
   );
 }
