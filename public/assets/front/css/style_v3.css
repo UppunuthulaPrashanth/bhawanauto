@@ -6944,9 +6944,9 @@ img {
 }
 
 .sum_wrapper .title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: black;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .sum_wrapper .title.total {
@@ -10679,6 +10679,135 @@ img {
 
 
 /* why choose */
+
+
+
+/* booking page payment page */
+
+.invoice-container .table td, .table th {
+  padding: 0.3rem !important;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6
+}
+.invoice-container {
+  padding: 1rem;
+}
+.invoice-container .invoice-header .invoice-logo {
+  margin: 0.8rem 0 0 0;
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #bcd0f7;
+}
+.invoice-container .invoice-header .invoice-logo img {
+  max-width: 130px;
+}
+.invoice-container .invoice-header address {
+  font-size: 0.8rem;
+  color: #8a99b5;
+  margin: 0;
+}
+.invoice-container .invoice-details {
+  margin: 1rem 0 0 0;
+  padding: 1rem;
+  line-height: 180%;
+  background: #1a233a;
+}
+.invoice-container .invoice-details .invoice-num {
+  text-align: right;
+  font-size: 0.8rem;
+}
+.invoice-container .invoice-body {
+  padding: 1rem 0 0 0;
+}
+.invoice-container .invoice-footer {
+  text-align: center;
+  font-size: 0.7rem;
+  margin: 5px 0 0 0;
+}
+
+.invoice-status {
+  text-align: center;
+  padding: 1rem;
+  background: #272e48;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.invoice-status h2.status {
+  margin: 0 0 0.8rem 0;
+}
+.invoice-status h5.status-title {
+  margin: 0 0 0.8rem 0;
+  color: #8a99b5;
+}
+.invoice-status p.status-type {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  line-height: 150%;
+}
+.invoice-status i {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  display: inline-block;
+  padding: 1rem;
+  background: #1a233a;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+.invoice-status .badge {
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .invoice-container {
+      padding: 1rem;
+  }
+}
+
+.card {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0;
+  margin-bottom: 1rem;
+}
+
+.custom-table {
+  border: 1px solid #dde0e6;
+  border-radius: 8px;
+}
+.custom-table thead {
+  background: #27A3E2;
+}
+.custom-table thead th {
+  border: 0;
+  color: #ffffff;
+}
+
+.table {
+  font-size: 1rem;
+  font-weight: 600;
+  color:#000000;
+  border-radius: 8px;
+}
+.text-success {
+  color: #2b2d34 !important;
+}
+.custom-actions-btns {
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.custom-actions-btns .btn {
+  margin: .3rem 0 .3rem .3rem;
+}
+
+.invoice-container p{
+  color:#000000 !important;
+}
 
 
 
