@@ -1,170 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
 
 export default function Packages() {
+  const [search_query, setSearch_query] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPackage());
+  }, []);
 
-  useEffect(()=>{
-    dispatch(getPackage())
-  },[])
-
-  const {loading,data} = JSON.parse(
+  const { loading, data } = JSON.parse(
     JSON.stringify(useSelector((state) => state.package))
   );
 
-  const asia=[
-    {
-      title:"Lube Service - 5000 Kms (4CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"15.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet"],
-      
-    },
-    {
-      title:"Lube Service - 5000 Kms (6 CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"17.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet"],
-      
-    },
-    {
-      title:"Lube Service - 5000 Kms (8 CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"21.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet"],
-      
-    },
-    {
-      title:"Lube Service - 5000 Kms (4 CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"20.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"
-      ],
-      
-    },
-    {
-      title:"Lube Service - 5000 Kms (6 CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"25.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"
-      ],
-      
-    },
-    {
-      title:"Lube Service - 5000 Kms (8 CYL)",
-      continent:"(Japanese /Korean/ChineseBrands)",
-      price:"30.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"
-      ],
-      
-    },
+  const onSearch = (e) => {
+    const { value } = e.target;
+    setSearch_query(value);
+  };
 
-
-    {
-      title:"Lube Service - 5000 Kms (4 CYL)",
-      continent:"(American & European Brands)",
-      price:"20.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    },
-    {
-      title:"Lube Service - 5000 Kms (6 CYL)",
-      continent:"(American & European Brands)",
-      price:"22.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    },
-    {
-      title:"Lube Service - 5000 Kms (8 CYL)",
-      continent:"(American & European Brands)",
-      price:"25.00",
-      items:
-        ["Replacement of Engine Oil (with 20w50 Mineral Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "20 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    },
-    {
-      title:"Lube Service - 10000 Kms (4 CYL)",
-      continent:"(American & European Brands)",
-      price:"24.00",
-      items:
-        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    },
-    {
-      title:"Lube Service - 10000 Kms (6 CYL)",
-      continent:"(American & European Brands)",
-      price:"31.00",
-      items:
-        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    },
-    {
-      title:"Lube Service - 10000 Kms (8 CYL)",
-      continent:"(American & European Brands)",
-      price:"37.00",
-      items:
-        ["Replacement of Engine Oil (with 5w50 Synthetic Oil)",
-        "Replacement of Oil Filter",
-        "Clean Air filter",
-        "30 Check points as percheck sheet",
-        "Body wash & vacuum"],
-    }          
-  ];
-
-  if(loading=="PENDING"){
-    return <Loader/>
+  if (loading == "PENDING") {
+    return <Loader />;
   }
-
-  
-
 
   return (
     <>
@@ -177,9 +36,6 @@ export default function Packages() {
                 <div className="col-12">
                   <div className="sec-title text-center">
                     <h2>Our Car Service Packages</h2>
-                    {/* <span className="devider">
-                      <span></span>
-                    </span> */}
                     <div className="text">
                       As our valued Auto Fix customer, you expect us to provide
                       reliable maintenance and service <br />
@@ -191,11 +47,11 @@ export default function Packages() {
                     <div className="search_box_wrapper">
                       <div className="input_wrapper">
                         <input
-                          className=""
+                          type="text"
                           id="searchString"
                           name="searchString"
-                          
                           placeholder="Search Packages"
+                          onChange={onSearch}
                         />
                       </div>
                       <div className="search_btn_wrapper d-block my-auto">
@@ -222,42 +78,73 @@ export default function Packages() {
                       className="row no-gutters justify-content-center"
                       id="allPackages"
                     >
-                      {data ?data.map((value, index)=>(
-                      <div className="col-lg-4 col-md-4 col-sm-6 col-12" key={index}>
-                        <div className="pricing-block-two">
-                          <div className="inner-box">
-                            <span className="title bold-text">
-                              {value.name}
-                            </span>
-
-                            <span className="price_wrapper d-block mt-2 mb-2 text-center">
-                            <span className="medium-text">OMR &nbsp;</span>
-                            <span className="biggest-text bold-text primary-color">
-                            {value.price}
-                            </span>
-                          </span>
-                            <ul className="features dropdown_inner limitBox">
-                            
-                            { value.features.split(',').map((subitem, i)=>(
-                              <li className="included abs_content_wrapper" key={i}>
-                                <span >{subitem}</span>
-                              </li>
-                            ))}
-                            </ul>
-                            <div className="btn_container">
-                              <Link
-                                to={"/booking-service/"+value.id}
-                                package-id="63"
-                                package-type="SP"
-                                className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
+                      {data
+                        ? data
+                            .filter((value) => {
+                              if (search_query === "") {
+                                return value;
+                              } else if (
+                                value.name
+                                  .toLowerCase()
+                                  .indexOf(search_query.toLowerCase()) !== -1
+                              ) {
+                                return value;
+                              }
+                            })
+                            .map((value, index) => (
+                              <div
+                                className="col-lg-4 col-md-4 col-sm-6 col-12"
+                                key={index}
                               >
-                                <span className="btn-title">Book Now</span>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      )):null}
+                                <div className="pricing-block-two">
+                                  <div className="inner-box">
+                                    <span className="title bold-text">
+                                      {value.name}
+                                      <br />
+                                      <span className="mt-4" style={{"fontSize":"10px"}}>
+                                        {value.country == 'Japanese_Korean_Chinese'
+                                          ? "(Japanese/Korean/ChineseBrands)"
+                                          : "(American & European Brands)"}
+                                      </span>
+                                    </span>
+
+                                    <span className="price_wrapper d-block mt-2 mb-2 text-center">
+                                      <span className="medium-text">
+                                        OMR &nbsp;
+                                      </span>
+                                      <span className="biggest-text bold-text primary-color">
+                                        {value.price}
+                                      </span>
+                                    </span>
+                                    <ul className="features dropdown_inner limitBox">
+                                      {value.features
+                                        .split(",")
+                                        .map((subitem, i) => (
+                                          <li
+                                            className="included abs_content_wrapper"
+                                            key={i}
+                                          >
+                                            <span>{subitem}</span>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                    <div className="btn_container">
+                                      <Link
+                                        to={"/booking-service/" + value.id}
+                                        package-id="63"
+                                        package-type="SP"
+                                        className="theme-btn btn-style-two takeMeToBooking d-inline-block py-2 "
+                                      >
+                                        <span className="btn-title">
+                                          Book Now
+                                        </span>
+                                      </Link>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))
+                        : null}
                     </div>
                   </div>
                 </div>
@@ -301,14 +188,14 @@ export default function Packages() {
                               required
                               data-parsley-required-message="Please Choose Package"
                             >
-                              <option  >
-                                Select Package
-                              </option>
+                              <option>Select Package</option>
                               <option defaultValue="63">
                                 Quick Oil Change Service (*Nissan Patrol Only)
                               </option>
                               <option defaultValue="64">Free Ac Check </option>
-                              <option defaultValue="65">Auto Detailing package</option>
+                              <option defaultValue="65">
+                                Auto Detailing package
+                              </option>
                               <option defaultValue="22">
                                 Periodic Maintenance (Sedan)
                               </option>
@@ -318,13 +205,19 @@ export default function Packages() {
                               <option defaultValue="18">
                                 Lube Car Service (Sedan)
                               </option>
-                              <option defaultValue="17">Lube Car Service (SUV)</option>
-                              <option defaultValue="42">Headlamp Polishing</option>
+                              <option defaultValue="17">
+                                Lube Car Service (SUV)
+                              </option>
+                              <option defaultValue="42">
+                                Headlamp Polishing
+                              </option>
                               <option defaultValue="46">
                                 Vehicle AC Car Service{" "}
                               </option>
                               <option defaultValue="16">Body Polishing</option>
-                              <option defaultValue="15">Interior Detailing</option>
+                              <option defaultValue="15">
+                                Interior Detailing
+                              </option>
                             </select>
                           </div>
                         </div>
@@ -338,9 +231,7 @@ export default function Packages() {
                               required
                               data-parsley-required-message="Please Choose Make"
                             >
-                              <option disabled >
-                                Select Make
-                              </option>
+                              <option disabled>Select Make</option>
                               <option defaultValue="1130">Alfa Romeo</option>
                               <option defaultValue="1056">Ashok Leyland</option>
                               <option defaultValue="33">Audi</option>
@@ -415,9 +306,7 @@ export default function Packages() {
                               required
                               data-parsley-required-message="Please Choose Model"
                             >
-                              <option  disabled >
-                                Select Model
-                              </option>
+                              <option disabled>Select Model</option>
                             </select>
                           </div>
                         </div>

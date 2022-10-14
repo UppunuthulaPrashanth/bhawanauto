@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import 'react-toastify/dist/ReactToastify.css'; // import first
-import { ToastContainer } from 'react-toastify'; // then this
+import "react-toastify/dist/ReactToastify.css"; // import first
+import { toast, ToastContainer } from "react-toastify"; // then this
+
 
 class Layout extends React.Component {
+
   render() {
-    var userToken=localStorage.getItem('userToken')
+
+    var userToken = localStorage.getItem("userToken");
+    var userData = localStorage.getItem("userData");
+
+    const logout = () => {
+      localStorage.clear();
+      toast.error("Logout success")
+      window.location.reload();
+    };
 
     return (
       <div className="page-wrapper">
@@ -28,34 +38,60 @@ class Layout extends React.Component {
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
-                            {userToken ?
-                            <> 
-                            <Link
-                            to="myaccount"
-                            className="border-sm-left border-sm-right px-3"
-                          >
-                           <i className="fa fa-user"></i> My account
-                          </Link>
+                            {userToken ? (
+                              <div className="mr-sm-4 bold-text small-text my-auto dropdown_wrapper">
+                                <a
+                                  className="border-sm-left border-sm-right px-3"
+                                >
+                                  {" "}
+                                  <i className="fas fa-lock-open mr-2"></i>Hi,{userData=='undefined'?'loading':userData}
+                                  
+                                  <i className="fas fa-sort-down"></i>
+                                </a>
+                                <div className="hidden-inital dropdown_container dropdown_sm">
+                                  <div className="dropdown_inner ">
+                                    <ul>
+                                      <li>
+                                      <Link
+                                        to="myaccount"
+                                      >My
+                                        account
+                                      </Link>
+                                      </li>
+                                      <li>
+                                      <Link
+                                        to="myaccount"
+                                      >Package Orders
+                                      </Link>
+                                      </li>
 
-                          <Link
-                          to="#"
-                          className="border-sm-left border-sm-right px-3"
-                          >
-                          Log out
-                          </Link>
-                          </>
-                            :
-                            <Link
-                              to="#"
-                              className="border-sm-left border-sm-right px-3"
-                              data-toggle="modal"
-                              data-target="#signupSignInForm"
-                            >
-                              Login or Signup{" "}
-                            </Link>
-                            }
+                                      <li>
+                                      <Link
+                                        to="myaccount"
+                                      > Service Orders
+                                      </Link>
+                                      </li>
 
-
+                                      <li
+                                        className="d-block text-center bg_light"
+                                        onClick={logout}
+                                      >
+                                        Logout
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <Link
+                                to="#"
+                                className="border-sm-left border-sm-right px-3"
+                                data-toggle="modal"
+                                data-target="#signupSignInForm"
+                              >
+                                Login or Signup{" "}
+                              </Link>
+                            )}
                           </div>
                           <div className="social_icons_wrapper d-none d-sm-block">
                             <ul className="social-icon-four">
@@ -132,16 +168,12 @@ class Layout extends React.Component {
           </div>
         </header>
         {/*End Main Header */}
-
         {/* Dynamic content */}
         <main>{this.props.children}</main>
         {/* end Dynamic content */}
-
         {/* footer section */}
-
         {/*Main Footer*/}
-
-        <span className="whatsappIconFixedIcon">
+        {/* <span className="whatsappIconFixedIcon">
           <Link
             className="whatsappIconLink p-2"
             target="_blank"
@@ -154,8 +186,7 @@ class Layout extends React.Component {
               src="https://servicemycar.ae/public/assets/icons/whatsapp-logo-variant.svg"
             />
           </Link>
-        </span>
-
+        </span> */}
         <div
           className="modal fade"
           id="addressModal"
@@ -164,7 +195,6 @@ class Layout extends React.Component {
           aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true"
         ></div>
-
         <footer className="main-footer footer_new ">
           <div className="auto-container">
             <div className="widgets-outer">
@@ -337,13 +367,10 @@ class Layout extends React.Component {
         </footer>
         {/*End Main Footer*/}
         {/* Page Wrapper */}
-
         {/* Scroll To Top */}
         <div className="scroll-to-top scroll-to-target" data-target="html">
           <span className="fa fa-angle-up"></span>
         </div>
-
-       
       </div>
     );
   }

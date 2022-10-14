@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, register } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
+import Loader from "./loader/Loader";
 
 
 export default function Navbar() {
@@ -65,7 +66,6 @@ export default function Navbar() {
 
   const onSubmitSignin = (e) => {
     e.preventDefault();
-    setIsSubmit(true);
 
     const errors = {};
     if (!formSigninValues.emailphone) {
@@ -75,10 +75,13 @@ export default function Navbar() {
       errors.password = "Password is required";
     }
 
-    if (Object.keys(errors).length === 0 && isSubmit) {
-      setIsLoading(true)
+    if (Object.keys(errors).length === 0) {
+        setIsLoading(true)
       dispatch(login(formSigninValues)).then((res) => {
         setIsLoading(false)
+        if(res.payload.success){
+         window.location.reload();
+        }
       });
     } else {
       for (var key in errors) {
@@ -86,6 +89,9 @@ export default function Navbar() {
       }
     }
   };
+
+
+
 
   
 
@@ -330,6 +336,7 @@ export default function Navbar() {
                                         type="password"
                                         onChange={onChangeSignup}
                                         name="password"
+                                        autoComplete="on"
                                         id="singuppassword"
                                       />
                                     </div>
@@ -337,7 +344,7 @@ export default function Navbar() {
                                   <div className="col-12 mt-4 text-center form-navigation">
                                     <div className="btns-container">
                                       {isLoading ?
-                                      "Loading"
+                                      <img src="assets/front/loader/ezgif-2-bc14af353261.gif"/>
                                       : <button
                                       type="button"
                                       className="next common_button d-block w-100 py-2"
@@ -356,152 +363,10 @@ export default function Navbar() {
                               </div>
                             </div>
                           </div>
-
-                          {/* *********************************** SignUp Form Ends **************************************** */}
-
-                          {/* *********************************** Verify Phone Number **************************************** */}
-
-                          {/* <div className="form-container-login w-100 form-section">
-                              <div className="row">
-                                <div className="col-lg-11 col-xl-10 col-sm-12 col-12 d-block mx-auto">
-                                  <div className="row">
-                                    <div className="col-12 mt-4">
-                                      <h3 className="bold-text medium-text">
-                                        Enter Code
-                                      </h3>
-                                    </div>
-                                    <div className="col-12 mt-4">
-                                      <h3 className="bold-text small-text optResendStatus">
-                                        OTP has been sent successfully, please
-                                        enter the code to proceed.
-                                      </h3>
-                                      <div
-                                        className="col-12 col-sm-12 mt-2 text-center color-red"
-                                        id="message_verification"
-                                      ></div>
-                                    </div>
-                                    <div className="col-12 col-sm-12 mt-2">
-                                      <div className="form-wrapper">
-                                        <label>
-                                          <i className="far fa-address-card"></i>
-                                        </label>
-                                        <input
-                                          placeholder="Please Enter the Verification Code"
-                                          className="input-field"
-                                          name="v_code"
-                                          id="v_code"
-                                          type="text"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div className="col-12 mt-4 text-center">
-                                      <div className="btns-container">
-                                        <button
-                                          id="varifyAccount"
-                                          className="common_button d-block w-100 py-2"
-                                        >
-                                          <span>Verify</span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                    <div className="col-12 mt-5 text-center">
-                                      <div className="text-container">
-                                        <p className="small-text">
-                                          <span className="float-left color-gold cursor-pointer move_to_initial">
-                                            <i className="fas fa-arrow-left"></i>{" "}
-                                            Back
-                                          </span>
-                                          Haven't Receive the Code
-                                          <Link
-                                            className="color-gold bold-text"
-                                            to="#"
-                                            id="resendCodeEvt"
-                                            data-refid="0"
-                                          >
-                                            Resend Code
-                                          </Link>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> */}
                         </form>
                       </div>
 
-                      {/* <div
-                          className="form-wrapper hiddenInitial"
-                          id="recoverform"
-                        >
-                          <form id="recoverform444"> */}
-                      {/* ***********************************Signup Form**************************************** */}
-                      {/* <div className="form-container-login w-100">
-                              <div className="row">
-                                <div className="col-lg-11 col-xl-10 col-sm-12 col-12 d-block mx-auto">
-                                  <div className="row">
-                                    <div className="col-12 mt-4">
-                                      <div
-                                        className="alert alert-success my_alert"
-                                        role="alert"
-                                        style={{ display: "none" }}
-                                      ></div>
-                                    </div>
-
-                                    <div className="col-12 mt-4">
-                                      <h3 className="bold-text medium-text">
-                                        Forgot password
-                                      </h3>
-                                    </div>
-                                    <div className="col-12 col-sm-12 mt-2">
-                                      <div className="form-wrapper">
-                                        <label>
-                                          <i className="far fa-address-card"></i>
-                                        </label>
-                                        <input
-                                          name="forgetPassEmail"
-                                          id="forgetPassEmail"
-                                          data-parsley-required-message="Please Enter Your Email Address"
-                                          placeholder="Please Enter Your Email or Phone"
-                                          required
-                                          className="input-field"
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-12 mt-4 text-center">
-                                      <div className="btns-container">
-                                        <button
-                                          type="submit"
-                                          name="forget_pass_reset"
-                                          id="forget_pass_reset"
-                                          className=" common_button d-block w-100 py-2"
-                                        >
-                                          <span mytext="Submit">Submit</span>
-                                        </button>
-                                      </div>
-                                    </div>
-                                    <div className="col-12 mt-5 text-left ">
-                                      <div className="text-container">
-                                        <p className="small-text">
-                                          Have an Account?{" "}
-                                          <Link
-                                            className="color-gold bold-text to-login"
-                                            to="#"
-                                          >
-                                            Login
-                                          </Link>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> */}
-
-                      {/* ***********************************Signup Form Ends**************************************** */}
-                      {/* </form>
-                        </div> */}
+                     
 
                       <div
                         className="form-wrapper hiddenInitial"
@@ -551,6 +416,7 @@ export default function Navbar() {
                                         name="password"
                                         id="signpassword"
                                         type="password"
+                                        autoComplete="on"
                                         onChange={onChangeSignin}
                                       />
                                     </div>
@@ -558,7 +424,8 @@ export default function Navbar() {
                                   <div className="col-12 mt-4 text-center">
                                     <div className="btns-container">
                                     {isLoading ?
-                                      "Loading" :
+                                      <img src="assets/front/loader/ezgif-2-bc14af353261.gif" style={{Height:"50px"}} />
+                                      :
                                       <button
                                         type="button"
                                         onClick={(e) => onSubmitSignin(e)}
@@ -574,7 +441,7 @@ export default function Navbar() {
                                       }
                                     </div>
                                   </div>
-                                  <div className="col-12 mt-5 text-center ">
+                                  <div className="col-12 mt-2 text-center ">
                                     <div className="text-container">
                                       <p className="small-text">
                                         Forgot Your Password?

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Homepage from "./pages/Homepage";
 import About_us from "./pages/About_us";
@@ -38,9 +38,17 @@ import { getProfile } from "./redux/features/profile/profileSlice";
 
 function App() {
   const dispatch = useDispatch();
+  const [auth, setAuth]=useState(false)
   useEffect(() => {
-    dispatch(getProfile());
+    dispatch(getProfile()).then((res)=>{
+      var name=res.payload.firstname
+      localStorage.setItem("userData", name);
+      if(name && localStorage.getItem("userData")){
+        setAuth(true)
+      }
+    });
   }, []);
+
 
   return (
     <div className="App">
@@ -132,11 +140,16 @@ function App() {
                 element={<Off_road_accessories />}
               />
             </Route>
+            <Route path="*" element={<Navigate to="/" />} />
+
 
             {/* myaccoutn routes */}
             <Route path="/myaccount">
-              <Route path="" element={<Myaccount />} />
+              <Route path="" 
+              element= {auth ? <Myaccount /> : <Navigate to="/" />} />
             </Route>
+
+
           </Routes>
         </Layout>
       </Router>

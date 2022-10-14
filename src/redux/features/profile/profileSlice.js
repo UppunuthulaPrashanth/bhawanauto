@@ -36,6 +36,7 @@ export const getProfileSlice = createSlice({
       },
       [getProfile.fulfilled](state, action) {
         state.loading = HTTP_STATUS.FULFILLED;
+        state.data = action.payload
       },
       [getProfile.rejected](state, action) {
         state.loading = HTTP_STATUS.REJECTED;

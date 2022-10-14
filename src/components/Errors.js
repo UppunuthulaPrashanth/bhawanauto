@@ -9,7 +9,7 @@ export default function Checkerror(error) {
         toast.error(error.response.data.message[key][0])
       }
     }else{
-      toast.error(error.response.data.message)
+      // toast.error(error.response.data.message)
       if(error.response.data.message==='Unauthenticated'){
         localStorage.clear();
       }

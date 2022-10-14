@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/loader/Loader";
 import { getHomePackage } from "../redux/features/booking-data/homePackagesSlice";
@@ -7,6 +7,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { CURRENCY } from "../config/Constants";
+import { Link } from "react-router-dom";
 
 export default function Homepage() {
   var faqs = [
@@ -201,7 +202,7 @@ export default function Homepage() {
                 <h5 className="mx-auto">Japanese/Korean/Chinese Brands</h5>
               </div>
               <div className="row rect-owel">
-                  <OwlCarousel className="owl-theme" slideBy={1} loop={true} margin={20} autoplay={true}>
+                  <OwlCarousel className="owl-theme" slideBy={3} loop  smartSpeed={700}  margin={20} autoplay={true}>
                     {data.Japanese_Korean_Chinese
                       ? data.Japanese_Korean_Chinese.map(
                           (packageDetails, key) => {
@@ -233,15 +234,13 @@ export default function Homepage() {
                                       </ul>
                                     </div>
                                     <p className="btn_container pt-4">
-                                      <a
-                                        href="booking-service"
-                                        package-id="63"
-                                        package-type="SP"
+                                      <Link
+                                        to={"/booking-service/"+packageDetails.id}
                                         className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
                                       >
                                         Book Now
-                                        <i className="fas fa-arrow-right"></i>
-                                      </a>
+                                         &nbsp; <i className="fas fa-arrow-right"></i>
+                                      </Link>
                                     </p>
                                   </div>
                                 </div>
@@ -260,7 +259,7 @@ export default function Homepage() {
               </div>
               <div className="row ">
                 <div className="col-12 packages_caroseul_dsg_dots">
-                  <OwlCarousel className="owl-theme" slideBy={1} loop={true} margin={20} autoplay={true}  >
+                  <OwlCarousel className="owl-theme" slideBy={3} loop margin={20} autoplay={true}  >
                     {data.Americana_European
                       ? data.Americana_European.map(
                           (packageDetails, key) => {
@@ -292,15 +291,13 @@ export default function Homepage() {
                                       </ul>
                                     </div>
                                     <p className="btn_container pt-4">
-                                      <a
-                                        href="booking-service"
-                                        package-id="63"
-                                        package-type="SP"
+                                    <Link
+                                        to={"/booking-service/"+packageDetails.id}
                                         className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
                                       >
                                         Book Now
-                                        <i className="fas fa-arrow-right"></i>
-                                      </a>
+                                         &nbsp; <i className="fas fa-arrow-right"></i>
+                                      </Link>
                                     </p>
                                   </div>
                                 </div>
@@ -1162,7 +1159,7 @@ export default function Homepage() {
             <div className="col-12">
               <div className="our_partners_wrapper">
               <OwlCarousel className="owl-theme" items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
-                  <div className="item">
+                  <div className="item one">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1171,7 +1168,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item two">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1180,7 +1177,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item three">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1189,7 +1186,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item four">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1198,7 +1195,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item five">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1207,7 +1204,7 @@ export default function Homepage() {
                       />
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item six">
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
@@ -1316,7 +1313,7 @@ export default function Homepage() {
             <div className="col-12">
               <div className="testimonials_container">
               <OwlCarousel className="owl-theme" items={3} slideBy={1} loop={true} autoplay={true} dots={false}  >
-                  <div className="item">
+                  <div className="item one">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
                         <div className="testimonial_header">
@@ -1366,7 +1363,7 @@ export default function Homepage() {
                       </div>
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item two">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
                         <div className="testimonial_header">
@@ -1418,7 +1415,7 @@ export default function Homepage() {
                       </div>
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item three">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
                         <div className="testimonial_header">
@@ -1478,7 +1475,7 @@ export default function Homepage() {
                       </div>
                     </div>
                   </div>
-                  <div className="item">
+                  <div className="item four">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
                         <div className="testimonial_header">

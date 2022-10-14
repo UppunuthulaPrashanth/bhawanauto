@@ -23,12 +23,12 @@ export default function Book_service() {
   // hitting booking related data from apis
   const disptach = useDispatch();
   useEffect(() => {
+    disptach(getPackage());
+    disptach(getAddon());
     disptach(getMake());
     disptach(getLocation());
     disptach(getYear());
     disptach(getState());
-    disptach(getPackage());
-    disptach(getAddon());
   }, []);
 
   // getting state values
@@ -110,19 +110,14 @@ export default function Book_service() {
   }
 
   // calculating payments
-  const total_without_tax =
-    parseFloat(package_price) + parseFloat(addons_total);
+  const total_without_tax = parseFloat(package_price) + parseFloat(addons_total);
   const tax = (parseFloat(total_without_tax) * TAX_PERCENTAGE) / 100;
   const total_with_tax = parseFloat(total_without_tax) + parseFloat(tax);
 
   // Api loading
   if (
-    make_data.loading == "PENDING" ||
-    location_data == "PENDING" ||
-    year_data == "PENDING" ||
-    state_data == "PENDING" ||
-    addon_data == "PENDING" ||
-    package_data == "PENDING"
+    addon_data.loading == "PENDING" ||
+    package_data.loading == "PENDING"
   ) {
     return <Loader />;
   }
