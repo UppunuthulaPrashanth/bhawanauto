@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
+import { submitEnquiry } from "../redux/features/customer-requests/enquirySlice";
 
 export default function Packages() {
   const [search_query, setSearch_query] = useState("");
+
+  const empty_values = {
+    fullname: "",
+    email: "",
+    phone: "",
+    description: "",
+  };
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    description: "",
+  });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,6 +36,22 @@ export default function Packages() {
   const onSearch = (e) => {
     const { value } = e.target;
     setSearch_query(value);
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const onsubmitEnquiry = (e) => {
+    setIsLoading(true);
+    dispatch(submitEnquiry(formData)).then((res) => {
+      if (res.payload.success) {
+        toast.success(res.payload.message);
+        setFormData(empty_values)
+      }
+      setIsLoading(false);
+    });
   };
 
   if (loading == "PENDING") {
@@ -101,8 +134,12 @@ export default function Packages() {
                                     <span className="title bold-text">
                                       {value.name}
                                       <br />
-                                      <span className="mt-4" style={{"fontSize":"10px"}}>
-                                        {value.country == 'Japanese_Korean_Chinese'
+                                      <span
+                                        className="mt-4"
+                                        style={{ fontSize: "10px" }}
+                                      >
+                                        {value.country ==
+                                        "Japanese_Korean_Chinese"
                                           ? "(Japanese/Korean/ChineseBrands)"
                                           : "(American & European Brands)"}
                                       </span>
@@ -156,7 +193,7 @@ export default function Packages() {
       {/*End Pricing Section */}
 
       {/* For more quries */}
-      <form action="#" id="getAQuoteForm" data-parsley-validate>
+      <form id="getAQuoteForm" data-parsley-validate>
         <div className="getAQuoteForm">
           <div className="auto-container">
             <div className="row">
@@ -182,10 +219,11 @@ export default function Packages() {
                           <div className="form_field_wrapper">
                             <label>Choose Package</label>
                             <select
-                              name="packageId"
+                              name="package"
                               id="package"
                               className="inp_field select2_initialize bg-white"
                               required
+                              onChange={onChange}
                               data-parsley-required-message="Please Choose Package"
                             >
                               <option>Select Package</option>
@@ -225,8 +263,9 @@ export default function Packages() {
                           <div className="form_field_wrapper">
                             <label>Choose Make</label>
                             <select
-                              name="carMake"
-                              id="carMake"
+                              name="make"
+                              id="make"
+                              onChange={onChange}
                               className="inp_field select2_initialize bg-white"
                               required
                               data-parsley-required-message="Please Choose Make"
@@ -300,13 +339,20 @@ export default function Packages() {
                           <div className="form_field_wrapper">
                             <label>Choose Model</label>
                             <select
-                              name="carModel"
-                              id="carModel"
+                              name="model"
+                              id="model"
+                              onChange={onChange}
                               className="inp_field select2_initialize bg-white"
                               required
                               data-parsley-required-message="Please Choose Model"
                             >
                               <option disabled>Select Model</option>
+                              <option defaultValue="1108">Subaru</option>
+                              <option defaultValue="821">Suzuki</option>
+                              <option defaultValue="1072">Tata</option>
+                              <option defaultValue="846">Toyota</option>
+                              <option defaultValue="1168">United Diesel</option>
+                              <option defaultValue="874">Volkswagen</option>
                             </select>
                           </div>
                         </div>
@@ -317,7 +363,10 @@ export default function Packages() {
                             <input
                               type="text"
                               className="inp_field"
-                              name="fullName"
+                              name="fullname"
+                              id="fullname"
+                              value={formData.fullname}
+                              onChange={onChange}
                               placeholder="Enter Full Name"
                               required
                               data-parsley-required-message="Enter Full Name"
@@ -331,8 +380,10 @@ export default function Packages() {
                             <input
                               type="number"
                               className="inp_field"
-                              name="contactNumber"
+                              name="phone"
                               id="contactNumber"
+                              onChange={onChange}
+                              value={formData.phone}
                               placeholder="Enter Contact Number"
                               required
                               data-parsley-required-message="Please Enter Contact Number"
@@ -345,7 +396,9 @@ export default function Packages() {
                             <input
                               type="email"
                               className="inp_field"
-                              name="emailAddress"
+                              name="email"
+                              value={formData.email}
+                              onChange={onChange}
                               placeholder="Enter Email Address"
                               required
                               data-parsley-required-message="Please Enter Email Address"
@@ -359,6 +412,8 @@ export default function Packages() {
                             <textarea
                               placeholder="Enter Description"
                               name="description"
+                              onChange={onChange}
+                              value={formData.description}
                               rows="3"
                               className="inp_field"
                             ></textarea>
@@ -369,15 +424,26 @@ export default function Packages() {
                   </div>
                   <div className="card-footer border-top-0">
                     <div className="col-12">
-                      <button
-                        className="pay_now_btn submitBtn mx-auto"
-                        type="submit"
-                        defaultValue="pay_now"
-                        id="request_a_quote"
-                      >
-                        Request a Quote
-                        <i className="fas fa-angle-double-right"></i>
-                      </button>
+                      {isLoading ? (
+                        <div className="text-center">
+                          <img
+                          className="mx-auto"
+                            src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                            style={{ Height: "50px" }}
+                          />
+                        </div>
+                      ) : (
+                        <button
+                          className="pay_now_btn submitBtn mx-auto"
+                          type="button"
+                          onClick={() => onsubmitEnquiry()}
+                          defaultValue="pay_now"
+                          id="request_a_quote"
+                        >
+                          Request a Quote
+                          <i className="fas fa-angle-double-right"></i>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

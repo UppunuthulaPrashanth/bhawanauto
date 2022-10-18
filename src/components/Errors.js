@@ -9,10 +9,12 @@ export default function Checkerror(error) {
         toast.error(error.response.data.message[key][0])
       }
     }else{
-      // toast.error(error.response.data.message)
-      if(error.response.data.message==='Unauthenticated'){
+      if(error.response.data.message==='Unauthenticated.'){
         localStorage.clear();
+      }else{
+        toast.error(error.response.data.message)
       }
+      
     }
   }
   return error.response.data;

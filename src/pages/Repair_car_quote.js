@@ -4,33 +4,33 @@ export default function Repair_car_quote() {
   return (
     <div className="container">
       <form action="#" id="getAQuoteForm" data-parsley-validate>
-        <div class="getAQuoteForm">
-          <div class="auto-container">
-            <div class="row">
-              <div class="col-12 col-xl-12 col-lg-12 d-block mx-auto mb-5 pb-5">
-                <div class="card card-light border-0 box_shadow_light">
-                  <div class="card-header sec-title mb-0">
-                    <div class="card-title mb-0">
+        <div className="getAQuoteForm">
+          <div className="auto-container">
+            <div className="row">
+              <div className="col-12 col-xl-12 col-lg-12 d-block mx-auto mb-5 pb-5">
+                <div className="card card-light border-0 box_shadow_light">
+                  <div className="card-header sec-title mb-0">
+                    <div className="card-title mb-0">
                       {" "}
-                      <h3 class="common_heading big-text mb-0 text-center">
+                      <h3 className="common_heading big-text mb-0 text-center">
                         Enquiry Form
                       </h3>
-                      <p class="text-center text">
+                      <p className="text-center text">
                         Fill the form below to get the details for any service
                         package, exclusive offers, and much more.{" "}
                       </p>
                     </div>
                   </div>
-                  <div class="card-body ">
-                    <div class="form_wrapper_booking">
-                      <div class="row">
-                        <div class="col-lg-6 mt-6 col-sm-6 col-12">
-                          <div class="form_field_wrapper">
+                  <div className="card-body ">
+                    <div className="form_wrapper_booking">
+                      <div className="row">
+                        <div className="col-lg-6 mt-6 col-sm-6 col-12">
+                          <div className="form_field_wrapper">
                             <label>Choose Make</label>
                             <select
                               name="carMake"
                               id="carMake"
-                              class="inp_field select2_initialize bg-white"
+                              className="inp_field select2_initialize bg-white"
                               required
                               data-parsley-required-message="Please Choose Make"
                             >
@@ -101,13 +101,13 @@ export default function Repair_car_quote() {
                             </select>
                           </div>
                         </div>
-                        <div class="col-lg-6 mt-6 col-sm-6 col-12">
-                          <div class="form_field_wrapper">
+                        <div className="col-lg-6 mt-6 col-sm-6 col-12">
+                          <div className="form_field_wrapper">
                             <label>Choose Model</label>
                             <select
                               name="carModel"
                               id="carModel"
-                              class="inp_field select2_initialize bg-white"
+                              className="inp_field select2_initialize bg-white"
                               required
                               data-parsley-required-message="Please Choose Model"
                             >
@@ -118,15 +118,15 @@ export default function Repair_car_quote() {
                           </div>
                         </div>
 
-                        <div class="col-lg-4 mt-4 col-sm-6 col-12">
-                          {/* <div class="row no-gutters">
-                                    <div class="col-lg-5 col-5">
-                                       <div class="mr-3"> */}
-                          <div class="form_field_wrapper">
+                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
+                          {/* <div className="row no-gutters">
+                                    <div className="col-lg-5 col-5">
+                                       <div className="mr-3"> */}
+                          <div className="form_field_wrapper">
                             <label>Full Name</label>
                             <input
                               type="text"
-                              class="inp_field"
+                              className="inp_field"
                               name="fullName"
                               value=""
                               placeholder="Enter Full Name"
@@ -139,12 +139,12 @@ export default function Repair_car_quote() {
                           </div>
                         </div>
 
-                        <div class="col-lg-4 mt-4 col-sm-6 col-12">
-                          <div class="form_field_wrapper">
+                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
+                          <div className="form_field_wrapper">
                             <label>Contact Number</label>
                             <input
                               type="number"
-                              class="inp_field"
+                              className="inp_field"
                               name="contactNumber"
                               value=""
                               id="contactNumber"
@@ -154,12 +154,12 @@ export default function Repair_car_quote() {
                             />
                           </div>
                         </div>
-                        <div class="col-lg-4 mt-4 col-sm-6 col-12">
-                          <div class="form_field_wrapper">
+                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
+                          <div className="form_field_wrapper">
                             <label>Email Address</label>
                             <input
                               type="email"
-                              class="inp_field"
+                              className="inp_field"
                               name="emailAddress"
                               value=""
                               placeholder="Enter Email Address"
@@ -171,27 +171,27 @@ export default function Repair_car_quote() {
                         {/* </div>
                             </div> */}
 
-                        <div class="col-lg-12 mt-4">
-                          <div class="form_field_wrapper_dsg_2">
+                        <div className="col-lg-12 mt-4">
+                          <div className="form_field_wrapper_dsg_2">
                             <label>Description </label>
                             <textarea
                               placeholder="Enter Description"
                               name="description"
                               rows="3"
-                              class="inp_field"
+                              className="inp_field"
                             ></textarea>
                           </div>
                         </div>
 
-                        <div class="col-md-12 mt-4">
-                          <div class="uploadFilesWrapper text-center">
+                        <div className="col-md-12 mt-4">
+                          <div className="uploadFilesWrapper text-center">
                             <div
-                              class="dropzone getProjectId dz-clickable"
+                              className="dropzone getProjectId dz-clickable"
                               id="dropzone"
                             >
-                              <i class="fas fa-upload"></i>
+                              <i className="fas fa-upload"></i>
                               <br />
-                              <div class="dz-default dz-message">
+                              <div className="dz-default dz-message">
                                 <span>
                                   Upload your files here (Max 10 Files Can be
                                   uploaded at once)
@@ -201,14 +201,14 @@ export default function Repair_car_quote() {
                           </div>
                         </div>
 
-                        <div class="col-12 mt-4">
+                        <div className="col-12 mt-4">
                           <button
-                            class="pay_now_btn submitBtn"
+                            className="pay_now_btn submitBtn"
                             type="submit"
                             value="pay_now"
                           >
                             Request a Quote
-                            <i class="fas fa-angle-double-right"></i>
+                            <i className="fas fa-angle-double-right"></i>
                           </button>
                         </div>
                       </div>

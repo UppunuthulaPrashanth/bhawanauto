@@ -1283,15 +1283,15 @@ export default function Homepage() {
               <div className="inner-column">
                 <span className="float-text">AUTO FIX</span>
                 <figure className="image">
-                  <img src="assets/front/uploads/faq/faq.jpg" alt="AUTO FIX" />
+                  <img src="assets/front/uploads/faq/faq11.jpg" alt="AUTO FIX" />
                 </figure>
                 <div className="caption-box mt-3">
                   <h4>
                     <span className="small-text">
                       Toll Free Number : &nbsp;
                     </span>
-                    <a href="tel:XXXXXXXXXX" className="bold-text ">
-                      XXX XXX XXXX
+                    <a href="tel:+968 800 500 11" className="bold-text ">
+                    800 500 11
                     </a>
                   </h4>
                 </div>

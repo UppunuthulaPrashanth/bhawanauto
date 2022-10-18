@@ -1411,6 +1411,13 @@ img {
   position: relative;
   margin-bottom: 60px;
 }
+.pricing-section-two .sec-title {
+  position: relative !important;
+  margin-bottom: 20px !important;
+}
+.main-services{
+  margin-bottom: 40px !important;
+}
 
 .sec-title h2 {
   position: relative;
@@ -5370,7 +5377,7 @@ img {
 
 .main-footer .widgets-section {
   position: relative;
-  padding: 80px 0px 70px;
+  padding: 80px 0px 0px;
 }
 
 .main-footer .widgets-outer {
@@ -8379,7 +8386,7 @@ img {
 }
 
 .each_brand_category {
-  border: 1px solid #f5f5f5;
+  border: 2px solid #f5f5f5;
   background-color: white;
   padding: 20px 10px;
   text-align: center;
@@ -10829,3 +10836,40 @@ img {
 
 
 
+
+
+/* Login v4 */
+
+.signup_v4 .nav-tabs .nav-link.active {
+  background: #007bff;
+}
+
+.signup_v4 .nav-tabs .nav-link {
+  background: #143250;
+}
+
+.signup_v4 .nav-tabs .nav-link {
+  border: 0;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 0;
+  color: #fff;
+}
+
+.signup_v4 .nav-tabs li.nav-item {
+  width: 50%;
+}
+
+.signup_v4 .card-body {
+  padding: 0px;
+}
+
+.signup_v4 .card-body .tab-content {
+  padding: 0 1.25rem 1.75em;
+}
+
+.signup_v4 .card-body{
+  background-color: #E5E4E2;
+  border-radius: 13px;
+}

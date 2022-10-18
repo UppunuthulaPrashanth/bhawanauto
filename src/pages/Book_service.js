@@ -13,6 +13,7 @@ import { getYear } from "../redux/features/booking-data/yearSlice";
 import { CURRENCY, TAX_PERCENTAGE } from "../config/Constants";
 
 export default function Book_service() {
+
   // states
   const [modal_data, setModal_data] = useState(null);
   const [time_slot, setTime_slot] = useState(null);
@@ -20,8 +21,10 @@ export default function Book_service() {
   const params = useParams();
   const [active_package, setActive_package] = useState(parseInt(params.id));
 
+  
   // hitting booking related data from apis
   const disptach = useDispatch();
+  
   useEffect(() => {
     disptach(getPackage());
     disptach(getAddon());
@@ -31,6 +34,7 @@ export default function Book_service() {
     disptach(getState());
   }, []);
 
+  
   // getting state values
   const make_data = JSON.parse(
     JSON.stringify(useSelector((state) => state.make))
@@ -114,6 +118,7 @@ export default function Book_service() {
   const tax = (parseFloat(total_without_tax) * TAX_PERCENTAGE) / 100;
   const total_with_tax = parseFloat(total_without_tax) + parseFloat(tax);
 
+  
   // Api loading
   if (
     addon_data.loading == "PENDING" ||

@@ -84,12 +84,10 @@ class Layout extends React.Component {
                               </div>
                             ) : (
                               <Link
-                                to="#"
+                                to="auth"
                                 className="border-sm-left border-sm-right px-3"
-                                data-toggle="modal"
-                                data-target="#signupSignInForm"
                               >
-                                Login or Signup{" "}
+                                Login or Signup
                               </Link>
                             )}
                           </div>

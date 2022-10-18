@@ -1,6 +1,8 @@
-export const API_URL = "http://localhost:8000/api/v1";
-export const ASSETS = "http://localhost:8000/storage/image/";
+export const API_URL = "http://dev3.sbagh.com/api/v1";
+export const ASSETS = "http://dev3.sbagh.com/storage/image/";
 
+// export const API_URL = "http://localhost:8000/api/v1";
+// export const ASSETS = "http://localhost:8000/storage/image/";
 
 export const PROFILE = `${ASSETS}/profile/`;
 

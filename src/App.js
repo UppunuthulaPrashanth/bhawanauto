@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Layout from "./components/Layout";
 import Homepage from "./pages/Homepage";
 import About_us from "./pages/About_us";
@@ -35,20 +40,20 @@ import Off_road_accessories from "./pages/service-pages/Off_road_accessories";
 import Myaccount from "./pages/Myaccount";
 import { useDispatch } from "react-redux";
 import { getProfile } from "./redux/features/profile/profileSlice";
+import Login from "./pages/Login";
 
 function App() {
   const dispatch = useDispatch();
-  const [auth, setAuth]=useState(false)
+  const [auth, setAuth] = useState(false);
   useEffect(() => {
-    dispatch(getProfile()).then((res)=>{
-      var name=res.payload.firstname
+    dispatch(getProfile()).then((res) => {
+      var name = res.payload.firstname;
       localStorage.setItem("userData", name);
-      if(name && localStorage.getItem("userData")){
-        setAuth(true)
+      if (name && localStorage.getItem("userData")) {
+        setAuth(true);
       }
     });
   }, []);
-
 
   return (
     <div className="App">
@@ -69,7 +74,6 @@ function App() {
               path="terms-and-conditions"
               element={<Terms_conditions />}
             />
-            <Route exact path="booking-service/:id" element={<Book_service />} />
             <Route
               exact
               path="repair-car-quote"
@@ -142,13 +146,31 @@ function App() {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
 
-
             {/* myaccoutn routes */}
             <Route path="/myaccount">
-              <Route path="" 
-              element= {auth ? <Myaccount /> : <Navigate to="/" />} />
+              <Route
+                path=""
+                element={auth ? <Myaccount /> : <Navigate to="/auth" />}
+              />
             </Route>
 
+            
+
+            <Route path="/booking-service/:id">
+              <Route
+                path=""
+                element={auth ? <Book_service /> : <Navigate to="/auth" />}
+              />
+            </Route>
+
+             {/* if user logged in  redirect to profile */}
+             <Route path="/auth">
+              <Route
+                path=""
+                element={auth ? <Myaccount /> : <Login />}
+              />
+            </Route>
+            {/* end  */}
 
           </Routes>
         </Layout>

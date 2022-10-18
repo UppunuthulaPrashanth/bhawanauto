@@ -13,7 +13,7 @@ export default function Services() {
               makes and models
             </div>
           </div>
-          <div className="row">
+          <div className="row main-services">
             <div className="col-12">
               <div className="row justify-content-center">
                 <div className="col-lg-3 col-md-4 col-sm-4 col-6 mt-4">
