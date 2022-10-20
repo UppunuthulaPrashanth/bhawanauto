@@ -1,9 +1,12 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { submitContact } from "../redux/features/customer-requests/contactusSlice";
+import ReCAPTCHA from "react-google-recaptcha";
+import { SECRET_KEY, SITE_KEY } from "../config/Constants";
+import axios from "axios";
+import { useRef } from "react";
 
 export default function Contact_us() {
   const contacts_data = [
@@ -102,16 +105,35 @@ export default function Contact_us() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const recaptchaRef = useRef(null);
 
-  const onsubmitContact = (e) => {
-    setIsLoading(true);
-    dispatch(submitContact(formData)).then((res) => {
-      if (res.payload.success) {
-        toast.success(res.payload.message);
-        setFormData(empty_values);
-      }
-      setIsLoading(false);
-    });
+  const onsubmitContact = async (e) => {
+    const captchaToken = recaptchaRef.current.getValue();
+    recaptchaRef.current.reset();
+    if (captchaToken) {
+      await axios
+        .post(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${captchaToken}`
+        )
+        .then((res) => {
+          if (res.data.success) {
+            setIsLoading(true);
+            dispatch(submitContact(formData)).then((res) => {
+              if (res.payload.success) {
+                toast.success(res.payload.message);
+                setFormData(empty_values);
+              }
+              setIsLoading(false);
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Invalid catch bloack");
+        });
+    } else {
+      toast.error("Invalid Captcha");
+    }
   };
 
   return (
@@ -423,24 +445,33 @@ export default function Contact_us() {
                         ></textarea>
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <div className="text-center">
-                          {isLoading ? (
+                        {isLoading ? (
+                          <div className="text-center">
                             <img
                               className="mx-auto"
                               src="assets/front/loader/ezgif-2-bc14af353261.gif"
                               style={{ Height: "50px" }}
                             />
-                          ) : (
-                            <button
-                              className="theme-btn btn-style-two text-center submitFormButton"
-                              type="button"
-                              onClick={() => onsubmitContact()}
-                              name="submit-form"
-                            >
-                              <span className="btn-title">Send Message</span>
-                            </button>
-                          )}
-                        </div>
+                          </div>
+                        ) : (
+                          <div className="row">
+                            <div className="text-center mx-auto">
+                              <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey={SITE_KEY}
+                              />
+
+                              <button
+                                className="theme-btn btn-style-two text-center mt-4 submitFormButton"
+                                type="button"
+                                onClick={() => onsubmitContact()}
+                                name="submit-form"
+                              >
+                                <span className="btn-title">Send Message</span>
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </form>

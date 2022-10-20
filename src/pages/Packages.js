@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
 import { submitEnquiry } from "../redux/features/customer-requests/enquirySlice";
+import ReCAPTCHA from "react-google-recaptcha";
+import { SECRET_KEY, SITE_KEY } from "../config/Constants";
+import axios from "axios";
+import { useRef } from "react";
 
 export default function Packages() {
   const [search_query, setSearch_query] = useState("");
@@ -43,15 +47,36 @@ export default function Packages() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const onsubmitEnquiry = (e) => {
-    setIsLoading(true);
-    dispatch(submitEnquiry(formData)).then((res) => {
-      if (res.payload.success) {
-        toast.success(res.payload.message);
-        setFormData(empty_values)
-      }
-      setIsLoading(false);
-    });
+  const recaptchaRef = useRef(null);
+
+  const onsubmitEnquiry = async(e) => {
+    const captchaToken = recaptchaRef.current.getValue();
+    recaptchaRef.current.reset();
+    if (captchaToken) {
+      await axios
+        .post(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${captchaToken}`
+        )
+        .then((res) => {
+          if (res.data.success) {
+            setIsLoading(true);
+            dispatch(submitEnquiry(formData)).then((res) => {
+              if (res.payload.success) {
+                toast.success(res.payload.message);
+                setFormData(empty_values)
+              }
+              setIsLoading(false);
+            });
+          }
+        })
+        .catch((error) => {
+          toast.error("Invalid Captcha");
+        });
+    } else {
+      toast.error("Invalid Captcha");
+    }
+
+
   };
 
   if (loading == "PENDING") {
@@ -423,28 +448,35 @@ export default function Packages() {
                     </div>
                   </div>
                   <div className="card-footer border-top-0">
-                    <div className="col-12">
-                      {isLoading ? (
-                        <div className="text-center">
-                          <img
-                          className="mx-auto"
-                            src="assets/front/loader/ezgif-2-bc14af353261.gif"
-                            style={{ Height: "50px" }}
-                          />
-                        </div>
-                      ) : (
-                        <button
-                          className="pay_now_btn submitBtn mx-auto"
-                          type="button"
-                          onClick={() => onsubmitEnquiry()}
-                          defaultValue="pay_now"
-                          id="request_a_quote"
-                        >
-                          Request a Quote
-                          <i className="fas fa-angle-double-right"></i>
-                        </button>
-                      )}
-                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 form-group">
+                        {isLoading ? (
+                          <div className="text-center">
+                            <img
+                              className="mx-auto"
+                              src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                              style={{ Height: "50px" }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="row">
+                            <div className="text-center mx-auto">
+                              <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey={SITE_KEY}
+                              />
+
+                              <button
+                                className="theme-btn btn-style-two text-center mt-4 submitFormButton"
+                                type="button"
+                                onClick={() => onsubmitEnquiry()}
+                                name="submit-form"
+                              >
+                                <span className="btn-title">Request a Quote</span>
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                   </div>
                 </div>
               </div>
