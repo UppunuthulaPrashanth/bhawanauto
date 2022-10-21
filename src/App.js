@@ -41,6 +41,8 @@ import Myaccount from "./pages/Myaccount";
 import { useDispatch } from "react-redux";
 import { getProfile } from "./redux/features/profile/profileSlice";
 import Login from "./pages/Login";
+import Reset_password from "./pages/Reset_password";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -168,6 +170,13 @@ function App() {
               <Route
                 path=""
                 element={auth ? <Myaccount /> : <Login />}
+              />
+            </Route>
+
+            <Route path="/reset-password">
+              <Route
+                path=""
+                element={auth ? <Myaccount /> : <Reset_password />}
               />
             </Route>
             {/* end  */}

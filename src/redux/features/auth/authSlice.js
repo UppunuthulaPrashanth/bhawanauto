@@ -22,25 +22,6 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk(
-  `${namespace}/login`,
-  async (formData) => {
-    try {
-      const { data } = await axios.post(
-        `${API_URL}/${namespace}/login`,
-        formData
-      );
-      if (data.token) {
-        localStorage.setItem("userToken", JSON.stringify(data.token));
-        toast.success(data.message);
-      }
-      return data;
-    } catch (error) {
-      return Checkerror(error);
-    }
-  }
-);
-
 export const registerSlice = createSlice({
   name: namespace,
   initialState: {
@@ -61,6 +42,31 @@ export const registerSlice = createSlice({
     },
   },
 });
+
+
+
+// Login
+
+export const login = createAsyncThunk(
+  `${namespace}/login`,
+  async (formData) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/${namespace}/login`,
+        formData
+      );
+      if (data.token) {
+        localStorage.setItem("userToken", JSON.stringify(data.token));
+        toast.success(data.message);
+      }
+      return data;
+    } catch (error) {
+      return Checkerror(error);
+    }
+  }
+);
+
+
 
 export const loginSlice = createSlice({
   name: namespace,
@@ -83,3 +89,49 @@ export const loginSlice = createSlice({
     },
   },
 });
+
+
+
+// Reset password
+export const resetPassword = createAsyncThunk(
+  `${namespace}/login`,
+  async (formData) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/${namespace}/login`,
+        formData
+      );
+      if (data.token) {
+        toast.success(data.message);
+      }
+      return data;
+    } catch (error) {
+      return Checkerror(error);
+    }
+  }
+);
+
+
+
+export const resetPasswordSlice = createSlice({
+  name: namespace,
+  initialState: {
+    loading: "",
+    data: [],
+  },
+  reducers: {},
+  extraReducers: {
+    [resetPassword.pending](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+    },
+    [resetPassword.fulfilled](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+           state.data = action.payload;
+
+    },
+    [resetPassword.rejected](state, action) {
+      state.loading = HTTP_STATUS.REJECTED;
+    },
+  },
+});
+

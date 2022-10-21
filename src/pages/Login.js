@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { login, register } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 
-
 export default function Login() {
   // states
   const empty_values= {
@@ -113,10 +112,7 @@ export default function Login() {
     }
   };
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
 
   return (
     <>
@@ -238,7 +234,7 @@ export default function Login() {
                                 Forgot Your Password?
                                 <Link
                                   className="color-gold bold-text to-recover"
-                                  variant="primary" onClick={handleShow}
+                                  to="/reset-password"
                                 >
                                   Reset Now
                                 </Link>
@@ -430,8 +426,6 @@ export default function Login() {
         </div>
       </div>
 
-
-     
     </>
   );
 }
