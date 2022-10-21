@@ -318,7 +318,7 @@ class Layout extends React.Component {
                           </li>
                           <li>
                             <span className="fa fa-envelope-open"></span>
-                            <Link to="#">enquiries@autofix.ae</Link>
+                            <Link to="#">enquiries@bhawanautofix.com</Link>
                           </li>
                           <li>
                             <span className="fa fa-phone"></span>

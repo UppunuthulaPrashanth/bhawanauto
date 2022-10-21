@@ -1,51 +1,78 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, register } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 
+
 export default function Login() {
-  let location = useLocation();
   // states
-  const [formSignupValues, setFormSignupValues] = useState({});
+  const empty_values= {
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    country: "",
+    password: ""
+  };
+
+  const [formSignupValues, setformSignupValues] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    country: "",
+    password: ""
+  });
+
   const [formSigninValues, setFormSigninValues] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   // dispatch the form data  for register
   const dispatch = useDispatch();
   const onChangeSignup = (e) => {
     const { name, value } = e.target;
-    setFormSignupValues({ ...formSignupValues, [name]: value });
+    setformSignupValues({ ...formSignupValues, [name]: value });
   };
 
   const onSubmitSignup = async (e) => {
     e.preventDefault();
-    setIsSubmit(true);
+
     const errors = {};
+    var errors_count = 0;
     if (!formSignupValues.firstname) {
       errors.firstname = "Firstname is required";
+      errors_count = 1;
     }
     if (!formSignupValues.lastname) {
       errors.lastname = "Lastname is required";
+      errors_count = 1;
     }
     if (!formSignupValues.email) {
       errors.email = "Email is required";
+      errors_count = 1;
     }
     if (!formSignupValues.country) {
       errors.country = "Country is required";
+      errors_count = 1;
     }
     if (!formSignupValues.phone) {
       errors.phone = "Phone is required";
+      errors_count = 1;
     }
     if (!formSignupValues.password) {
       errors.password = "Password is required";
+      errors_count = 1;
     }
 
-    if (Object.keys(errors).length === 0 && isSubmit) {
+    if (errors_count == 0) {
+      setformSignupValues(empty_values)
       setIsLoading(true);
       dispatch(register(formSignupValues)).then((res) => {
         setIsLoading(false);
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000);
       });
     } else {
       for (var key in errors) {
@@ -85,6 +112,11 @@ export default function Login() {
       }
     }
   };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -132,7 +164,7 @@ export default function Login() {
               role="tabpanel"
               aria-labelledby="login-tab"
             >
-              <h4 className="text-center mt-4 mb-4">Login</h4>
+              <h4 className="text-center mt-1 mb-1">Login</h4>
               <div className="login-container">
                 <form>
                   {/* ***********************************Signup Form**************************************** */}
@@ -206,7 +238,7 @@ export default function Login() {
                                 Forgot Your Password?
                                 <Link
                                   className="color-gold bold-text to-recover"
-                                  to="#"
+                                  variant="primary" onClick={handleShow}
                                 >
                                   Reset Now
                                 </Link>
@@ -229,7 +261,7 @@ export default function Login() {
               role="tabpanel"
               aria-labelledby="register-tab"
             >
-              <h4 className="text-center mt-4 mb-4">Register</h4>
+              <h4 className="text-center mt-1 mb-1">Register</h4>
               <div className="login-container">
                 <div className="form-wrapper" id="signUpform">
                   <form type="post" action="#">
@@ -258,6 +290,7 @@ export default function Login() {
                                   type="text"
                                   name="firstname"
                                   id="firstname"
+                                  value={formSignupValues.firstname}
                                   onChange={onChangeSignup}
                                 />
                               </div>
@@ -275,6 +308,7 @@ export default function Login() {
                                   type="text"
                                   name="lastname"
                                   id="lastname"
+                                  value={formSignupValues.lastname}
                                   onChange={onChangeSignup}
                                 />
                               </div>
@@ -292,6 +326,7 @@ export default function Login() {
                                   type="email"
                                   name="email"
                                   id="email"
+                                  value={formSignupValues.email}
                                   onChange={onChangeSignup}
                                 />
                               </div>
@@ -304,6 +339,7 @@ export default function Login() {
                                 <select
                                   name="country"
                                   id="country"
+                                  value={formSignupValues.country}
                                   className="bg-white"
                                   required
                                   onChange={onChangeSignup}
@@ -332,6 +368,7 @@ export default function Login() {
                                   type="text"
                                   name="phone"
                                   id="phone"
+                                  value={formSignupValues.phone}
                                   onChange={onChangeSignup}
                                   data-parsley-minlength="9"
                                   data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
@@ -355,6 +392,7 @@ export default function Login() {
                                   type="password"
                                   onChange={onChangeSignup}
                                   name="password"
+                                  value={formSignupValues.password}
                                   autoComplete="on"
                                   id="singuppassword"
                                 />
@@ -391,6 +429,9 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+
+     
     </>
   );
 }

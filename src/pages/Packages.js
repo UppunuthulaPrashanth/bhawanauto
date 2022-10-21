@@ -165,7 +165,7 @@ export default function Packages() {
                                       >
                                         {value.country ==
                                         "Japanese_Korean_Chinese"
-                                          ? "(Japanese/Korean/ChineseBrands)"
+                                          ? "(Japanese/Korean/Chinese Brands)"
                                           : "(American & European Brands)"}
                                       </span>
                                     </span>
