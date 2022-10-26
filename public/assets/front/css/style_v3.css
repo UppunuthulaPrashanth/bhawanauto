@@ -8046,7 +8046,7 @@ img {
 
 .inputWrapper .common-input:disabled {
   background-color: #eeeeee;
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
 }
 
 .inputWrapper label {
@@ -9708,12 +9708,12 @@ img {
 }
 
 .form_wrapper_booking .form_field_wrapper .inp_field:disabled, .form_wrapper_booking .form_field_wrapper .inp_field:-moz-read-only {
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   background-color: #eeeeee;
 }
 
 .form_wrapper_booking .form_field_wrapper .inp_field:disabled, .form_wrapper_booking .form_field_wrapper .inp_field:read-only {
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   background-color: #eeeeee;
 }
 

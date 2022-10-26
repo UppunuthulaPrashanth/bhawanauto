@@ -42,20 +42,28 @@ import { useDispatch } from "react-redux";
 import { getProfile } from "./redux/features/profile/profileSlice";
 import Login from "./pages/Login";
 import Reset_password from "./pages/Reset_password";
-
+import Loader from "./components/loader/Loader";
 
 function App() {
+  const [loader, setLoader]=useState(false);
   const dispatch = useDispatch();
   const [auth, setAuth] = useState(false);
   useEffect(() => {
+    setLoader(true)
     dispatch(getProfile()).then((res) => {
       var name = res.payload.firstname;
       localStorage.setItem("userData", name);
       if (name && localStorage.getItem("userData")) {
         setAuth(true);
+        setLoader(false)
       }
     });
   }, []);
+
+  if(loader){
+    return <Loader />
+  }
+  
 
   return (
     <div className="App">
@@ -155,8 +163,6 @@ function App() {
                 element={auth ? <Myaccount /> : <Navigate to="/auth" />}
               />
             </Route>
-
-            
 
             <Route path="/booking-service/:id">
               <Route

@@ -6,13 +6,16 @@ import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
 import { submitEnquiry } from "../redux/features/customer-requests/enquirySlice";
 import ReCAPTCHA from "react-google-recaptcha";
+import { getMake } from "../redux/features/booking-data/makeSlice";
+import { getModal } from "../redux/features/booking-data/makeModelSlice";
 import { SECRET_KEY, SITE_KEY } from "../config/Constants";
 import axios from "axios";
 import { useRef } from "react";
 
 export default function Packages() {
   const [search_query, setSearch_query] = useState("");
-
+  const [modal_data, setModal_data] = useState(null);
+  const disptach=useDispatch();
   const empty_values = {
     fullname: "",
     email: "",
@@ -31,7 +34,20 @@ export default function Packages() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPackage());
+    disptach(getMake());
   }, []);
+
+  
+
+  const make_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.make))
+  );
+  const package_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.package))
+  );
+
+  
+
 
   const { loading, data } = JSON.parse(
     JSON.stringify(useSelector((state) => state.package))
@@ -45,6 +61,11 @@ export default function Packages() {
   const onChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if(name=='make'){
+      disptach(getModal(value)).then((res) => {
+        setModal_data(res.payload);
+      });
+    }
   };
 
   const recaptchaRef = useRef(null);
@@ -252,35 +273,15 @@ export default function Packages() {
                               data-parsley-required-message="Please Choose Package"
                             >
                               <option>Select Package</option>
-                              <option defaultValue="63">
-                                Quick Oil Change Service (*Nissan Patrol Only)
-                              </option>
-                              <option defaultValue="64">Free Ac Check </option>
-                              <option defaultValue="65">
-                                Auto Detailing package
-                              </option>
-                              <option defaultValue="22">
-                                Periodic Maintenance (Sedan)
-                              </option>
-                              <option defaultValue="21">
-                                Periodic Maintenance (SUV)
-                              </option>
-                              <option defaultValue="18">
-                                Lube Car Service (Sedan)
-                              </option>
-                              <option defaultValue="17">
-                                Lube Car Service (SUV)
-                              </option>
-                              <option defaultValue="42">
-                                Headlamp Polishing
-                              </option>
-                              <option defaultValue="46">
-                                Vehicle AC Car Service{" "}
-                              </option>
-                              <option defaultValue="16">Body Polishing</option>
-                              <option defaultValue="15">
-                                Interior Detailing
-                              </option>
+                              {package_data
+                                ? package_data.data.map((element, key) => {
+                                    return (
+                                      <option value={element.id} key={key}>
+                                        {element.name}
+                                      </option>
+                                    );
+                                  })
+                                : null}
                             </select>
                           </div>
                         </div>
@@ -295,68 +296,16 @@ export default function Packages() {
                               required
                               data-parsley-required-message="Please Choose Make"
                             >
-                              <option disabled>Select Make</option>
-                              <option defaultValue="1130">Alfa Romeo</option>
-                              <option defaultValue="1056">Ashok Leyland</option>
-                              <option defaultValue="33">Audi</option>
-                              <option defaultValue="63">Baic</option>
-                              <option defaultValue="67">Bentley</option>
-                              <option defaultValue="78">Bmw</option>
-                              <option defaultValue="119">Bugatti</option>
-                              <option defaultValue="1060">Cadillac</option>
-                              <option defaultValue="1082">Cherry</option>
-                              <option defaultValue="159">Chevrolet</option>
-                              <option defaultValue="1034">Chrysler</option>
-                              <option defaultValue="196">Citroen</option>
-                              <option defaultValue="1136">Daihatsu</option>
-                              <option defaultValue="1025">Dodge</option>
-                              <option defaultValue="1090">Fiat</option>
-                              <option defaultValue="267">Ford</option>
-                              <option defaultValue="292">Foton</option>
-                              <option defaultValue="1182">GAC</option>
-                              <option defaultValue="1095">Geely</option>
-                              <option defaultValue="1045">GMC</option>
-                              <option defaultValue="1177">Great Wall</option>
-                              <option defaultValue="324">Haval</option>
-                              <option defaultValue="1023">Hino</option>
-                              <option defaultValue="329">Honda</option>
-                              <option defaultValue="345">Hummer</option>
-                              <option defaultValue="348">Hyundai</option>
-                              <option defaultValue="376">Infiniti</option>
-                              <option defaultValue="399">Isuzu</option>
-                              <option defaultValue="1157">Iveco</option>
-                              <option defaultValue="1041">JAC</option>
-                              <option defaultValue="409">Jaguar</option>
-                              <option defaultValue="423">Jeep</option>
-                              <option defaultValue="432">Kia</option>
-                              <option defaultValue="1165">King Long</option>
-                              <option defaultValue="454">Lamborghini</option>
-                              <option defaultValue="461">Land rover</option>
-                              <option defaultValue="476">Lexus</option>
-                              <option defaultValue="1036">Lincoln</option>
-                              <option defaultValue="1078">Maserati</option>
-                              <option defaultValue="1051">Maxus</option>
-                              <option defaultValue="528">Mazda</option>
-                              <option defaultValue="554">Mercedes-benz</option>
-                              <option defaultValue="1121">Mercury</option>
-                              <option defaultValue="1149">MG</option>
-                              <option defaultValue="1103">Mini</option>
-                              <option defaultValue="639">Mitsubishi</option>
-                              <option defaultValue="664">Nissan</option>
-                              <option defaultValue="1125">Opel</option>
-                              <option defaultValue="1204">Opel</option>
-                              <option defaultValue="711">Peugeot</option>
-                              <option defaultValue="733">Porsche</option>
-                              <option defaultValue="753">Renault</option>
-                              <option defaultValue="1146">Seat</option>
-                              <option defaultValue="795">Skoda</option>
-                              <option defaultValue="1108">Subaru</option>
-                              <option defaultValue="821">Suzuki</option>
-                              <option defaultValue="1072">Tata</option>
-                              <option defaultValue="846">Toyota</option>
-                              <option defaultValue="1168">United Diesel</option>
-                              <option defaultValue="874">Volkswagen</option>
-                              <option defaultValue="898">Volvo</option>
+                              <option>Select Make</option>
+                              {make_data
+                              ? make_data.data.map((element, key) => {
+                                  return (
+                                    <option value={element.id} key={key}>
+                                      {element.name}
+                                    </option>
+                                  );
+                                })
+                              : null}
                             </select>
                           </div>
                         </div>
@@ -371,13 +320,16 @@ export default function Packages() {
                               required
                               data-parsley-required-message="Please Choose Model"
                             >
-                              <option disabled>Select Model</option>
-                              <option defaultValue="1108">Subaru</option>
-                              <option defaultValue="821">Suzuki</option>
-                              <option defaultValue="1072">Tata</option>
-                              <option defaultValue="846">Toyota</option>
-                              <option defaultValue="1168">United Diesel</option>
-                              <option defaultValue="874">Volkswagen</option>
+                              <option>Select Model</option>
+                            {modal_data
+                              ? modal_data.map((element, key) => {
+                                  return (
+                                    <option value={element.id} key={key}>
+                                      {element.name}
+                                    </option>
+                                  );
+                                })
+                              : null}
                             </select>
                           </div>
                         </div>

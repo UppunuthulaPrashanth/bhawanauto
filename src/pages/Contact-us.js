@@ -129,7 +129,7 @@ export default function Contact_us() {
         })
         .catch((error) => {
           console.log(error);
-          toast.error("Invalid catch bloack");
+          toast.error("Invalid catch block");
         });
     } else {
       toast.error("Invalid Captcha");
