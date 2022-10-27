@@ -128,11 +128,13 @@ export default function Contact_us() {
           }
         })
         .catch((error) => {
-          console.log(error);
           toast.error("Invalid catch block");
+          setIsLoading(false);
+
         });
     } else {
       toast.error("Invalid Captcha");
+      setIsLoading(false);
     }
   };
 

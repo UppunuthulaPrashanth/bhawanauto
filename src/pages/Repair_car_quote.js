@@ -1,5 +1,16 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Loader from "../components/loader/Loader";
+import { getPackage } from "../redux/features/booking-data/packagesSlice";
+import { submitEnquiry } from "../redux/features/customer-requests/enquirySlice";
+import ReCAPTCHA from "react-google-recaptcha";
+import { getMake } from "../redux/features/booking-data/makeSlice";
+import { getModal } from "../redux/features/booking-data/makeModelSlice";
+import { SECRET_KEY, SITE_KEY } from "../config/Constants";
+import axios from "axios";
+import { useRef } from "react";
+import { submitRepairEnquirySlice } from "../redux/features/customer-requests/repairEnquirySlice";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
@@ -9,6 +20,88 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 export default function Repair_car_quote() {
   const [files, setFiles] = useState([]);
+  const [modal_data, setModal_data] = useState(null);
+  const dispatch = useDispatch();
+
+  const empty_values = {
+    make: "",
+    model: "",
+    fullname: "",
+    email: "",
+    phone: "",
+    description: "",
+  };
+  const [formData, setFormData] = useState({
+    make: "",
+    model: "",
+    fullname: "",
+    email: "",
+    phone: "",
+    description: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    dispatch(getPackage());
+    dispatch(getMake());
+  }, []);
+
+  const make_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.make))
+  );
+
+  const onChangeMake = (e) => {
+    const { value } = e.target;
+    dispatch(getModal(value)).then((res) => {
+      setModal_data(res.payload);
+    });
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, ["images"]: files });
+    console.log(formData)
+  };
+
+  const recaptchaRef = useRef(null);
+
+  const onsubmitEnquiry = async (e) => {
+    const captchaToken = recaptchaRef.current.getValue();
+    recaptchaRef.current.reset();
+    if (captchaToken) {
+      await axios
+        .post(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${captchaToken}`
+        )
+        .then((res) => {
+          if (res.data.success) {
+            setIsLoading(true);
+            dispatch(submitRepairEnquirySlice(formData)).then((res) => {
+              if (res.payload.success) {
+                toast.success(res.payload.message);
+                setFormData(empty_values);
+              }
+              setIsLoading(false);
+            });
+          }
+        })
+        .catch((error) => {
+          toast.error("Invalid Captcha");
+          setIsLoading(false);
+
+        });
+    } else {
+      toast.error("Invalid Captcha");
+      setIsLoading(false);
+
+    }
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   console.log(files);
   return (
     <div className="container">
@@ -33,186 +126,177 @@ export default function Repair_car_quote() {
                   <div className="card-body ">
                     <div className="form_wrapper_booking">
                       <div className="row">
-                        <div className="col-lg-6 mt-6 col-sm-6 col-12">
-                          <div className="form_field_wrapper">
-                            <label>Choose Make</label>
-                            <select
-                              name="carMake"
-                              id="carMake"
-                              className="inp_field select2_initialize bg-white"
-                              required
-                              data-parsley-required-message="Please Choose Make"
-                            >
-                              <option>Select Make</option>
-                              <option value="664">Nissan</option>
-                              <option value="846">Toyota</option>
-                              <option value="329">Honda</option>
-                              <option value="639">Mitsubishi</option>
-                              <option value="63">Baic</option>
-                              <option value="753">Renault</option>
-                              <option value="711">Peugeot</option>
-                              <option value="874">Volkswagen</option>
-                              <option value="476">Lexus</option>
-                              <option value="376">Infiniti</option>
-                              <option value="348">Hyundai</option>
-                              <option value="432">Kia</option>
-                              <option value="267">Ford</option>
-                              <option value="78">Bmw</option>
-                              <option value="33">Audi</option>
-                              <option value="554">Mercedes-benz</option>
-                              <option value="159">Chevrolet</option>
-                              <option value="423">Jeep</option>
-                              <option value="1025">Dodge</option>
-                              <option value="528">Mazda</option>
-                              <option value="795">Skoda</option>
-                              <option value="292">Foton</option>
-                              <option value="821">Suzuki</option>
-                              <option value="67">Bentley</option>
-                              <option value="324">Haval</option>
-                              <option value="345">Hummer</option>
-                              <option value="119">Bugatti</option>
-                              <option value="898">Volvo</option>
-                              <option value="399">Isuzu</option>
-                              <option value="409">Jaguar</option>
-                              <option value="196">Citroen</option>
-                              <option value="454">Lamborghini</option>
-                              <option value="461">Land rover</option>
-                              <option value="733">Porsche</option>
-                              <option value="1034">Chrysler</option>
-                              <option value="1036">Lincoln</option>
-                              <option value="1041">JAC</option>
-                              <option value="1045">GMC</option>
-                              <option value="1051">Maxus</option>
-                              <option value="1056">Ashok Leyland</option>
-                              <option value="1060">Cadillac</option>
-                              <option value="1072">Tata</option>
-                              <option value="1078">Maserati</option>
-                              <option value="1082">Cherry</option>
-                              <option value="1090">Fiat</option>
-                              <option value="1095">Geely</option>
-                              <option value="1103">Mini</option>
-                              <option value="1108">Subaru</option>
-                              <option value="1121">Mercury</option>
-                              <option value="1125">Opel</option>
-                              <option value="1130">Alfa Romeo</option>
-                              <option value="1136">Daihatsu</option>
-                              <option value="1146">Seat</option>
-                              <option value="1149">MG</option>
-                              <option value="1157">Iveco</option>
-                              <option value="1165">King Long</option>
-                              <option value="1168">United Diesel</option>
-                              <option value="1177">Great Wall</option>
-                              <option value="1182">GAC</option>
-                              <option value="1204">Opel</option>
-                              <option value="1023">Hino</option>
-                            </select>
+                        <div className="col-md-7">
+                          <div className="row">
+                            <div className="col-lg-6 mt-6 col-sm-6 col-12">
+                              <div className="form_field_wrapper">
+                                <label>Choose Make</label>
+                                <select
+                                  name="make"
+                                  id="make"
+                                  onChange={(e) => {
+                                    onChangeMake(e);
+                                  }}
+                                  className="inp_field select2_initialize bg-white"
+                                  required
+                                  data-parsley-required-message="Please Choose Make"
+                                >
+                                  <option>Select Make</option>
+                                  {make_data
+                                    ? make_data.data.map((element, key) => {
+                                        return (
+                                          <option value={element.id} key={key}>
+                                            {element.name}
+                                          </option>
+                                        );
+                                      })
+                                    : null}
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-lg-6 mt-6 col-sm-6 col-12">
+                              <div className="form_field_wrapper">
+                                <label>Choose Model</label>
+                                <select
+                                  name="model"
+                                  id="model"
+                                  onChange={onChange}
+                                  className="inp_field select2_initialize bg-white"
+                                  required
+                                  data-parsley-required-message="Please Choose Model"
+                                >
+                                  <option>Select Model</option>
+                                  {modal_data
+                                    ? modal_data.map((element, key) => {
+                                        return (
+                                          <option value={element.id} key={key}>
+                                            {element.name}
+                                          </option>
+                                        );
+                                      })
+                                    : null}
+                                </select>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-lg-6 mt-6 col-sm-6 col-12">
-                          <div className="form_field_wrapper">
-                            <label>Choose Model</label>
-                            <select
-                              name="carModel"
-                              id="carModel"
-                              className="inp_field select2_initialize bg-white"
-                              required
-                              data-parsley-required-message="Please Choose Model"
-                            >
-                              <option>Select Model</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
-                          <div className="form_field_wrapper">
-                            <label>Full Name</label>
-                            <input
-                              type="text"
-                              className="inp_field"
-                              name="fullName"
-                              placeholder="Enter Full Name"
-                              required
-                              data-parsley-required-message="Enter Full Name"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
-                          <div className="form_field_wrapper">
-                            <label>Contact Number</label>
-                            <input
-                              type="number"
-                              className="inp_field"
-                              name="contactNumber"
-                              id="contactNumber"
-                              placeholder="Enter Contact Number"
-                              required
-                              data-parsley-required-message="Please Enter Contact Number"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-lg-4 mt-4 col-sm-6 col-12">
-                          <div className="form_field_wrapper">
-                            <label>Email Address</label>
-                            <input
-                              type="email"
-                              className="inp_field"
-                              name="emailAddress"
-                              placeholder="Enter Email Address"
-                              required
-                              data-parsley-required-message="Please Enter Email Address"
-                            />
-                          </div>
-                        </div>
-                        {/* </div>
-                            </div> */}
-
-                        <div className="col-lg-12 mt-4">
-                          <div className="form_field_wrapper_dsg_2">
-                            <label>Description </label>
-                            <textarea
-                              placeholder="Enter Description"
-                              name="description"
-                              rows="3"
-                              className="inp_field"
-                            ></textarea>
-                          </div>
-                        </div>
-
-                        <div className="col-md-5 mx-auto mt-4">
-                          <div className="uploadFilesWrapper text-center">
-                            <div
-                              className="dropzone getProjectId dz-clickable"
-                              id="dropzone"
-                            >
-                              <i className="fas fa-upload"></i>
-                              <br />
-                              <div className="dz-default dz-message">
-                                <span>
-                                  Upload your files here (Max 10 Files Can be
-                                  uploaded at once)
-                                </span>
-                                <FilePond
-                                  files={files}
-                                  allowReorder={true}
-                                  allowMultiple={true}
-                                  onupdatefiles={setFiles}
-                                  labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                          <div className="row">
+                            <div className="col-lg-6 mt-4 col-sm-6 col-12">
+                              <div className="form_field_wrapper">
+                                <label>Full Name</label>
+                                <input
+                                  type="text"
+                                  onChange={(e) => {
+                                    onChange();
+                                  }}
+                                  value={formData.fullname}
+                                  className="inp_field"
+                                  name="fullName"
+                                  placeholder="Enter Full Name"
+                                  required
+                                  data-parsley-required-message="Enter Full Name"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-6 mt-4 col-sm-6 col-12">
+                              <div className="form_field_wrapper">
+                                <label>Contact Number</label>
+                                <input
+                                  type="phone"
+                                  onChange={(e) => {
+                                    onChange();
+                                  }}
+                                  value={formData.phone}
+                                  className="inp_field"
+                                  name="phone"
+                                  id="phone"
+                                  placeholder="Enter Contact Number"
+                                  required
+                                  data-parsley-required-message="Please Enter Contact Number"
                                 />
                               </div>
                             </div>
                           </div>
+                          <div className="row">
+                            <div className="col-lg-12 mt-4 col-sm-12 col-12">
+                              <div className="form_field_wrapper">
+                                <label>Email Address</label>
+                                <input
+                                  type="email"
+                                  onChange={(e) => {
+                                    onChange();
+                                  }}
+                                  value={formData.email}
+                                  className="inp_field"
+                                  name="emailAddress"
+                                  placeholder="Enter Email Address"
+                                  required
+                                  data-parsley-required-message="Please Enter Email Address"
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-lg-12 mt-4">
+                              <div className="form_field_wrapper_dsg_2">
+                                <label>Description </label>
+                                <textarea
+                                  placeholder="Enter Description"
+                                  name="description"
+                                  rows="3"
+                                  onChange={(e) => {
+                                    onChange();
+                                  }}
+                                  value={formData.description}
+                                  className="inp_field"
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-md-5">
+                          <div className="uploadFilesWrapper text-center">
+                            <i className="fas fa-upload"></i>
+                            <div className="dz-default dz-message">
+                              <FilePond
+                                files={files}
+                                allowReorder={true}
+                                allowMultiple={true}
+                                onupdatefiles={setFiles}
+                                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                              />
+                            </div>
+                          </div>
                         </div>
 
-                        <div className="col-12 mt-4">
-                          <button
-                            className="pay_now_btn submitBtn"
-                            type="submit"
-                            value="pay_now"
-                          >
-                            Request a Quote
-                            <i className="fas fa-angle-double-right"></i>
-                          </button>
+                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3 form-group">
+                          {isLoading ? (
+                            <div className="text-center">
+                              <img
+                                className="mx-auto"
+                                src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                                style={{ Height: "50px" }}
+                              />
+                            </div>
+                          ) : (
+                            <div className="row">
+                              <div className="text-center mx-auto">
+                                <ReCAPTCHA
+                                  ref={recaptchaRef}
+                                  sitekey={SITE_KEY}
+                                />
+
+                                <button
+                                  className="theme-btn btn-style-two text-center mt-4 submitFormButton"
+                                  type="button"
+                                  onClick={() => onsubmitEnquiry()}
+                                  name="submit-form"
+                                >
+                                  <span className="btn-title">
+                                    Request a Quote
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

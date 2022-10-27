@@ -15,6 +15,7 @@ import { getHomePackageSlice } from "./booking-data/homePackagesSlice";
 import { submitContactSlice } from "./customer-requests/contactusSlice";
 import { submitEnquirySlice } from "./customer-requests/enquirySlice";
 import { resetPasswordSlice } from "./auth/authSlice";
+import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -36,9 +37,12 @@ export default combineReducers({
     package:getPackageSlice.reducer,
     homePackage:getHomePackageSlice.reducer,
 
-    // contact
+    // contact and enquiry requests
     submitContact:submitContactSlice.reducer,
     submitEnquiry:submitEnquirySlice.reducer,
+    submitRepairEnquiry:submitRepairEnquirySlice.reducer,
+    
+
 
 
 })

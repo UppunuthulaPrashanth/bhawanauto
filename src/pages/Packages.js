@@ -34,7 +34,7 @@ export default function Packages() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPackage());
-    disptach(getMake());
+    dispatch(getMake());
   }, []);
 
   
@@ -62,7 +62,7 @@ export default function Packages() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if(name=='make'){
-      disptach(getModal(value)).then((res) => {
+      dispatch(getModal(value)).then((res) => {
         setModal_data(res.payload);
       });
     }
@@ -92,9 +92,11 @@ export default function Packages() {
         })
         .catch((error) => {
           toast.error("Invalid Captcha");
+          setIsLoading(false);
         });
     } else {
       toast.error("Invalid Captcha");
+      setIsLoading(false);
     }
 
 
