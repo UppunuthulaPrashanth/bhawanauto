@@ -34,7 +34,7 @@ class Layout extends React.Component {
                         <div className="d-flex justify-content-end py-1 pr-3 pr-xl-0">
                           <div className="mr-sm-4 bold-text small-text my-auto d-none d-sm-block">
                             <span>CALL : </span>
-                            <Link to="tel:8002886349">8002886349</Link>
+                            <Link to="tel:8002886349">8002886349</Link>&nbsp;
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
@@ -44,7 +44,7 @@ class Layout extends React.Component {
                                   className="border-sm-left border-sm-right px-3"
                                 >
                                   {" "}
-                                  <i className="fas fa-lock-open mr-2"></i>Hi,{userData=='undefined'?'loading':userData}
+                                  Hi, {userData=='undefined'?'loading':userData} &nbsp;
                                   
                                   <i className="fas fa-sort-down"></i>
                                 </a>
@@ -120,9 +120,10 @@ class Layout extends React.Component {
                               </li>
                             </ul>
                           </div>
+
                         </div>
+                        <div className="col-8 border-bottom float-right"></div>
                       </div>
-                      <div className="col-12 border-bottom"></div>
                       <div className="col-12  max1200 min1200 d-block mx-auto">
                         <nav className="navbar navbar-expand-lg navbar-light bg-custom nav_design_custom px-0 pr-3 pr-xl-0">
                           <Link
@@ -214,8 +215,8 @@ class Layout extends React.Component {
                       <div className="text color-white">
                         <p className="text color-white text-sm">
                           Auto Fix is the most trusted car service center in
-                          Dubai. We offer full range of garage services to
-                          vehicle owners in UAE.
+                          Oman. We offer full range of garage services to
+                          vehicle owners in Oman.
                         </p>
                         <p className="text color-white text-sm mt-2">
                           All our workshops are fitted with state-of-the-art
@@ -272,17 +273,17 @@ class Layout extends React.Component {
                         <ul className="list clearfix">
                           <li>
                             <Link to="services/car-ac-repair-dubai.html">
-                              Car AC Repair
+                              Car Periodic Maintenance
                             </Link>
                           </li>
                           <li>
                             <Link to="services/car-oil-change.html">
-                              Car oil change service
+                              Car Battery & Tire Replacement
                             </Link>
                           </li>
                           <li>
                             <Link to="services/car-maintenance.html">
-                              Car Maintenance
+                              Car A/C repair
                             </Link>
                           </li>
                           <li>
@@ -297,7 +298,7 @@ class Layout extends React.Component {
                           </li>
                           <li>
                             <Link to="services/car-battery-replacement.html">
-                              Car Battery Replacement
+                              Car Body Repair & Painting
                             </Link>
                           </li>
                         </ul>

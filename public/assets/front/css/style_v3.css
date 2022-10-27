@@ -235,7 +235,7 @@ ul, li {
   line-height: 20px;
   color: #ffffff;
   background-color: #27a3e2;
-  padding: 15px 35px;
+  padding: 15px 93px;
   font-weight: 700;
   overflow: hidden;
   -webkit-transition: -webkit-box-shadow 0.3s ease-in;
@@ -3314,7 +3314,7 @@ img {
   width: 100%;
   border: none;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 100%;
   padding: 0px 10px;
   font-size: 0.8rem;
@@ -6621,7 +6621,7 @@ img {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
@@ -6676,7 +6676,7 @@ img {
   width: 100%;
   border: none;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 100%;
   padding: 0px 10px;
   font-size: 0.8rem;
@@ -7285,7 +7285,7 @@ img {
 
 .contact-form-two .form-group button {
   text-transform: capitalize;
-  padding: 10px 25px;
+  padding: 15px 103px;
   line-height: 20px;
   font-size: 14px;
 }
@@ -9612,7 +9612,7 @@ img {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
@@ -9668,7 +9668,7 @@ img {
   width: 100%;
   border: none;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 100%;
   padding: 0px 10px;
   font-size: 0.8rem;
@@ -10006,9 +10006,9 @@ img {
   font-weight: 900;
   left: 0;
   top: 0px;
-  color: #ce1432;
+  color: #27A3E2;
   font-size: 1rem;
-  content: "\f101";
+  content: "\f105";
 }
 
 .landing_page .content_landing_page {
@@ -10873,3 +10873,9 @@ img {
   background-color: #E5E4E2;
   border-radius: 13px;
 }
+
+.max1200 .small-text{
+  margin-right: 0.6rem!important;
+}
+
+

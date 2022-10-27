@@ -1,6 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Repair_car_quote() {
+  // file upload
+  const [fileCount, setFileCount]=useState(null)
+  var dropFileForm = document.getElementById("dropFileForm");
+  var droppedFiles;
+
+  function overrideDefault(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  function fileHover() {
+    dropFileForm.classList.add("fileHover");
+  }
+
+  function fileHoverEnd() {
+    dropFileForm.classList.remove("fileHover");
+  }
+
+  function addFiles(event) {
+    droppedFiles = event.target.files || event.dataTransfer.files;
+    showFiles(droppedFiles);
+  }
+
+  function showFiles(files) {
+    if (files.length > 1) {
+      setFileCount(files.length+ "files selected");
+    } else {
+      setFileCount(files.length+ "file selected");
+    }
+  }
+
+  function uploadFiles(event) {
+    event.preventDefault();
+
+    var formData = new FormData();
+
+  }
+
+
+
+  // end file upload
   return (
     <div className="container">
       <form action="#" id="getAQuoteForm" data-parsley-validate>
@@ -183,7 +224,7 @@ export default function Repair_car_quote() {
                           </div>
                         </div>
 
-                        <div className="col-md-12 mt-4">
+                        <div className="col-md-12 mt-4" id="dropFileForm">
                           <div className="uploadFilesWrapper text-center">
                             <div
                               className="dropzone getProjectId dz-clickable"
@@ -199,6 +240,32 @@ export default function Repair_car_quote() {
                               </div>
                             </div>
                           </div>
+
+                          <input
+                            type="file"
+                            name="files[]"
+                            id="fileInput"
+                            multiple
+                            onChange={(event)=>{addFiles(event)}}
+                          />
+
+                          <label
+                            htmlFor="fileInput"
+                            id="fileLabel"
+                            onDragOver={(event)=>{overrideDefault(event); fileHover()}}
+                            onDragEnter={(event)=>{overrideDefault(event); fileHover()}}
+                            onDragLeave={(event)=>{overrideDefault(event);fileHoverEnd()}}
+                            onDrop={(event)=>{overrideDefault(event);fileHoverEnd();
+                            addFiles(event)}}
+                          >
+                            <i className="fa fa-download fa-5x"></i>
+                            <br />
+                            <span id="fileLabelText">
+                              Choose a file or drag it here
+                            </span>
+                            <br />
+                            <span id="uploadStatus">{fileCount}</span>
+                          </label>
                         </div>
 
                         <div className="col-12 mt-4">

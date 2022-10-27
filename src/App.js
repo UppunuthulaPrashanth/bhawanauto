@@ -55,9 +55,9 @@ function App() {
       localStorage.setItem("userData", name);
       if (name && localStorage.getItem("userData")) {
         setAuth(true);
-        setLoader(false)
       }
     });
+    setLoader(false)
   }, []);
 
   if(loader){

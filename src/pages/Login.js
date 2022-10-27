@@ -340,8 +340,8 @@ export default function Login() {
                                   required
                                   onChange={onChangeSignup}
                                 >
-                                  <option value="+971">Select Country</option>
-                                  <option>United Arab Emirates</option>
+                                  <option value="+968">Select Country</option>
+                                  <option>Oman</option>
                                 </select>
                               </div>
                             </div>
@@ -354,7 +354,7 @@ export default function Login() {
                                   id="cc_prefix"
                                   className=" text-center text-dark small-text"
                                 >
-                                  +971
+                                  +968
                                 </label>
                                 <input
                                   placeholder="Please Enter Phone Number"

@@ -52,7 +52,7 @@ export default function Services() {
                     </div>
                     <div className="text_container">
                       <h3>
-                        <a href="services/car-scanning">Car scanning & Diagnostics</a>
+                        <a href="services/car-scanning">Car Scanning & Diagnostics</a>
                       </h3>
                     </div>
                   </div>
@@ -73,7 +73,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/prepurchase-inspection">
-                          Pre-purchase inspection
+                          Pre-purchase Inspection
                         </a>
                       </h3>
                     </div>
@@ -94,7 +94,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/general-maintenance">
-                          General maintenance
+                          General Maintenance
                         </a>
                       </h3>
                     </div>
@@ -136,7 +136,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/wheel-alignment-balancing">
-                          Wheel Alignment & balancing
+                          Wheel Alignment & Balancing
                         </a>
                       </h3>
                     </div>
@@ -156,7 +156,7 @@ export default function Services() {
                     </div>
                     <div className="text_container">
                       <h3>
-                        <a href="services/car-ac-repair">A/C repair</a>
+                        <a href="services/car-ac-repair">A/C Repair</a>
                       </h3>
                     </div>
                   </div>
@@ -216,7 +216,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/car-care-car-detailing">
-                          Car care & Car Detailing
+                          Car Care & Car Detailing
                         </a>
                       </h3>
                     </div>
@@ -256,7 +256,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/body-repair-repainting">
-                          Body repair & Painting
+                          Body Repair & Painting
                         </a>
                       </h3>
                     </div>
@@ -317,7 +317,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/off-road-accessories">
-                          Off road / Accessories
+                          Off Road / Accessories
                         </a>
                       </h3>
                     </div>
@@ -340,7 +340,7 @@ export default function Services() {
                     <div className="text_container">
                       <h3>
                         <a href="services/gear-box">
-                          Gear box
+                          Gear Box
                         </a>
                       </h3>
                     </div>

@@ -202,6 +202,7 @@ export default function Homepage() {
                 <h5 className="mx-auto">Japanese/Korean/Chinese Brands</h5>
               </div>
               <div className="row rect-owel">
+              {data?
                   <OwlCarousel className="owl-theme" slideBy={3} loop  smartSpeed={700}  margin={20} autoplay={true}>
                     {data.Japanese_Korean_Chinese
                       ? data.Japanese_Korean_Chinese.map(
@@ -249,7 +250,9 @@ export default function Homepage() {
                           }
                         )
                       : null}
+                      
                   </OwlCarousel>
+                  :null}
               </div>
               {/* End Asian Brands */}
 
@@ -259,7 +262,7 @@ export default function Homepage() {
               </div>
               <div className="row ">
                 <div className="col-12 packages_caroseul_dsg_dots">
-                  <OwlCarousel className="owl-theme" slideBy={3} loop margin={20} autoplay={true}  >
+                {data? <OwlCarousel className="owl-theme" slideBy={3} loop margin={20} autoplay={true}  >
                     {data.Americana_European
                       ? data.Americana_European.map(
                           (packageDetails, key) => {
@@ -307,6 +310,7 @@ export default function Homepage() {
                         )
                       : null}
                   </OwlCarousel>
+                  :null}
                 </div>
               </div>
               {/*End American & European Brands */}

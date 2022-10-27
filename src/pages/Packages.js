@@ -277,7 +277,7 @@ export default function Packages() {
                                 ? package_data.data.map((element, key) => {
                                     return (
                                       <option value={element.id} key={key}>
-                                        {element.name}
+                                        {element.name} &nbsp;--&nbsp; {element.country=='Japanese_Korean_Chinese'? "Japanese/Korean/Chinese" : "American/European"}
                                       </option>
                                     );
                                   })
