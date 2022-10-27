@@ -36,7 +36,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBacUNvMjM%3d.svg"
+                            src="/assets/front/how_it_work/1.png"
                           />
                         </div>
                         <div className="text_container_mobile text-center">
@@ -59,7 +59,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBQbTZLaUs%3d.svg"
+                            src="/assets/front/how_it_work/2.png"
                           />
                         </div>
                         <div className="text_container_mobile text-center">
@@ -81,7 +81,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBmNkhtdm0%3d.svg"
+                            src="/assets/front/how_it_work/3.png"
                           />
                         </div>
                       </div>
@@ -100,7 +100,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBQYUE5UTE%3d.svg"
+                            src="/assets/front/how_it_work/4.png"
                           />
                         </div>
                       </div>
@@ -111,7 +111,7 @@ export default function How_its_work() {
                         <h3 className="small-text">
                           Workshop observation and information on additional
                           services or repair, detailing requirement reasons
-                          (Safety, preventive maintenance, periodic maintenance
+                          (Safety, preventive maintenance, periodic <br/>maintenance
                           etc.).
                         </h3>
                       </div>
@@ -121,7 +121,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBDU2d4bWE%3d.svg"
+                            src="/assets/front/how_it_work/5.png"
                           />
                         </div>
                       </div>
@@ -140,7 +140,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBDU2d4bWE%3d.svg"
+                            src="/assets/front/how_it_work/6.png"
                           />
                         </div>
                       </div>
@@ -160,7 +160,7 @@ export default function How_its_work() {
                         <div className="image_wrapper">
                           <img
                             className="img-fluid d-block mx-auto"
-                            src="/assets/front/uploads/generalSection/L3RtcC9waHBDU2d4bWE%3d.svg"
+                            src="/assets/front/how_it_work/7.png"
                           />
                         </div>
                       </div>

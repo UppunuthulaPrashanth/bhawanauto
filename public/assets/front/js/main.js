@@ -561,6 +561,10 @@ $(document).on("click", ".callNowBtn", function () {
   setTimeout(() => {
     $(this).children(".btn-title").html(myText);
   }, 6000);
+
+
+
+  
 });
 
 // gallery images
@@ -631,3 +635,7 @@ $(document).ready(function () {
 
   }
 })();
+
+
+
+

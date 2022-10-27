@@ -1,47 +1,15 @@
 import React, { useState } from "react";
 
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 export default function Repair_car_quote() {
-  // file upload
-  const [fileCount, setFileCount]=useState(null)
-  var dropFileForm = document.getElementById("dropFileForm");
-  var droppedFiles;
-
-  function overrideDefault(event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  function fileHover() {
-    dropFileForm.classList.add("fileHover");
-  }
-
-  function fileHoverEnd() {
-    dropFileForm.classList.remove("fileHover");
-  }
-
-  function addFiles(event) {
-    droppedFiles = event.target.files || event.dataTransfer.files;
-    showFiles(droppedFiles);
-  }
-
-  function showFiles(files) {
-    if (files.length > 1) {
-      setFileCount(files.length+ "files selected");
-    } else {
-      setFileCount(files.length+ "file selected");
-    }
-  }
-
-  function uploadFiles(event) {
-    event.preventDefault();
-
-    var formData = new FormData();
-
-  }
-
-
-
-  // end file upload
+  const [files, setFiles] = useState([]);
+  console.log(files);
   return (
     <div className="container">
       <form action="#" id="getAQuoteForm" data-parsley-validate>
@@ -75,9 +43,7 @@ export default function Repair_car_quote() {
                               required
                               data-parsley-required-message="Please Choose Make"
                             >
-                              <option selected disabled value="">
-                                Select Make
-                              </option>
+                              <option>Select Make</option>
                               <option value="664">Nissan</option>
                               <option value="846">Toyota</option>
                               <option value="329">Honda</option>
@@ -152,31 +118,22 @@ export default function Repair_car_quote() {
                               required
                               data-parsley-required-message="Please Choose Model"
                             >
-                              <option selected disabled value="">
-                                Select Model
-                              </option>
+                              <option>Select Model</option>
                             </select>
                           </div>
                         </div>
 
                         <div className="col-lg-4 mt-4 col-sm-6 col-12">
-                          {/* <div className="row no-gutters">
-                                    <div className="col-lg-5 col-5">
-                                       <div className="mr-3"> */}
                           <div className="form_field_wrapper">
                             <label>Full Name</label>
                             <input
                               type="text"
                               className="inp_field"
                               name="fullName"
-                              value=""
                               placeholder="Enter Full Name"
                               required
                               data-parsley-required-message="Enter Full Name"
                             />
-                            {/* </div>
-                                       </div>
-                                    </div> */}
                           </div>
                         </div>
 
@@ -187,7 +144,6 @@ export default function Repair_car_quote() {
                               type="number"
                               className="inp_field"
                               name="contactNumber"
-                              value=""
                               id="contactNumber"
                               placeholder="Enter Contact Number"
                               required
@@ -202,7 +158,6 @@ export default function Repair_car_quote() {
                               type="email"
                               className="inp_field"
                               name="emailAddress"
-                              value=""
                               placeholder="Enter Email Address"
                               required
                               data-parsley-required-message="Please Enter Email Address"
@@ -224,7 +179,7 @@ export default function Repair_car_quote() {
                           </div>
                         </div>
 
-                        <div className="col-md-12 mt-4" id="dropFileForm">
+                        <div className="col-md-5 mx-auto mt-4">
                           <div className="uploadFilesWrapper text-center">
                             <div
                               className="dropzone getProjectId dz-clickable"
@@ -237,35 +192,16 @@ export default function Repair_car_quote() {
                                   Upload your files here (Max 10 Files Can be
                                   uploaded at once)
                                 </span>
+                                <FilePond
+                                  files={files}
+                                  allowReorder={true}
+                                  allowMultiple={true}
+                                  onupdatefiles={setFiles}
+                                  labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                                />
                               </div>
                             </div>
                           </div>
-
-                          <input
-                            type="file"
-                            name="files[]"
-                            id="fileInput"
-                            multiple
-                            onChange={(event)=>{addFiles(event)}}
-                          />
-
-                          <label
-                            htmlFor="fileInput"
-                            id="fileLabel"
-                            onDragOver={(event)=>{overrideDefault(event); fileHover()}}
-                            onDragEnter={(event)=>{overrideDefault(event); fileHover()}}
-                            onDragLeave={(event)=>{overrideDefault(event);fileHoverEnd()}}
-                            onDrop={(event)=>{overrideDefault(event);fileHoverEnd();
-                            addFiles(event)}}
-                          >
-                            <i className="fa fa-download fa-5x"></i>
-                            <br />
-                            <span id="fileLabelText">
-                              Choose a file or drag it here
-                            </span>
-                            <br />
-                            <span id="uploadStatus">{fileCount}</span>
-                          </label>
                         </div>
 
                         <div className="col-12 mt-4">

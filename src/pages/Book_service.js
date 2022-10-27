@@ -208,7 +208,7 @@ export default function Book_service() {
                         data-parsley-required-message="Please Choose Year"
                       >
                         <option disabled="" defaultValue="">
-                          Select Year
+                          Select Model Year
                         </option>
                         {year_data.data.map((element, key) => {
                           return (
@@ -412,7 +412,7 @@ export default function Book_service() {
                                 </div>
                               </div>
                               <span className="d-block mt-3 mb-4">
-                                <span className="small-text">{CURRENCY}</span>
+                                <span className="small-text">{CURRENCY}&nbsp;</span>
                                 <span className="bold-text big-text price_text">
                                   {element.price}
                                 </span>
@@ -535,30 +535,26 @@ export default function Book_service() {
 
                                     <tr>
                                       <td>
-                                        <p>
-                                          Subtotal
-                                          <br />
-                                          Tax
-                                          <br />
-                                        </p>
+                                        <p className="mb-2">Subtotal</p>
+                                        <p className="mb-2">Tax</p>
                                         <h5 className="text-success">
                                           <strong>Grand Total</strong>
                                         </h5>
                                       </td>
                                       <td>
-                                        <p>
-                                          <span>{CURRENCY}</span>{" "}
+                                        <p className="mb-1">
+                                          <span>{CURRENCY}</span>&nbsp;
                                           {parseFloat(
                                             total_without_tax
                                           ).toFixed(3)}
-                                          <br />
+                                          </p>
+                                          <p className="mb-1">
                                           <span>{CURRENCY}</span>{" "}
                                           {parseFloat(tax).toFixed(3)}
-                                          <br />
                                         </p>
                                         <h5 className="text-success">
                                           <strong>
-                                            <span>{CURRENCY}</span>{" "}
+                                            <span>{CURRENCY}</span>&nbsp;
                                             {parseFloat(total_with_tax).toFixed(
                                               3
                                             )}
