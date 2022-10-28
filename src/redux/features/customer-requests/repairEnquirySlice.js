@@ -9,10 +9,9 @@ export const submitRepairEnquiry = createAsyncThunk(
   `${namespace}/enquiry`,
   async (formData) => {
     try {
-      const userToken = JSON.parse(localStorage.getItem("userToken"));
       const { data } = await axios.post(`${API_URL}/${namespace}/enquiry_form`,formData,{
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          "Content-Type": "multipart/form-data",
         },
       });
       return data;

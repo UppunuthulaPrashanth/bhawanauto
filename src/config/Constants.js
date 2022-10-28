@@ -1,5 +1,5 @@
-export const API_URL = "http://dev3.sbagh.com/api/v1";
-export const ASSETS = "http://dev3.sbagh.com/storage/image/";
+// export const API_URL = "http://dev3.sbagh.com/api/v1";
+// export const ASSETS = "http://dev3.sbagh.com/storage/image/";
 
 
 // for reCaptcha
@@ -7,8 +7,8 @@ export const SITE_KEY="6LdWFpYiAAAAAL9LYIXhruYCuoVdCKIuOnh7MEE8"
 export const SECRET_KEY="6LdWFpYiAAAAADezUdMEgMr0duyo_TziU_MVPUl_"
 export const REACT_CAPTCH="https://www.google.com/recaptcha/api/siteverify?secret="
 
-// export const API_URL = "http://localhost:8000/api/v1";
-// export const ASSETS = "http://localhost:8000/storage/image/";
+export const API_URL = "http://localhost:8000/api/v1";
+export const ASSETS = "http://localhost:8000/storage/image/";
 
 export const PROFILE = `${ASSETS}/profile/`;
 

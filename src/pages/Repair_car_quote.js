@@ -3,42 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
-import { submitEnquiry } from "../redux/features/customer-requests/enquirySlice";
 import ReCAPTCHA from "react-google-recaptcha";
 import { getMake } from "../redux/features/booking-data/makeSlice";
 import { getModal } from "../redux/features/booking-data/makeModelSlice";
 import { SECRET_KEY, SITE_KEY } from "../config/Constants";
 import axios from "axios";
 import { useRef } from "react";
-import { submitRepairEnquirySlice } from "../redux/features/customer-requests/repairEnquirySlice";
+import { submitRepairEnquiry } from "../redux/features/customer-requests/repairEnquirySlice";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
+import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+registerPlugin(FilePondPluginFileEncode);
 
 export default function Repair_car_quote() {
   const [files, setFiles] = useState([]);
   const [modal_data, setModal_data] = useState(null);
   const dispatch = useDispatch();
 
-  const empty_values = {
-    make: "",
-    model: "",
-    fullname: "",
-    email: "",
-    phone: "",
-    description: "",
-  };
-  const [formData, setFormData] = useState({
-    make: "",
-    model: "",
-    fullname: "",
-    email: "",
-    phone: "",
-    description: "",
-  });
+  const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -50,18 +36,14 @@ export default function Repair_car_quote() {
     JSON.stringify(useSelector((state) => state.make))
   );
 
-  const onChangeMake = (e) => {
-    const { value } = e.target;
-    dispatch(getModal(value)).then((res) => {
-      setModal_data(res.payload);
-    });
-  };
-
   const onChange = (e) => {
     const { name, value } = e.target;
+    if (name === "make") {
+      dispatch(getModal(value)).then((res) => {
+        setModal_data(res.payload);
+      });
+    }
     setFormData({ ...formData, [name]: value });
-    setFormData({ ...formData, ["images"]: files });
-    console.log(formData)
   };
 
   const recaptchaRef = useRef(null);
@@ -77,24 +59,35 @@ export default function Repair_car_quote() {
         .then((res) => {
           if (res.data.success) {
             setIsLoading(true);
-            dispatch(submitRepairEnquirySlice(formData)).then((res) => {
+            const convertedForm = new FormData();
+            for (var key in formData) {
+              if(key=='make'){
+                convertedForm.append(key, make_data.data[formData[key]].name);
+              }else{
+              convertedForm.append(key, formData[key]);
+              }
+            }
+            files.map((image_file, index) => {
+              const base64String = image_file.getFileEncodeBase64String();
+              convertedForm.append("images[" + index + "]", base64String);
+            });
+
+            dispatch(submitRepairEnquiry(convertedForm)).then((res) => {
               if (res.payload.success) {
                 toast.success(res.payload.message);
-                setFormData(empty_values);
+                setFormData({});
               }
               setIsLoading(false);
             });
           }
         })
         .catch((error) => {
-          toast.error("Invalid Captcha");
+          toast.error("Invalid Captchaaa");
           setIsLoading(false);
-
         });
     } else {
       toast.error("Invalid Captcha");
       setIsLoading(false);
-
     }
   };
 
@@ -102,7 +95,6 @@ export default function Repair_car_quote() {
     return <Loader />;
   }
 
-  console.log(files);
   return (
     <div className="container">
       <form action="#" id="getAQuoteForm" data-parsley-validate>
@@ -134,18 +126,18 @@ export default function Repair_car_quote() {
                                 <select
                                   name="make"
                                   id="make"
-                                  onChange={(e) => {
-                                    onChangeMake(e);
-                                  }}
+                                  onChange={(e) => onChange(e)}
                                   className="inp_field select2_initialize bg-white"
                                   required
-                                  data-parsley-required-message="Please Choose Make"
                                 >
                                   <option>Select Make</option>
                                   {make_data
                                     ? make_data.data.map((element, key) => {
                                         return (
-                                          <option value={element.id} key={key}>
+                                          <option
+                                            value={element.id}
+                                            key={key}
+                                          >
                                             {element.name}
                                           </option>
                                         );
@@ -160,7 +152,7 @@ export default function Repair_car_quote() {
                                 <select
                                   name="model"
                                   id="model"
-                                  onChange={onChange}
+                                  onChange={(e) => onChange(e)}
                                   className="inp_field select2_initialize bg-white"
                                   required
                                   data-parsley-required-message="Please Choose Model"
@@ -169,7 +161,10 @@ export default function Repair_car_quote() {
                                   {modal_data
                                     ? modal_data.map((element, key) => {
                                         return (
-                                          <option value={element.id} key={key}>
+                                          <option
+                                            value={element.name}
+                                            key={key}
+                                          >
                                             {element.name}
                                           </option>
                                         );
@@ -186,11 +181,14 @@ export default function Repair_car_quote() {
                                 <input
                                   type="text"
                                   onChange={(e) => {
-                                    onChange();
+                                    onChange(e);
                                   }}
-                                  value={formData.fullname}
+                                  value={
+                                    formData.fullname ? formData.fullname : ""
+                                  }
                                   className="inp_field"
-                                  name="fullName"
+                                  name="fullname"
+                                  id="fullname"
                                   placeholder="Enter Full Name"
                                   required
                                   data-parsley-required-message="Enter Full Name"
@@ -203,9 +201,9 @@ export default function Repair_car_quote() {
                                 <input
                                   type="phone"
                                   onChange={(e) => {
-                                    onChange();
+                                    onChange(e);
                                   }}
-                                  value={formData.phone}
+                                  value={formData.phone ? formData.phone : ""}
                                   className="inp_field"
                                   name="phone"
                                   id="phone"
@@ -223,11 +221,11 @@ export default function Repair_car_quote() {
                                 <input
                                   type="email"
                                   onChange={(e) => {
-                                    onChange();
+                                    onChange(e);
                                   }}
-                                  value={formData.email}
+                                  value={formData.email ? formData.email : ""}
                                   className="inp_field"
-                                  name="emailAddress"
+                                  name="email"
                                   placeholder="Enter Email Address"
                                   required
                                   data-parsley-required-message="Please Enter Email Address"
@@ -243,13 +241,51 @@ export default function Repair_car_quote() {
                                   name="description"
                                   rows="3"
                                   onChange={(e) => {
-                                    onChange();
+                                    onChange(e);
                                   }}
-                                  value={formData.description}
+                                  value={
+                                    formData.description
+                                      ? formData.description
+                                      : ""
+                                  }
                                   className="inp_field"
                                 ></textarea>
                               </div>
                             </div>
+                          </div>
+
+                          <div className="col-lg-12 col-md-12 col-sm-12 mt-3 form-group">
+                            {isLoading ? (
+                              <div className="text-center">
+                                <img
+                                  className="mx-auto"
+                                  src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                                  style={{ Height: "50px" }}
+                                />
+                              </div>
+                            ) : (
+                              <div className="row">
+                                <div className="col-md-8">
+                                  <div className=" mx-auto ">
+                                    <ReCAPTCHA
+                                      ref={recaptchaRef}
+                                      sitekey={SITE_KEY}
+                                    />
+
+                                    <button
+                                      className="theme-btn btn-style-two text-center mt-4 submitFormButton"
+                                      type="button"
+                                      onClick={() => onsubmitEnquiry()}
+                                      name="submit-form"
+                                    >
+                                      <span className="btn-title">
+                                        Request a Quote
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
                         <div className="col-md-5">
@@ -258,45 +294,14 @@ export default function Repair_car_quote() {
                             <div className="dz-default dz-message">
                               <FilePond
                                 files={files}
+                                allowFileEncode={true}
                                 allowReorder={true}
                                 allowMultiple={true}
                                 onupdatefiles={setFiles}
-                                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+                                labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
                               />
                             </div>
                           </div>
-                        </div>
-
-                        <div className="col-lg-12 col-md-12 col-sm-12 mt-3 form-group">
-                          {isLoading ? (
-                            <div className="text-center">
-                              <img
-                                className="mx-auto"
-                                src="assets/front/loader/ezgif-2-bc14af353261.gif"
-                                style={{ Height: "50px" }}
-                              />
-                            </div>
-                          ) : (
-                            <div className="row">
-                              <div className="text-center mx-auto">
-                                <ReCAPTCHA
-                                  ref={recaptchaRef}
-                                  sitekey={SITE_KEY}
-                                />
-
-                                <button
-                                  className="theme-btn btn-style-two text-center mt-4 submitFormButton"
-                                  type="button"
-                                  onClick={() => onsubmitEnquiry()}
-                                  name="submit-form"
-                                >
-                                  <span className="btn-title">
-                                    Request a Quote
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
