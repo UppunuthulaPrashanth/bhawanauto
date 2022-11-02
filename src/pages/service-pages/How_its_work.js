@@ -12,12 +12,12 @@ export default function How_its_work() {
                 <div className="text">
                   “Broad network, well equipped workshop infrastructure, trained
                   service professionals, helps us to provide an outstanding
-                  quality service to our customers. While receiving the vehicle,
+                  quality service to our customers. <br/> While receiving  the vehicle,
                   our service advisor will provide cost and time estimate of
                   repairs requested. If there are any additional findings during
-                  workshop observation, Advisor will provide an additional time
+                  workshop observation,<br/> Advisor will provide an additional time
                   and cost estimate for further approval. On completion of all
-                  approved jobs proactive information is given on the vehicle
+                  approved jobs proactive information is given<br/> on the vehicle
                   readiness with invoice details for convenience and
                   transparency.”
                 </div>

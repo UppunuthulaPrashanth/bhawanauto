@@ -200,7 +200,7 @@ export default function Homepage() {
               </div>
               {/* Asian Brands */}
               <div className="text-center m-1">
-                <h5 className="mx-auto">Japanese/Korean/Chinese Brands</h5>
+                <h5 className="mx-auto">Japanese / Korean / Chinese Brands</h5>
               </div>
               <div className="row rect-owel">
               {data?
@@ -226,7 +226,7 @@ export default function Homepage() {
                                         {packageDetails.price}
                                       </span>
                                     </span>
-                                    <div className="points_container mt-3">
+                                    <div className="points_container mt-1">
                                       <ul>
                                       { packageDetails.features.split(',').map((subitem, i)=>(
                                         <li className="included abs_content_wrapper" key={i}>
@@ -285,7 +285,7 @@ export default function Homepage() {
                                         {packageDetails.price}
                                       </span>
                                     </span>
-                                    <div className="points_container mt-3">
+                                    <div className="points_container mt-1">
                                       <ul>
                                       { packageDetails.features.split(',').map((subitem, i)=>(
                                         <li className="included abs_content_wrapper" key={i}>
@@ -332,8 +332,8 @@ export default function Homepage() {
           <div className="sec-title text-center">
             <h2>Car Brands We Work With</h2>
             <div className="text">
-              “Bahwan Automobiles Trading car service, repair all car makes and
-              models at the most affordable prices in Oman. “
+              “Bahwan Automobiles Trading car service, repair all car brands and
+              models at the most affordable prices in Oman.“
             </div>
           </div>
           <div className="row">
@@ -652,24 +652,7 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="call-btn-wrapper">
-              <p className="btn_container mb-5 mt-5 text-center">
-                <a
-                  href="packages"
-                  className="theme-btn btn-style-two d-inline-block text-center text-uppercase"
-                >
-                  <span className="btn-title">
-                    <i className="far fa-calendar-check mr-2"></i> Book Now
-                  </span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+     
       {/* End Car Brands We Work With */}
     
       {/* WHY CHOOSE US */}
@@ -678,7 +661,7 @@ export default function Homepage() {
           <div className="auto-container">
             <div className="container clearfix mb-4">
               <div className="inner-column">
-                <div className="no_after sec-title text-center text-lg-left">
+                <div className="no_after sec-title text-center">
                   <h2>WHY CHOOSE US?</h2>
                   <div className="text" style={{ fontSize: "15px" }}></div>
                 </div>
@@ -696,7 +679,7 @@ export default function Homepage() {
                           <a href="#">Transparency</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             Honesty and Integrity are our Company’s values that
                             we reflect in all actions we perform. To foster
                             trust and customer loyalty, we provide Visibility
@@ -718,7 +701,7 @@ export default function Homepage() {
                           <a href="#">Trustworthy</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             We strongly believe in long term customer
                             relationship, credibility, reliability, and
                             professionalism. To achieve this, we strive our best
@@ -743,7 +726,7 @@ export default function Homepage() {
                           <a href="#">Tailor made</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             Each customer has specific needs and wants. We
                             design flexibility options in systems and operation
                             process, to customize to customer requirements
@@ -767,7 +750,7 @@ export default function Homepage() {
                           <a href="#">Competitive</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             Our services are desirable to customers for the
                             reasons of value proposition on quality to the cost.
                             Customization to customer needs, repairing only what
@@ -795,7 +778,7 @@ export default function Homepage() {
                           <a href="#">Convenience</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             We highly value Customer’s time and effort expend on
                             service. Our services are easy to access and
                             facilities are in appropriate atmosphere. We are
@@ -825,7 +808,7 @@ export default function Homepage() {
                           <a href="#">Customer Oriented</a>
                         </h4>
                         <div className="text">
-                          <p>
+                          <p style={{textAlign: "justify"}}>
                             Creating Customers for life is our company’s vision
                             and “Customer first” is our business philosophy. We
                             align customer needs with our business purpose and
@@ -846,14 +829,18 @@ export default function Homepage() {
       </div>
       {/* End WHY CHOOSE US */}
 
+      {/* Sevices*/}
+      <Services />
+      {/*End services  */}
+
       {/*Our Car Service Partners */}
-      <section className="py-5 bg_light">
+      <section className="py-5">
         <div className="auto-container">
           <div className="sec-title text-center mb-5">
             <h2>Our Car Service Partners</h2>
             <div className="text">
               “Bahwan Automobiles Trading is proud to be associated with some
-              well-known brands of Oman”
+              well-known international brands”
             </div>
           </div>
           <div className="row clearfix">
@@ -1053,10 +1040,10 @@ export default function Homepage() {
       <section className="faq-section pt-4 pt-sm-5 pb-0">
         <div className="auto-container">
           {/* Sec Title */}
-          <div className="sec-title text-center">
+          <div className="sec-title text-center mb-5">
             <h2>FAQs</h2>
             <div className="text">
-              Car Service Questions Answered at Auto Fix
+              Car Services Questions and Answered at Bhawan Automobiles Trading
             </div>
           </div>
           <div className="row clearfix">
@@ -1077,7 +1064,7 @@ export default function Homepage() {
                           href="#"
                           data-toggle="collapse"
                           data-target={"#collapseOne" + index}
-                          aria-expanded={index == 0 ? "true" : "false"}
+                          // aria-expanded={index == 0 ? "true" : "false"}
                           aria-controls={"collapseOne" + index}
                           className={
                             index == 0
@@ -1093,7 +1080,7 @@ export default function Homepage() {
                       id={"collapseOne" + index}
                       aria-labelledby={"headingOne" + index}
                       data-parent="#accordionExample"
-                      className={index == 0 ? "collapse show" : "collapse"}
+                      className={index == 0 ? "collapse" : "collapse"}
                     >
                       <div className="card-body p-5">
                         <p className="font-weight-light m-0 content">
@@ -1107,13 +1094,12 @@ export default function Homepage() {
             </div>
 
             {/* Image Column */}
-            <div className="image-column col-xl-5 col-lg-6 col-md-12 col-sm-12 d-block my-auto">
+            <div className="image-column col-xl-5 col-lg-6 col-md-12 col-sm-12">
               <div className="inner-column">
-                <span className="float-text">AUTO FIX</span>
                 <figure className="image">
-                  <img src="assets/front/uploads/faq/faq11.jpg" alt="AUTO FIX" />
+                  <img src="assets/front/uploads/faq/faq11.jpg" alt="AUTO FIX"  />
                 </figure>
-                <div className="caption-box mt-3">
+                <div className="caption-box mt-5">
                   <h4>
                     <span className="small-text">
                       Toll Free Number : &nbsp;
@@ -1356,27 +1342,7 @@ export default function Homepage() {
       </section>
       {/* End Testimonial */}
 
-      {/* Sevices*/}
-      <Services />
-      <div className="container">
-        <div className="row">
-          <div className="col-12 mt-3">
-            <div className="call-btn-wrapper">
-              <p className="btn_container mb-5 mt-4 mb-4 text-center">
-                <a
-                  href="packages"
-                  className="theme-btn btn-style-two d-inline-block text-center text-uppercase"
-                >
-                  <span className="btn-title">
-                    <i className="far fa-calendar-check mr-2"></i> Book Now
-                  </span>
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/*End services  */}
+      
 
     </>
   );

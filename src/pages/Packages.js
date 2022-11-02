@@ -247,7 +247,7 @@ export default function Packages() {
             <div className="row">
               <div className="col-12 col-xl-12 col-lg-12 d-block mx-auto mb-5 pb-5">
                 <div className="card card-light border-0 box_shadow_light">
-                  <div className="card-header sec-title">
+                  <div className="card-header sec-title" style={{backgroundColor:"white", borderBottom:"none"}}>
                     <div className="card-title mb-0">
                       {" "}
                       <h3 className="common_heading big-text mb-0 text-center">

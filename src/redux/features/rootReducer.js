@@ -14,17 +14,20 @@ import { getModalSlice } from "./booking-data/makeModelSlice";
 import { getHomePackageSlice } from "./booking-data/homePackagesSlice";
 import { submitContactSlice } from "./customer-requests/contactusSlice";
 import { submitEnquirySlice } from "./customer-requests/enquirySlice";
-import { resetPasswordSlice } from "./auth/authSlice";
+import { resetPasswordSlice, forgetPasswordSlice } from "./auth/authSlice";
 import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice";
+
 
 // exporting slice to combined reducers
 export default combineReducers({
 
     register:registerSlice.reducer,
     login:loginSlice.reducer,
+    forgetPassword:forgetPasswordSlice.reducer,
+    resetPassword:resetPasswordSlice.reducer,
     getProfile:getProfileSlice.reducer,
     updateProfile:updateProfileSlice.reducer,
-    resetPassword:resetPasswordSlice.reducer,
+    
 
     // booking related reducers
     make:getMakeSlice.reducer,

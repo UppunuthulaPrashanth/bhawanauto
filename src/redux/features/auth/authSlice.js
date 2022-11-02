@@ -92,46 +92,72 @@ export const loginSlice = createSlice({
 
 
 
-// Reset password
-export const resetPassword = createAsyncThunk(
-  `${namespace}/login`,
-  async (formData) => {
-    try {
-      const { data } = await axios.post(
-        `${API_URL}/${namespace}/login`,
-        formData
-      );
-      if (data.token) {
-        toast.success(data.message);
+  // reset password request of otp
+  export const forgetPassword = createAsyncThunk(
+    `${namespace}/forget-password`,
+    async (formData) => {
+      try {
+        const { data } = await axios.post(`${API_URL}/${namespace}/forget-password`, formData);
+        toast.success(data.message)
+        return data;
+      } catch (error) {
+        return Checkerror(error);
       }
-      return data;
-    } catch (error) {
-      return Checkerror(error);
     }
-  }
-);
+  );
+  
+  export const forgetPasswordSlice = createSlice({
+      name: namespace,
+      initialState: {
+        loading: "",
+        data: [],
+      },
+      reducers: {},
+      extraReducers: {
+        [forgetPassword.pending](state, action) {
+          state.loading = HTTP_STATUS.PENDING;
+        },
+        [forgetPassword.fulfilled](state, action) {
+          state.loading = HTTP_STATUS.PENDING;
+          },
+        [forgetPassword.rejected](state, action) {
+          state.loading = HTTP_STATUS.REJECTED;
+        },
+      },
+    });
+    
+  
 
-
-
-export const resetPasswordSlice = createSlice({
-  name: namespace,
-  initialState: {
-    loading: "",
-    data: [],
-  },
-  reducers: {},
-  extraReducers: {
-    [resetPassword.pending](state, action) {
-      state.loading = HTTP_STATUS.PENDING;
-    },
-    [resetPassword.fulfilled](state, action) {
-      state.loading = HTTP_STATUS.PENDING;
-           state.data = action.payload;
-
-    },
-    [resetPassword.rejected](state, action) {
-      state.loading = HTTP_STATUS.REJECTED;
-    },
-  },
-});
-
+    // reset password with verification of otp 
+  export const resetPassword = createAsyncThunk(
+    `${namespace}/reset-password`,
+    async (formData) => {
+      try {
+        const { data } = await axios.post(`${API_URL}/${namespace}/reset-password`, formData);
+        toast.success(data.message)
+        return data;
+      } catch (error) {
+        return Checkerror(error);
+      }
+    }
+  );
+  
+  export const resetPasswordSlice = createSlice({
+      name: namespace,
+      initialState: {
+        loading: "",
+        data: [],
+      },
+      reducers: {},
+      extraReducers: {
+        [resetPassword.pending](state, action) {
+          state.loading = HTTP_STATUS.PENDING;
+        },
+        [resetPassword.fulfilled](state, action) {
+          state.loading = HTTP_STATUS.PENDING;
+          },
+        [resetPassword.rejected](state, action) {
+          state.loading = HTTP_STATUS.REJECTED;
+        },
+      },
+    });

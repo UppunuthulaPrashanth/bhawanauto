@@ -85,7 +85,8 @@ class Layout extends React.Component {
                             ) : (
                               <Link
                                 to="auth"
-                                className="border-sm-left border-sm-right px-3"
+                                
+                                className="border-sm-left border-sm-right px-3 login-signup"
                               >
                                 Login or Signup
                               </Link>
