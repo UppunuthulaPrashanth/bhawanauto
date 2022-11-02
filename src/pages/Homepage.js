@@ -68,14 +68,14 @@ export default function Homepage() {
                 <picture>
                   <source
                     media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
                   />
                   <source
                     media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
                   />
                   <img
-                    src="assets/front/uploads/homeBanner/banner4.png"
+                    src="assets/front/uploads/homeBanner/banner1.jpg"
                     alt="Values"
                     className="img-fluid"
                   />
@@ -94,14 +94,14 @@ export default function Homepage() {
                 <picture>
                   <source
                     media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
+                    srcSet="assets/front/uploads/homeBanner/banner5.png"
                   />
                   <source
                     media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
+                    srcSet="assets/front/uploads/homeBanner/banner5.png"
                   />
                   <img
-                    src="assets/front/uploads/homeBanner/banner1.jpg"
+                    src="assets/front/uploads/homeBanner/banner5.png"
                     alt="Car Ac Package "
                     className="img-fluid"
                   />
@@ -120,14 +120,14 @@ export default function Homepage() {
                 <picture>
                   <source
                     media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner2.png"
+                    srcSet="assets/front/uploads/homeBanner/banner6.png"
                   />
                   <source
                     media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner2.png"
+                    srcSet="assets/front/uploads/homeBanner/banner6.png"
                   />
                   <img
-                    src="assets/front/uploads/homeBanner/banner2.png"
+                    src="assets/front/uploads/homeBanner/banner6.png"
                     alt="Flexi Service Contract"
                     className="img-fluid"
                   />
@@ -135,52 +135,26 @@ export default function Homepage() {
               </a>
             </div>
           </div>
-          <div className="item four">
-            <div className="af_slider">
-              <a
-                href="our-packages.html"
-                package-id="0"
-                package-type="SP"
-                className=""
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner3.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner3.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner3.png"
-                    alt="GRAND WINTER OFFER"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item five">
+          <div className="item three">
             <div className="af_slider">
               <a
                 href="book-service.html"
-                package-id="23"
+                package-id="0"
                 package-type="SP"
                 className="takeMeToBooking"
               >
                 <picture>
                   <source
                     media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                    srcSet="assets/front/uploads/homeBanner/banner7.png"
                   />
                   <source
                     media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner4.png"
+                    srcSet="assets/front/uploads/homeBanner/banner7.png"
                   />
                   <img
-                    src="assets/front/uploads/homeBanner/banner4.png"
-                    alt="Values"
+                    src="assets/front/uploads/homeBanner/banner7.png"
+                    alt="Flexi Service Contract"
                     className="img-fluid"
                   />
                 </picture>

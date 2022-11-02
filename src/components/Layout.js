@@ -34,7 +34,7 @@ class Layout extends React.Component {
                         <div className="d-flex justify-content-end py-1 pr-3 pr-xl-0">
                           <div className="mr-sm-4 bold-text small-text my-auto d-none d-sm-block">
                             <span>CALL : </span>
-                            <Link to="tel:8002886349">8002886349</Link>&nbsp;
+                            <Link to="tel:8002886349">800 2886 349</Link>&nbsp;
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
@@ -314,17 +314,15 @@ class Layout extends React.Component {
                       <div className="widget-content">
                         <ul className="contact-info-list">
                           <li className="color-white">
-                            <span className="fa fa-location-arrow"></span>Head
-                            Office : Autorent Car Service Center, Plot No
-                            369-332, Industrial Area 4, Al Quoz, Dubai, UAE
+                            <span className="fa fa-location-arrow"></span>Bahwan Automobiles Service Center, Azaiba Muscat, <br/> Sultanate of Oman
                           </li>
                           <li>
                             <span className="fa fa-envelope-open"></span>
-                            <Link to="#">enquiries@bhawanautofix.com</Link>
+                            <Link to="#">enquiries@bahwanautomobiles.com</Link>
                           </li>
                           <li>
                             <span className="fa fa-phone"></span>
-                            <Link to="tel:8002886349">8002886349</Link>
+                            <Link to="tel:8002886349">800 2886 349</Link>
                           </li>
                         </ul>
                       </div>

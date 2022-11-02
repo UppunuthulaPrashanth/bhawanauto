@@ -10926,3 +10926,7 @@ height:280px !important;
 .each_brand_category{
   width:124px !important;
 }
+
+.each_service_package{
+  border-radius: 8px !important;
+}

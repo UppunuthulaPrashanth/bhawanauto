@@ -326,7 +326,7 @@ export default function Packages() {
                             {modal_data
                               ? modal_data.map((element, key) => {
                                   return (
-                                    <option value={element.id} key={key}>
+                                    <option value={element.name} key={key}>
                                       {element.name}
                                     </option>
                                   );
