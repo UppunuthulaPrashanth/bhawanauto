@@ -61,10 +61,10 @@ export default function Repair_car_quote() {
             setIsLoading(true);
             const convertedForm = new FormData();
             for (var key in formData) {
-              if(key=='make'){
+              if (key == "make") {
                 convertedForm.append(key, make_data.data[formData[key]].name);
-              }else{
-              convertedForm.append(key, formData[key]);
+              } else {
+                convertedForm.append(key, formData[key]);
               }
             }
             files.map((image_file, index) => {
@@ -134,10 +134,7 @@ export default function Repair_car_quote() {
                                   {make_data
                                     ? make_data.data.map((element, key) => {
                                         return (
-                                          <option
-                                            value={element.id}
-                                            key={key}
-                                          >
+                                          <option value={element.id} key={key}>
                                             {element.name}
                                           </option>
                                         );
@@ -265,16 +262,19 @@ export default function Repair_car_quote() {
                               </div>
                             ) : (
                               <div className="row">
-                                <div className="col-md-8">
-                                  <div className=" mx-auto ">
+                                <div className=" col-md-6 ">
+                                  <div className="" style={{marginLeft:"-14px"}}>
                                     <ReCAPTCHA
                                       ref={recaptchaRef}
                                       sitekey={SITE_KEY}
                                     />
-
+                                  </div>
+                                </div>
+                                <div className="col-md-6">
+                                  <div className="">
                                     <button
-                                      className="theme-btn btn-style-two text-center mt-4 submitFormButton"
-                                      type="button"
+                                      className="mt-4 theme-btn enquiry-button theme-btn text-center submitFormButton"
+                                      type="button" 
                                       onClick={() => onsubmitEnquiry()}
                                       name="submit-form"
                                     >

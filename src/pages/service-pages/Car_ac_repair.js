@@ -106,7 +106,7 @@ export default function Car_ac_repair() {
                                     climate control system remains in top
                                     condition year round.
                                   </p>
-                                  <h5 className="pt-2">
+                                  <h5 className="pt-3">
                                     Our Air Conditioning Service includes:
                                   </h5>
                                   <ul>
@@ -126,12 +126,28 @@ export default function Car_ac_repair() {
                                       components
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     Antibacterial Deep Clean for your Air Con
                                   </h3>
 
+                                  <p className="pt-1">
+                                    Cleaning and maintaining your air
+                                    conditioning system all-year round can be
+                                    beneficial to your health when the time
+                                    comes to switching it on.
+                                  </p>
+                                  <p className="pt-1 ">
+                                    Bacteria, germs and mould require some key
+                                    conditions to develop and grow, such as a
+                                    warm environment that is prone to moisture.
+                                    So it’s no wonder that a vehicle’s air
+                                    conditioning system is the number one
+                                    target.
+                                  </p>
+
+
                                   <div className="col-12 mt-2 mb-2">
-                                    <div className="image_wrapper">
+                                    <div className="image_wrapper" style={{marginLeft:"-15px"}}>
                                       <picture>
                                         <source
                                           srcset="/assets/front/uploads/services/acrepair02.jpg"
@@ -145,27 +161,14 @@ export default function Car_ac_repair() {
                                           alt="Car AC Repair"
                                           title="car ac repair dubai"
                                           className="img-fluid d-block mx-auto w-100 serviceImage"
-                                          style={{ height: "470px" }}
+                                          style={{ height: "400px" }}
                                           src="/assets/front/uploads/services/acrepair02.jpg"
                                         />
                                       </picture>
                                     </div>
                                   </div>
 
-                                  <p className="pt-1">
-                                    Cleaning and maintaining your air
-                                    conditioning system all-year round can be
-                                    beneficial to your health when the time
-                                    comes to switching it on.
-                                  </p>
-                                  <p className="pt-1">
-                                    Bacteria, germs and mould require some key
-                                    conditions to develop and grow, such as a
-                                    warm environment that is prone to moisture.
-                                    So it’s no wonder that a vehicle’s air
-                                    conditioning system is the number one
-                                    target.
-                                  </p>
+                                  
                                   <p className="pt-1">
                                     What many drivers aren’t aware of is that
                                     bacteria is prone to taking shape throughout

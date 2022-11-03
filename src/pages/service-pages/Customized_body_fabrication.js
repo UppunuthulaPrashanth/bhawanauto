@@ -67,7 +67,7 @@ export default function Customized_body_fabrication() {
                                     center with experienced and trained experts
                                     for doing such customized fabrications... .
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What are customized
                                     fabrications/modifications offered by BAT?{" "}
                                   </h3>
@@ -105,7 +105,7 @@ export default function Customized_body_fabrication() {
                                     </li>
                                   </ul>
 
-                                  <div className="service_page_design">
+                                  <div className="service_page_design mt-3">
                                     <div className="row">
                                       <div className="col-12">
                                         <h3>

@@ -81,13 +81,13 @@ export default function Periodic_maintenance() {
                               <div className="col-12 content_wrapper_service_page">
                                 <div className="small-text  text-justify">
                                   <h3 className="pt-3 ">
-                                    WHAT IS PERIODIC MAINTENANCE SCHEDULE?
+                                    What is Periodic Maintenance Schedule?
                                   </h3>
                                   <p className="pt-2 pb-2">
-                                    PERIODIC MAINTENANCE SCHEDULE IS A
-                                    TIME-BASED SERIES OF ACTIVITIES PERFORMED ON
-                                    CARS TO MAINTAIN THE SMOOTH OPERATION OF THE
-                                    VEHICLE.
+                                    Periodic Maintain Schedule is a
+                                    Time-Based Series of activities Performed on
+                                    Cars to Maintain the Smooth Operation of The
+                                    Vehicle.
                                   </p>
                                   <p>
                                     Wear and tear are unavoidable and motor

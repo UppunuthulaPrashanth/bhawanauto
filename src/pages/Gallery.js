@@ -4,30 +4,17 @@ export default function Gallery() {
   return (
     <>
       <section>
-        <div className="breadCrumbWrapper">
-          <div className="auto-container">
-            <div className="row">
-              <div className="col-12">
-                <div className="row">
-                  <div className="col-12 text-left">
-                    <h3 className="page_title">Our Gallery</h3>
-                    <p>
-                      <span>Home</span>
-                      <span className="mx-2">
-                        <i className="fas fa-angle-right"></i>
-                      </span>
-                      <span>Our Gallery</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
         <div className="slider_section_description mb-5">
           <div className="auto-container">
+            
+
+          <div className="inner-container pt-5">
+            <div className="sec-title text-center mb-3">
+              <h2>Image Gallery</h2>
+            </div>
+            </div>
+
+            
             <div className="row">
               <div className="col-lg-12">
                 <div className="row">

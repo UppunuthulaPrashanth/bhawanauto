@@ -92,7 +92,7 @@ export default function Wheel_alignment_balancing() {
                                     adjusting the angles of the tires which
                                     affects how they contact the road.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     HOW DO I KNOW IF I NEED A TIRE ALIGNMENT?
                                   </h3>
                                   <p className="pt-1">

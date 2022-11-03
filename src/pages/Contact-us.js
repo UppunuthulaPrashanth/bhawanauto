@@ -142,7 +142,7 @@ export default function Contact_us() {
     <>
       {/* Contact Page Section */}
       <section className="contact-section-two pt-4 pb-0">
-        <div className="auto-container">
+        <div className="auto-container pt-4">
           <div className="inner-container">
             <div className="sec-title text-center mb-3">
               <h2>Contact Us</h2>

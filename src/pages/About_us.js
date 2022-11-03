@@ -4,18 +4,15 @@ export default function About_us() {
   return (
     <>
       <section className="pricing-section-two">
-        <div className="auto-container">
+        <div className="auto-container pt-4">
           <div className="sec-title text-center mb-0">
-            <h2>About Auto Fix</h2>
-            {/* <span className="devider">
-              <span></span>
-            </span> */}
+            <h2>About Bahwan Automobiles & Trading</h2>
           </div>
         </div>
       </section>
       <section>
         <div className="auto-container">
-          <h3>History/ purpose/ Brand story</h3>
+          <h3>History / purpose / Brand story</h3>
           <div className="sec-title text-left">
             <p className="text">
             Bahwan Automobiles & Trading LLC (BAT) is a flagship company of Bahwan International Group (BIG). BAT commenced its operations in April 2019 with an objective to provide Transparent, Trustworthy &Tailor-made service to all brand make and model at a Competitive price, Convenient facility with Committed quality. 
@@ -73,7 +70,7 @@ Testimonials of thousands of customers whom we have served drives us to innovate
                   <div className="col-12">
                     <div className="content_container_about_us">
                       <div className="row">
-                        <div className="col-md-6   d-block my-auto">
+                        {/* <div className="col-md-6   d-block my-auto">
                           <div className="row">
                             <div className="col">
                               <div className="image_wrapper">
@@ -84,7 +81,7 @@ Testimonials of thousands of customers whom we have served drives us to innovate
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-md-6 d-block my-auto">
                           <div className="main_content">
                             <h3 className="big-text">Values </h3>

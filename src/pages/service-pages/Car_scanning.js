@@ -123,7 +123,7 @@ export default function Tire_service() {
                                       air flow and Engine management controls.
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     Why is a car diagnostic check important?
                                   </h3>
                                   <p className="pt-1">
@@ -142,7 +142,7 @@ export default function Tire_service() {
                                     garage will find this when they do the
                                     diagnostic check.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What are the possible signs that your car
                                     needs a diagnostic check?
                                   </h3>
@@ -188,7 +188,7 @@ export default function Tire_service() {
                                       systems.
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How long do car diagnostics take?
                                   </h3>
                                   <p className="pt-1">
@@ -199,7 +199,7 @@ export default function Tire_service() {
                                     availability of technician who will be
                                     carrying out the check.
                                   </p>
-                                  <h3 className="pt-2">WHY TO VISIT US</h3>
+                                  <h3 className="pt-3">WHY TO VISIT US</h3>
                                   <p className="pt-1">
                                     Because car diagnostic tests require
                                     specific devices and special skills to read
@@ -211,7 +211,7 @@ export default function Tire_service() {
                                     correctly and perform suggested repair
                                     solution.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How much does a car diagnostic check cost?
                                   </h3>
                                   <p className="pt-1">

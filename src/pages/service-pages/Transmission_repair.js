@@ -151,7 +151,7 @@ export default function Transmission_repair() {
                                       the test result.
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     Continuously Variable Transmission (CVT)
                                   </h3>
                                   <p className="pt-1">
@@ -166,7 +166,7 @@ export default function Transmission_repair() {
                                     suspect your vehicle may have CVT or a
                                     similar system.
                                   </p>
-                                  <h3 className="pt-2">Manual Gearbox Servicing</h3>
+                                  <h3 className="pt-3">Manual Gearbox Servicing</h3>
                                   <p className="pt-1">
                                     Making sure your manual gearbox continues to
                                     perform
@@ -210,7 +210,7 @@ export default function Transmission_repair() {
                                     driving pattern and manufacturer
                                     recommendations.
                                   </p>
-                                  <h5 className="pt-2">
+                                  <h5 className="pt-3">
                                     What the service includes:
                                   </h5>
                                   <ul>
@@ -239,7 +239,7 @@ export default function Transmission_repair() {
                                     the oil is. Different gearboxes may require
                                     fluid with different levels of viscosity.
                                   </p>
-                                  <h5 className="pt-2">
+                                  <h5 className="pt-3">
                                     Book in for a gearbox repair today
                                   </h5>
                                   <p className="pt-1">

@@ -81,7 +81,7 @@ export default function General_maintenance() {
                               <div className="col-12 content_wrapper_service_page">
                                 <div className="small-text  text-justify">
                                   <h3 className="pt-2">
-                                    THERE WHEN YOU NEED IT THE MOST
+                                    There When You Need it the Most
                                   </h3>
                                   <p className="pt-1">
                                     Maintaining your vehicle is an important
@@ -102,7 +102,7 @@ export default function General_maintenance() {
                                     We also offer 12 months FREE Roadside
                                     Assistance for your family’s peace of mind.
                                   </p>
-                                  <h5 className="pt-2">
+                                  <h5 className="pt-3">
                                     Our Car Maintenance Service includes:
                                   </h5>
                                   <ul>
@@ -121,10 +121,9 @@ export default function General_maintenance() {
                                   </ul>
                                   <p>&nbsp;</p>
                                 </div>
-
-                                <Talk_to_customer/>
                               </div>
                             </div>
+                            <Talk_to_customer/>
                           </div>
                         </div>
                       </div>

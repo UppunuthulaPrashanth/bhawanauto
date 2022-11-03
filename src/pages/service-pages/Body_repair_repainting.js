@@ -80,10 +80,11 @@ export default function Body_repair_repainting() {
                             <div className="row">
                               <div className="col-12 content_wrapper_service_page">
                                 <div className="text-justify">
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What does a car diagnostic check do? Car
                                     Scanning Diagnostics
                                   </h3>
+                                  
                                   <p className="pt-1">
                                     A diagnostic check is carried out on your
                                     vehicle by a technician, who will plug your
@@ -92,7 +93,7 @@ export default function Body_repair_repainting() {
                                     vehicle which may be difficult to spot
                                     manually.
                                   </p>
-                                  <p className="pt-2">
+                                  <p className="pt-3 pb-2">
                                     The main components which are tested in a
                                     diagnostic check are the car’s:
                                   </p>
@@ -142,7 +143,7 @@ export default function Body_repair_repainting() {
                                     garage will find this when they do the
                                     diagnostic check.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What are the possible signs that your car
                                     needs a diagnostic check?
                                   </h3>
@@ -188,7 +189,7 @@ export default function Body_repair_repainting() {
                                       systems.
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How long do car diagnostics take?
                                   </h3>
                                   <p className="pt-1">
@@ -199,7 +200,7 @@ export default function Body_repair_repainting() {
                                     availability of technician who will be
                                     carrying out the check.
                                   </p>
-                                  <h3 className="pt-2">WHY TO VISIT US</h3>
+                                  <h3 className="pt-3">WHY TO VISIT US</h3>
                                   <p className="pt-1">
                                     Because car diagnostic tests require
                                     specific devices and special skills to read
@@ -211,7 +212,7 @@ export default function Body_repair_repainting() {
                                     correctly and perform suggested repair
                                     solution.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How much does a car diagnostic check cost?
                                   </h3>
                                   <p className="pt-1">

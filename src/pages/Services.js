@@ -4,13 +4,13 @@ import {Link, Outlet } from "react-router-dom";
 export default function Services() {
   return (
     <>
-       <section className="pricing-section-two">
-        <div className="auto-container">
+       <section className="pricing-section-two ">
+        <div className="auto-container pt-4">
           <div className="sec-title text-center">
             <h2>Our Car Services</h2>
             <div className="text">
               We offer full car service, auto repair & car maintenance for all
-              makes and models
+              brands and models
             </div>
           </div>
           <div className="row main-services">
@@ -333,7 +333,7 @@ export default function Services() {
                           className="img-fluid d-block mx-auto"
                           title="car ac repair dubai"
                           alt="Car AC Repair"
-                          src="assets/front/uploads/services/L3RtcC9waHBlcllIRWI%3d.png"
+                          src="assets/front/uploads/services/gearbox.png"
                         />
                       </a>
                     </div>

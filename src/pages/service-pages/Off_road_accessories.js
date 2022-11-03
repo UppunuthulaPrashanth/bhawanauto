@@ -65,7 +65,7 @@ export default function Off_road_accessories() {
                                     provide different range of off-road
                                     accessories form popular brands.
                                   </p>
-                                  <h5 className="pt-2 mb-2">
+                                  <h5 className="pt-3 mb-2">
                                     Popular off-road accessories
                                   </h5>
                                   <ol>

@@ -244,6 +244,22 @@ ul, li {
   transition: box-shadow 0.3s ease-in, -webkit-box-shadow 0.3s ease-in;
 }
 
+.enquiry-button{
+  position: relative;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  background-color: #27a3e2;
+  padding: 15px 61px;
+  font-weight: 700;
+  overflow: hidden;
+  width:106% !important;
+  -webkit-transition: -webkit-box-shadow 0.3s ease-in;
+  transition: -webkit-box-shadow 0.3s ease-in;
+  transition: box-shadow 0.3s ease-in;
+  transition: box-shadow 0.3s ease-in, -webkit-box-shadow 0.3s ease-in;
+}
+
 .btn-style-two.active:before {
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
@@ -306,7 +322,7 @@ ul, li {
 
 .list-style-one li {
   position: relative;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   color: #777777;
   font-weight: 400;
@@ -363,7 +379,7 @@ ul, li {
 
 .list-style-three li {
   position: relative;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   color: #777777;
   font-weight: 400;
@@ -623,7 +639,7 @@ img {
 
 .main-header .info-box li {
   position: relative;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 24px;
   color: #3f4d50;
   font-weight: 400;
@@ -1479,7 +1495,7 @@ img {
 .sec-title .text {
   position: relative;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 24px;
   color: #8d9297;
   margin-top: 10px;
@@ -2412,7 +2428,7 @@ img {
 }
 
 .welcome-section .text-column .text {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   color: #666666;
   font-weight: 400;
@@ -2512,7 +2528,7 @@ img {
 
 .about-us .content-column .text-box p {
   position: relative;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6em;
   margin-bottom: 20px;
 }
@@ -2561,7 +2577,7 @@ img {
 }
 
 .feature-block .text {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   color: #888888;
   font-weight: 400;
@@ -2755,7 +2771,7 @@ img {
 }
 
 .feature-block-three .text {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   font-weight: 400;
 }
@@ -3510,7 +3526,7 @@ img {
 .project-block .caption-box span {
   position: relative;
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 20px;
   color: #ce1432;
   font-weight: 500;
@@ -3708,7 +3724,7 @@ img {
 }
 
 .project-detail .project-info li p {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 24px;
   color: #777777;
   font-weight: 400;
@@ -4071,7 +4087,7 @@ img {
 .product-block .btn-box a {
   position: relative;
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 40px;
   color: #333333;
   background-color: #ffffff;
@@ -4382,7 +4398,7 @@ height:280px !important;
   position: relative;
   display: block;
   width: 100%;
-  font-size: 15px;
+  font-size: 13px;
   color: #222222;
   line-height: 28px;
   padding: 10px 25px;
@@ -5283,7 +5299,7 @@ height:280px !important;
 
 .newsletter-section .title-column .text {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 25px;
   color: #ffffff;
   font-weight: 400;
@@ -5560,7 +5576,7 @@ height:280px !important;
   top: 0px;
   color: white;
   line-height: 24px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .main-footer .contact-info-list li a {
@@ -6506,7 +6522,7 @@ height:280px !important;
   font-weight: 600;
   font-size: 1.2rem;
   color: black;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); */
 }
 
 .content_container_about_us .image_wrapper {
@@ -6515,7 +6531,7 @@ height:280px !important;
 }
 
 .content_container_about_us .image_wrapper img {
-  max-height: 300px;
+  max-height: 238px;
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
@@ -6525,7 +6541,7 @@ height:280px !important;
   text-align: justify;
   position: relative;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 24px;
   color: #8d9297;
   margin-top: 10px;
@@ -6534,7 +6550,7 @@ height:280px !important;
 .content_container_about_us .main_content ul li {
   position: relative;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 24px;
   color: #8d9297;
   margin-top: 10px;

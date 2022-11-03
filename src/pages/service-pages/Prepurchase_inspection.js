@@ -97,7 +97,7 @@ export default function Prepurchase_inspection() {
                                     inspection (PPI) done before the sale is
                                     final.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     {" "}
                                     What is a pre-purchase inspection?
                                   </h3>
@@ -116,7 +116,7 @@ export default function Prepurchase_inspection() {
                                     for the buyer in the future.
                                   </p>
 
-                                  <h3 className="pt-2">Where can I get a PPI?</h3>
+                                  <h3 className="pt-3">Where can I get a PPI?</h3>
                                   <p className="pt-1">
                                     A pre-purchase inspection can be done at
                                     BAT. Our expert technicians are familiar
@@ -124,7 +124,7 @@ export default function Prepurchase_inspection() {
                                     the customer to validate the purchase price.
                                   </p>
 
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What should be inspected?
                                   </h3>
                                   <p className="pt-1">

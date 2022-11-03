@@ -92,7 +92,7 @@ export default function Gear_box() {
                             <div className="row">
                               <div className="col-12 content_wrapper_service_page">
                                 <div className="small-text  text-justify">
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How do I know if I need a gearbox repair?
                                   </h3>
                                   <p className="pt-1">
@@ -109,7 +109,7 @@ export default function Gear_box() {
                                     to tell you whether your gearbox can be
                                     repaired or should be replaced instead.
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     Why is my gearbox not working?
                                   </h3>
                                   <p className="pt-1">
@@ -120,7 +120,7 @@ export default function Gear_box() {
                                     linkage may need to be adjusted slightly, or
                                     things may just have become worn over time.{" "}
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     How can I prevent problems with my gearbox?
                                   </h3>
                                   <p className="pt-1">

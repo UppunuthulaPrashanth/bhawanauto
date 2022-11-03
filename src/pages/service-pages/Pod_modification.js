@@ -91,7 +91,7 @@ export default function Pod_modification() {
                                       First aid box.
                                     </li>
                                   </ul>
-                                  <h3 className="mt-2 mb-3">
+                                  <h3 className="mt-2">
                                     PDO certification{" "}
                                   </h3>
                                   <p>
@@ -114,7 +114,7 @@ export default function Pod_modification() {
                     </div>
                   </div>
 
-                  <div className="row">
+                  <div className="row mt-3 container">
                     <div className="col-6">
                       <div className="image_wrapper">
                         <picture>
@@ -200,7 +200,7 @@ export default function Pod_modification() {
                     </div>
                   </div>
 
-                  <div className="content-wrapper mt-4">
+                  <div className="content-wrapper mt-4 container">
                     <div className="desc">
                       <p className="small-text">
                         Our Car AC service and diagnostic repair include:
@@ -210,7 +210,7 @@ export default function Pod_modification() {
                         diagnosis using the diagnostic machine
                       </p>
                     </div>
-                    
+                  
                     <Talk_to_customer/>
                   </div>
                 </div>

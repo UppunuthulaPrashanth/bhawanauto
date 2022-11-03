@@ -99,7 +99,7 @@ export default function Car_battery_tire_replacement() {
                                       point of failure — which is why it's so
                                       important to take care of the battery.
                                     </p>
-                                    <h3 className="pt-2">
+                                    <h3 className="pt-3">
                                       Why is maintenance of battery required.
                                     </h3>
                                     <p className="pt-1">
@@ -122,7 +122,7 @@ export default function Car_battery_tire_replacement() {
                                       the Battery, Maintain Fluid Levels, Clean
                                       the Unit.
                                     </p>
-                                    <h5 className="pt-2 mb-2">
+                                    <h5 className="pt-3 mb-2">
                                       Other services includes
                                     </h5>
                                     <ul>
@@ -133,7 +133,7 @@ export default function Car_battery_tire_replacement() {
                                       </li>
                                       <li>Check Drive Belts and Pulleys</li>
                                     </ul>
-                                    <h5 className="pt-2 mt-2">
+                                    <h5 className="pt-3 mt-2">
                                       Battery terminal protector
                                     </h5>
                                     <p className="pt-1">
@@ -205,7 +205,7 @@ export default function Car_battery_tire_replacement() {
                                       </div>
                                     </div>
 
-                                    <h5 className="pt-2 mb-2">
+                                    <h5 className="pt-3 mb-2">
                                       More to know about Your Car’s Battery
                                       Maintenance
                                     </h5>
@@ -308,7 +308,7 @@ export default function Car_battery_tire_replacement() {
                                       </li>
                                     </ul>
 
-                                    <h6 className="mt-2">
+                                    <h6 className="mt-3">
                                       Inactivity can be extremely harmful to all
                                       lead acid batteries. If season use is
                                       anticipated, we recommended the following:
@@ -334,7 +334,7 @@ export default function Car_battery_tire_replacement() {
                                       </li>
                                     </ul>
                                     <li>
-                                      <h5 className="mt-2 mb-2">
+                                      <h5 className="mt-3 mb-2">
                                         Things That Can Drain Your Car Battery
                                       </h5>
                                       <ul>
@@ -366,26 +366,7 @@ export default function Car_battery_tire_replacement() {
                                     </li>
                                     <h3 className="pt-3">Tyre service</h3>
 
-                                    <div className="image_wrapper mt-2 mb-2">
-                                      <picture>
-                                        <source
-                                          srcset="/assets/front/uploads/services/tire_service.jpg"
-                                          type="image/webp"
-                                        />
-                                        <source
-                                          srcset="/assets/front/uploads/services/tire_service.jpg"
-                                          type="image/jpg"
-                                        />
-                                        <img
-                                          alt="Car Battery Replacement"
-                                          title="Car Battery Replacement"
-                                          className="img-fluid d-block mx-auto w-100 serviceImage"
-                                          src="/assets/front/uploads/services/tire_service.jpg"
-                                        />
-                                      </picture>
-                                    </div>
-
-                                    <p className="pt-1">
+                                    <p className="pt-1 pb-1">
                                       BAT Tire services we can check, replace,
                                       and balance your Tires at your
                                       requirements.
@@ -410,13 +391,36 @@ export default function Car_battery_tire_replacement() {
                                         </ul>
                                       </div>
                                     </div>
+
+
+
+                                    <div className="image_wrapper mt-2 mb-2">
+                                      <picture>
+                                        <source
+                                          srcset="/assets/front/uploads/services/tire_service.jpg"
+                                          type="image/webp"
+                                        />
+                                        <source
+                                          srcset="/assets/front/uploads/services/tire_service.jpg"
+                                          type="image/jpg"
+                                        />
+                                        <img
+                                          alt="Car Battery Replacement"
+                                          title="Car Battery Replacement"
+                                          className="img-fluid d-block mx-auto w-100 serviceImage"
+                                          src="/assets/front/uploads/services/tire_service.jpg"
+                                        />
+                                      </picture>
+                                    </div>
+
+                                    
                                     <p className="pt-1">
                                       Fully Trained Tyre Technicians - 12 Months
                                       Workmanship Warranty – Quality Tires.
                                     </p>
 
                                     <p className="pt-1">
-                                      at BAT Tire Service, the tires that we
+                                      At BAT Tire Service, the tires that we
                                       currently stock include TOYO, XXXXX. You
                                       can choose your tires from the selection
                                       we have available or, if you have a brand

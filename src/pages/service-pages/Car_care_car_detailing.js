@@ -132,7 +132,7 @@ export default function Car_care_car_detailing() {
                                     the time high by using international brands
                                     of materials.
                                   </p>
-                                  <h3 className="pt-2">Why Car Detailing?</h3>
+                                  <h3 className="pt-3">Why Car Detailing?</h3>
                                   <p className="pt-1">
                                     Our auto detailing at BAT is an activity
                                     that keeps the vehicle in its best possible
@@ -148,7 +148,7 @@ export default function Car_care_car_detailing() {
                                     of paint panel’s surface, complete cleaning
                                     of various parts of a Car{" "}
                                   </p>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What's Included in Car Detailing?
                                   </h3>
                                   <ul>
@@ -172,7 +172,7 @@ export default function Car_care_car_detailing() {
                                       Clean and polish all tires and rims.
                                     </li>
                                   </ul>
-                                  <h3 className="pt-2">
+                                  <h3 className="pt-3">
                                     What are the benefits of car detailing?
                                   </h3>
                                   <ul>
