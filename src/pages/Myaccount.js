@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import { getProfile, updateProfile } from "../redux/features/profile/profileSlice";
 
 export default function Myaccount() {
 
   const [update_data, setUpdate_data] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -15,23 +15,30 @@ export default function Myaccount() {
     setUpdate_data({ ...update_data, [name]: value });
   }
 
+  useEffect(() => {
+      setIsLoading(true)
+    dispatch(getProfile()).then(()=>{
+      setIsLoading(false)
+    })
+  }, []);
+
+
   const onSubmit=(e)=>{
+    setIsLoading(true)
       dispatch(updateProfile(update_data)).then(()=>{
-        dispatch(getProfile())
+        dispatch(getProfile()).then(()=>{
+          setIsLoading(false)
+        })
       },[])
   }
 
-
-  const updateProfile = JSON.parse(
-    JSON.stringify(useSelector((state) => state.updateProfile))
-  );
   const gettingProfile = JSON.parse(
     JSON.stringify(useSelector((state) => state.getProfile))
   );
 
 
 // Api loading
-if(updateProfile.loading=='PENDING'|| gettingProfile.loading=='PENDING'){
+if(isLoading){
   return(
     <Loader/>
   )

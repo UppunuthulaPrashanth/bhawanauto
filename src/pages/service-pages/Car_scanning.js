@@ -199,7 +199,7 @@ export default function Tire_service() {
                                     availability of technician who will be
                                     carrying out the check.
                                   </p>
-                                  <h3 className="pt-3">WHY TO VISIT US</h3>
+                                  <h3 className="pt-3">Why to Visit Us</h3>
                                   <p className="pt-1">
                                     Because car diagnostic tests require
                                     specific devices and special skills to read

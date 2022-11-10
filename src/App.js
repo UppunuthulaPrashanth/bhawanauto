@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -38,33 +38,15 @@ import Pod_modification from "./pages/service-pages/Pod_modification";
 import Wheel_alignment_balancing from "./pages/service-pages/Wheel_alignment_balancing";
 import Off_road_accessories from "./pages/service-pages/Off_road_accessories";
 import Myaccount from "./pages/Myaccount";
-import { useDispatch } from "react-redux";
-import { getProfile } from "./redux/features/profile/profileSlice";
 import Login from "./pages/Login";
 import Reset_password from "./pages/Reset_password";
-import Loader from "./components/loader/Loader";
+import PrivateRoute from "./components/ProtectedRoutes";
+import LoginPrivateRoute from "./components/LoginPrivateRoute";
+import Booking_view from "./pages/Booking_view";
+import Booking_list from "./pages/Booking_list";
+
 
 function App() {
-  const [loader, setLoader]=useState(false);
-  const dispatch = useDispatch();
-  const [auth, setAuth] = useState(false);
-  useEffect(() => {
-    setLoader(true)
-    dispatch(getProfile()).then((res) => {
-      var name = res.payload.firstname;
-      localStorage.setItem("userData", name);
-      if (name && localStorage.getItem("userData")) {
-        setAuth(true);
-      }
-    });
-    setLoader(false)
-  }, []);
-
-  if(loader){
-    return <Loader />
-  }
-  
-
   return (
     <div className="App">
       <Router>
@@ -157,36 +139,75 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
 
             {/* myaccoutn routes */}
-            <Route path="/myaccount">
+            <Route path="/profile">
               <Route
                 path=""
-                element={auth ? <Myaccount /> : <Navigate to="/auth" />}
+                element={
+                  <PrivateRoute>
+                    <Myaccount />
+                  </PrivateRoute>
+                }
               />
             </Route>
 
             <Route path="/booking-service/:id">
               <Route
                 path=""
-                element={auth ? <Book_service /> : <Navigate to="/auth" />}
+                element={
+                  <PrivateRoute>
+                    <Book_service />
+                  </PrivateRoute>
+                }
               />
             </Route>
 
-             {/* if user logged in  redirect to profile */}
-             <Route path="/auth">
+            <Route path="/booking-list">
               <Route
                 path=""
-                element={auth ? <Myaccount /> : <Login />}
+                element={
+                  <PrivateRoute>
+                    <Booking_list />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+
+           
+
+            <Route path="/booking-view/:id">
+              <Route
+                path=""
+                element={
+                  <PrivateRoute>
+                    <Booking_view />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+
+            {/* if user logged in  redirect to profile */}
+            <Route path="/auth">
+              <Route
+                path=""
+                element={
+                  <LoginPrivateRoute>
+                    <Login />
+                  </LoginPrivateRoute>
+                }
               />
             </Route>
 
             <Route path="/reset-password">
               <Route
                 path=""
-                element={auth ? <Myaccount /> : <Reset_password />}
+                element={
+                  <LoginPrivateRoute>
+                    <Reset_password />
+                  </LoginPrivateRoute>
+                }
               />
             </Route>
             {/* end  */}
-
           </Routes>
         </Layout>
       </Router>

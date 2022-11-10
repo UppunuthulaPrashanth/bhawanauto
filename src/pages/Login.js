@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, register } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
+import Loader from "../components/loader/Loader";
 
 export default function Login() {
   // states
@@ -23,9 +24,11 @@ export default function Login() {
     country: "",
     password: ""
   });
+  const navigate = useNavigate();
 
   const [formSigninValues, setFormSigninValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState(1);
 
   // dispatch the form data  for register
   const dispatch = useDispatch();
@@ -36,7 +39,6 @@ export default function Login() {
 
   const onSubmitSignup = async (e) => {
     e.preventDefault();
-
     const errors = {};
     var errors_count = 0;
     if (!formSignupValues.firstname) {
@@ -67,11 +69,12 @@ export default function Login() {
     if (errors_count == 0) {
       setformSignupValues(empty_values)
       setIsLoading(true);
+      setActiveTab(2)
       dispatch(register(formSignupValues)).then((res) => {
         setIsLoading(false);
-        setTimeout(function () {
-          window.location.reload();
-        }, 3000);
+        if (res.payload.success) {
+          setActiveTab(1)
+        }
       });
     } else {
       for (var key in errors) {
@@ -102,6 +105,7 @@ export default function Login() {
       dispatch(login(formSigninValues)).then((res) => {
         setIsLoading(false);
         if (res.payload.success) {
+          navigate('/myaccount')
           window.location.reload();
         }
       });
@@ -112,6 +116,9 @@ export default function Login() {
     }
   };
 
+  if(isLoading){
+    return <Loader/>
+  }
   
 
   return (
@@ -155,7 +162,7 @@ export default function Login() {
 
           <div className="tab-content" id="myTabContent">
             <div
-              className="tab-pane fade show active"
+              className={activeTab==1 ? "tab-pane fade show active" : "tab-pane fade show"}
               id="login"
               role="tabpanel"
               aria-labelledby="login-tab"
@@ -212,7 +219,7 @@ export default function Login() {
                             <div className="btns-container">
                               {isLoading ? (
                                 <img
-                                  src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                                  src="/assets/front/loader/loader.gif"
                                   style={{ Height: "50px" }}
                                 />
                               ) : (
@@ -231,7 +238,7 @@ export default function Login() {
                           <div className="col-12 mt-2 text-center ">
                             <div className="text-container">
                               <p className="small-text">
-                                Forgot Your Password?
+                                Forgot Your Password ? &nbsp;
                                 <Link
                                   className="color-gold bold-text to-recover"
                                   to="/reset-password"
@@ -252,7 +259,7 @@ export default function Login() {
             </div>
 
             <div
-              className="tab-pane fade"
+              className={activeTab==2? "tab-pane fade show active" : "tab-pane fade show"}
               id="register"
               role="tabpanel"
               aria-labelledby="register-tab"
@@ -397,7 +404,7 @@ export default function Login() {
                             <div className="col-12 mt-4 text-center form-navigation">
                               <div className="btns-container">
                                 {isLoading ? (
-                                  <img src="assets/front/loader/ezgif-2-bc14af353261.gif" />
+                                  <img src="/assets/front/loader/loader.gif" />
                                 ) : (
                                   <button
                                     type="button"
@@ -406,9 +413,9 @@ export default function Login() {
                                   >
                                     <span
                                       className="bold-text"
-                                      mytext="Sign Up & Verify"
+                                      mytext="Sign Up"
                                     >
-                                      Sign Up & Verify
+                                      Sign Up
                                     </span>
                                   </button>
                                 )}

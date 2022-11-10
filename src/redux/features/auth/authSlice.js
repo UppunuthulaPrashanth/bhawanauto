@@ -57,6 +57,7 @@ export const login = createAsyncThunk(
       );
       if (data.token) {
         localStorage.setItem("userToken", JSON.stringify(data.token));
+        localStorage.setItem("userData", data.firstname);
         toast.success(data.message);
       }
       return data;
@@ -161,3 +162,46 @@ export const loginSlice = createSlice({
         },
       },
     });
+
+
+
+
+    // Login check api
+
+    export const checkAuth = createAsyncThunk(
+      `/customer/login_check`,
+      async () => {
+        try {
+          const userToken = JSON.parse(localStorage.getItem("userToken"));
+          const { data } = await axios.get(`${API_URL}/customer/login_check`,{
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          });
+          return data;
+        } catch (error) {
+          return Checkerror(error);
+        }
+      }
+    );
+    
+    export const checkAuthSlice = createSlice({
+        name: namespace,
+        initialState: {
+          loading: "",
+          data: [],
+        },
+        reducers: {},
+        extraReducers: {
+          [checkAuth.pending](state, action) {
+            state.loading = HTTP_STATUS.PENDING;
+          },
+          [checkAuth.fulfilled](state, action) {
+            state.loading = HTTP_STATUS.FULFILLED;
+            state.data = action.payload
+          },
+          [checkAuth.rejected](state, action) {
+            state.loading = HTTP_STATUS.REJECTED;
+          },
+        },
+      });

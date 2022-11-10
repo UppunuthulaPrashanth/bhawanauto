@@ -151,7 +151,7 @@ export default function Reset_password() {
                             <div className="btns-container">
                               {isLoading ? (
                                 <img
-                                  src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                                  src="/assets/front/loader/loader.gif"
                                   style={{ Height: "50px" }}
                                 />
                               ) : (
@@ -225,7 +225,7 @@ export default function Reset_password() {
                             <div className="btns-container">
                               {isLoading ? (
                                 <img
-                                  src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                                  src="assets/front/loader/loader.gif"
                                   style={{ Height: "50px" }}
                                 />
                               ) : (

@@ -92,7 +92,7 @@ export default function Car_battery_tire_replacement() {
                                       alternator takes over and continues the
                                       power transmission.
                                     </p>
-                                    <p className="pt-1">
+                                    <p className="pt-2">
                                       If your car battery is dead, your vehicle
                                       won’t start, and the alternator will have
                                       to work too hard — potentially to the
@@ -117,7 +117,7 @@ export default function Car_battery_tire_replacement() {
                                       and under watering can both damage your
                                       battery.{" "}
                                     </p>
-                                    <p className="pt-1">
+                                    <p className="pt-2">
                                       Maintenance of battery included - Charge
                                       the Battery, Maintain Fluid Levels, Clean
                                       the Unit.

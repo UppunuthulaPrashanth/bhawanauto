@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 // login and register slices
-import { registerSlice, loginSlice } from "./auth/authSlice";
+import { registerSlice, loginSlice, checkAuthSlice } from "./auth/authSlice";
 import { getProfileSlice, updateProfileSlice } from "./profile/profileSlice";
 import { getAddonSlice } from "./booking-data/addonSlice";
 import { getLocationSlice } from "./booking-data/locationSlice";
@@ -16,7 +16,8 @@ import { submitContactSlice } from "./customer-requests/contactusSlice";
 import { submitEnquirySlice } from "./customer-requests/enquirySlice";
 import { resetPasswordSlice, forgetPasswordSlice } from "./auth/authSlice";
 import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice";
-
+import { getBlogSlice } from "./booking-data/blogSlice";
+import { getBookingSlice, getSingleBookingSlice, postBookingSlice } from "./booking-data/bookingSlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -24,9 +25,11 @@ export default combineReducers({
     register:registerSlice.reducer,
     login:loginSlice.reducer,
     forgetPassword:forgetPasswordSlice.reducer,
+    checkAuth:checkAuthSlice.reducer,
     resetPassword:resetPasswordSlice.reducer,
     getProfile:getProfileSlice.reducer,
     updateProfile:updateProfileSlice.reducer,
+
     
 
     // booking related reducers
@@ -39,12 +42,16 @@ export default combineReducers({
     addon:getAddonSlice.reducer,
     package:getPackageSlice.reducer,
     homePackage:getHomePackageSlice.reducer,
-
+    getBlog:getBlogSlice.reducer,
     // contact and enquiry requests
     submitContact:submitContactSlice.reducer,
     submitEnquiry:submitEnquirySlice.reducer,
     submitRepairEnquiry:submitRepairEnquirySlice.reducer,
-    
+
+    // booking slice
+    booking:postBookingSlice.reducer,
+    getBookings:getBookingSlice.reducer,
+    getSinglebookingDetails:getSingleBookingSlice.reducer
 
 
 

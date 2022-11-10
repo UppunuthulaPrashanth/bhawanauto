@@ -407,7 +407,7 @@ export default function Packages() {
                           <div className="text-center">
                             <img
                               className="mx-auto"
-                              src="assets/front/loader/ezgif-2-bc14af353261.gif"
+                              src="assets/front/loader/loader.gif"
                               style={{ Height: "50px" }}
                             />
                           </div>

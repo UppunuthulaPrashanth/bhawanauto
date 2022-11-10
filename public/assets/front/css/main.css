@@ -72,8 +72,8 @@
   }
   
   .each_service_package .icon_container img{
-      min-height: 60px !important;
-      max-height: 60px !important;
+      min-height: 65px !important;
+      max-height: 65px !important;
   }
   .each_service_package .icon_container{
       min-height: 80px !important;

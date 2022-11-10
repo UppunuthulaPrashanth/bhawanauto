@@ -139,7 +139,7 @@ export default function Prepurchase_inspection() {
                                     computer engine analysis.
                                   </p>
 
-                                  <p className="pt-1">
+                                  <p className="pt-2">
                                     The pre-purchase inspection is usually
                                     completed before the sale; however, to be
                                     fair to both parties, both the buyer and the
@@ -147,7 +147,7 @@ export default function Prepurchase_inspection() {
                                     before the inspection takes place.
                                   </p>
 
-                                  <p className="pt-1">
+                                  <p className="pt-2">
                                     How it Works BAT, your first choice for auto
                                     car service in OMAN. Our technology sends
                                     you real-time service updates, inspection

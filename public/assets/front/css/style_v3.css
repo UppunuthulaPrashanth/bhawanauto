@@ -38,7 +38,7 @@
  ***/
 body {
   font-size: 14px;
-  color: #777777;
+  color: #777777 !important;
   line-height: 28px;
   font-weight: 400;
   background: #ffffff;
@@ -7596,7 +7596,7 @@ height:280px !important;
 .contact_wrapper {
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid #ce1432;
+  /* border-bottom: 2px solid #ce1432; */
 }
 
 .contact_wrapper .icons-wrapper-contact-page-wrapper p {
@@ -8895,11 +8895,11 @@ height:280px !important;
 
 .logo_img .abs_logo {
   position: absolute;
-  bottom: -10px;
+  bottom: -5px;
   left: 0px;
   min-height: 20px;
   max-width: 300px;
-  max-height: 90px;
+  max-height: 80px;
   -o-object-fit: contain;
      object-fit: contain;
   padding: 0px 10px;
@@ -10945,4 +10945,153 @@ height:280px !important;
 
 .each_service_package{
   border-radius: 8px !important;
+}
+
+.card-img {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.blog .card{
+  background-color: #d2d2d24d !important;
+  min-height:430px !important;
+}
+
+.blog .card-title {
+  margin-bottom: 0.3rem;
+}
+.blog .card-text{
+  font-size:13px !important;
+  margin-bottom: 10px;
+}
+.blog .btn{
+  background-color: #26A1DC !important;
+  color:white;
+  float: right;
+}
+
+.blog .cat {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.blog .modal-dialog{
+  max-width: 786px !important;
+}
+.blog .modal-dialog img{
+  height:300px;
+  width:auto;
+  display: flex;
+  margin: auto;
+}
+.blog .fa-users {
+  margin-left: 1rem;
+}
+
+.blog .card-footer {
+  font-size: 0.8rem;
+  margin-top:-25px !important;
+}
+
+
+/* Booking List css  */
+.booking-list table{
+  color: #777777 !important;
+}
+
+.booking-list thead{
+  background-color: #27A3E2 !important;
+  color: white !important;
+}
+/* end Booking List css */
+
+/* Booking single View */
+
+  .booking-view .text-danger strong {
+            color: #9f181c;
+      }
+      .receipt-main {
+        background: #ffffff none repeat scroll 0 0;
+        border-bottom: 12px solid #333333;
+        border-top: 12px solid #9f181c;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 40px 30px !important;
+        position: relative;
+        box-shadow: 0 1px 21px #acacac;
+        color: #333333;
+        font-family: open sans;
+      }
+      .receipt-main p {
+        color: #333333;
+        font-family: open sans;
+        line-height: 1.42857;
+      }
+      .receipt-footer h1 {
+        font-size: 15px;
+        font-weight: 400 !important;
+        margin: 0 !important;
+      }
+      .receipt-main::after {
+        background: #414143 none repeat scroll 0 0;
+        content: "";
+        height: 5px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -13px;
+      }
+      .receipt-main thead {
+        background: #414143 none repeat scroll 0 0;
+      }
+      .receipt-main thead th {
+        color:#fff;
+      }
+      .receipt-right h5 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 7px 0;
+      }
+      .receipt-right p {
+        font-size: 12px;
+        margin: 0px;
+      }
+      .receipt-right p i {
+        text-align: center;
+        width: 18px;
+      }
+      .receipt-main td {
+        padding: 9px 20px !important;
+      }
+      .receipt-main th {
+        padding: 13px 20px !important;
+      }
+      .receipt-main td {
+        font-size: 13px;
+        font-weight: initial !important;
+      }
+      .receipt-main td p:last-child {
+        margin: 0;
+        padding: 0;
+      }	
+      .receipt-main td h2 {
+        font-size: 20px;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .receipt-header-mid .receipt-left h1 {
+        font-weight: 100;
+        margin: 34px 0 0;
+        text-align: right;
+        text-transform: uppercase;
+      }
+      .receipt-header-mid {
+        margin: 24px 0;
+        overflow: hidden;
+      }
+/* end Booking single view */
+
+.booking-table td {
+  border:none !important;
 }

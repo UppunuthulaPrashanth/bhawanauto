@@ -53,22 +53,14 @@ class Layout extends React.Component {
                                     <ul>
                                       <li>
                                       <Link
-                                        to="myaccount"
-                                      >My
-                                        account
+                                        to="profile"
+                                      >Profile
                                       </Link>
                                       </li>
                                       <li>
                                       <Link
-                                        to="myaccount"
-                                      >Package Orders
-                                      </Link>
-                                      </li>
-
-                                      <li>
-                                      <Link
-                                        to="myaccount"
-                                      > Service Orders
+                                        to="booking-list"
+                                      >Bookings
                                       </Link>
                                       </li>
 
@@ -97,7 +89,7 @@ class Layout extends React.Component {
                               {/* Site Setting Along with the social Icons are fetched at Header.php */}
                               <li>
                                 <Link
-                                  to="https://www.facebook.com/autofix.uae"
+                                  to="#"
                                   target="_blank"
                                 >
                                   <span className="fab fa-facebook-f"></span>
@@ -105,7 +97,7 @@ class Layout extends React.Component {
                               </li>
                               <li>
                                 <Link
-                                  to="https://twitter.com/AutofixUAE"
+                                  to="#"
                                   target="_blank"
                                 >
                                   <span className="fab fa-twitter"></span>
@@ -113,7 +105,7 @@ class Layout extends React.Component {
                               </li>
                               <li>
                                 <Link
-                                  to="https://www.instagram.com/autofix.uae"
+                                  to="#"
                                   target="_blank"
                                 >
                                   <span className="fab fa-instagram"></span>
@@ -133,7 +125,7 @@ class Layout extends React.Component {
                             reloadDocument={true}
                           >
                             <img
-                              src="/assets/front/logo/bhawan4.png"
+                              src="/assets/front/logo/bhawan5.png"
                               className="img-fluid abs_logo"
                               alt=""
                               title=""
@@ -206,7 +198,7 @@ class Layout extends React.Component {
                     <div className="footer-widget logo-widget">
                       <div className="logo logo_footer mt-0">
                         <Link to="#">
-                          Auto Fix
+                          BAT
                           <br />
                           <span className="small-text text-uppercase">
                             Multi brand car service
@@ -238,7 +230,7 @@ class Layout extends React.Component {
                       <div className="widget-content white_dsg">
                         <ul className="list clearfix">
                           <li className="d-block">
-                            <Link reloadDocument={true} to="/">
+                            <Link to="/">
                               Home
                             </Link>
                           </li>
@@ -273,32 +265,32 @@ class Layout extends React.Component {
                       <div className="widget-content white_dsg">
                         <ul className="list clearfix">
                           <li>
-                            <Link to="services/car-ac-repair-dubai.html">
+                            <Link to="services/periodic-maintenance">
                               Car Periodic Maintenance
                             </Link>
                           </li>
                           <li>
-                            <Link to="services/car-oil-change.html">
+                            <Link to="services/car-battery-tire-replacement">
                               Car Battery & Tire Replacement
                             </Link>
                           </li>
                           <li>
-                            <Link to="services/car-maintenance.html">
+                            <Link to="services/car-ac-repair">
                               Car A/C repair
                             </Link>
                           </li>
                           <li>
-                            <Link to="services/car-transmission-gearbox-repair.html">
+                            <Link to="services/transmission_repair">
                               Car Transmission Repair
                             </Link>
                           </li>
                           <li>
-                            <Link to="services/car-engine-repair.html">
+                            <Link to="services/engine-repair">
                               Car Engine Repair
                             </Link>
                           </li>
                           <li>
-                            <Link to="services/car-battery-replacement.html">
+                            <Link to="services/body-repair-repainting">
                               Car Body Repair & Painting
                             </Link>
                           </li>
@@ -331,7 +323,7 @@ class Layout extends React.Component {
                         {/* Site Setting Along with the social Icons are fetched at Header.php */}
                         <li>
                           <Link
-                            to="https://www.facebook.com/autofix.uae"
+                            to="#"
                             target="_blank"
                           >
                             <span className="fab fa-facebook-f"></span>
@@ -339,7 +331,7 @@ class Layout extends React.Component {
                         </li>
                         <li>
                           <Link
-                            to="https://twitter.com/AutofixUAE"
+                            to="#"
                             target="_blank"
                           >
                             <span className="fab fa-twitter"></span>
@@ -347,7 +339,7 @@ class Layout extends React.Component {
                         </li>
                         <li>
                           <Link
-                            to="https://www.instagram.com/autofix.uae"
+                            to="#"
                             target="_blank"
                           >
                             <span className="fab fa-instagram"></span>
@@ -364,7 +356,6 @@ class Layout extends React.Component {
           </div>
         </footer>
         {/*End Main Footer*/}
-        {/* Page Wrapper */}
         {/* Scroll To Top */}
         <div className="scroll-to-top scroll-to-target" data-target="html">
           <span className="fa fa-angle-up"></span>

@@ -14,7 +14,7 @@ export default function Wheel_alignment_balancing() {
               <div className="col-12 pt-4">
                 <div className="row">
                   <div className="col-12 text-left">
-                    <h1 className="page_title">AC service</h1>
+                    <h1 className="page_title">Wheel Alignment Balancing Service</h1>
                     <p>
                       <span>
                         <a href="/" className="text-white">
@@ -32,7 +32,7 @@ export default function Wheel_alignment_balancing() {
                       <span className="mx-2">
                         <i className="fas fa-angle-right"></i>
                       </span>
-                      <span>Car AC Repair</span>
+                      <span>Wheel Alignment Balancing</span>
                     </p>
                   </div>
                 </div>
