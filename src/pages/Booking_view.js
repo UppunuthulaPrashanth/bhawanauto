@@ -42,36 +42,36 @@ export default function Booking_view() {
             {/* card */}
             <div className="card col-md-12">
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-lg-4">
                   <div className="table-responsive booking-table">
                     <table className="table" >
-                      <tr><td><a className="cl" href="">Date</a></td><td>:</td><td>{data.date}</td></tr>
-                      <tr><td><a className="cl" href="">Make</a></td><td>:</td><td>{data.make}</td></tr>
-                      <tr><td><a className="cl" href="">Plate No</a></td><td>:</td><td>{data.plate_number}</td></tr>
+                      <tr><td><a className="cl" href="#">Date</a></td><td>{data.date}</td></tr>
+                      <tr><td><a className="cl" href="#">Make</a></td><td>{data.make}</td></tr>
+                      <tr><td><a className="cl" href="#">Plate No</a></td><td>{data.plate_number}</td></tr>
                     </table>
                   </div>
                 </div>
                 
-                <div className="col-md-4">
+                <div className="col-lg-4 extra-table">
                   <div className="table-responsive booking-table">
                     <table className="table">
-                      <tr><td><a className="cl" href="">Time Slot</a></td><td>:</td><td>{data.timeslot}</td></tr>
-                      <tr><td><a className="cl" href="">Model</a></td><td>:</td><td>{data.model}</td></tr>
-                      <tr><td><a className="cl" href="">Plate Code</a></td><td>:</td><td>{data.plate_code}</td></tr>
+                      <tr><td><a className="cl" href="#">Time Slot</a></td><td>{data.timeslot}</td></tr>
+                      <tr><td><a className="cl" href="#">Model</a></td><td>{data.model}</td></tr>
+                      <tr><td><a className="cl" href="#">Plate Code</a></td><td>{data.plate_code}</td></tr>
                     </table>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-lg-4 extra-table">
                   <div className="table-responsive booking-table">
                     <table className="table">
-                      <tr><td><a className="cl" href="">Location</a></td><td>:</td><td>{data.location}</td></tr>
-                      <tr><td><a className="cl" href="">Model Year</a></td><td>:</td><td>{data.model_year}</td></tr>
-                      <tr><td><a className="cl" href="">State</a></td><td>:</td><td>{data.state}</td></tr>
+                      <tr><td><a className="cl" href="#">Location</a></td><td>{data.location}</td></tr>
+                      <tr><td><a className="cl" href="#">Model Year</a></td><td>{data.model_year}</td></tr>
+                      <tr><td><a className="cl" href="#">State</a></td><td>{data.state}</td></tr>
                     </table>
                   </div>
                 </div>
               </div>
-              <p><span>Description : </span>{data.description}</p>
+              <div className="container"><a className="cl" href="#" style={{marginLeft:'8px'}}>Description</a> : {data.description}</div>
             </div>
             {/* end card */}
 
