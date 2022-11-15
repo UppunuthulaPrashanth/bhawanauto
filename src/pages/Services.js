@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 
 export default function Services() {
   const car_images = [
@@ -89,7 +89,7 @@ export default function Services() {
       <section className="pricing-section-two ">
         <div className="auto-container pt-4">
           <div className="sec-title text-center">
-            <h2>Our Car Services</h2>
+            <h2>Our Services</h2>
             <div className="text">
               We offer full car service, auto repair & car maintenance for all
               brands and models
@@ -107,14 +107,14 @@ export default function Services() {
                         >
                           <div className="each_service_package">
                             <div className="icon_container">
-                              <Link to={element.link}>
+                            <a href={element.link}>
                                 <img
                                   className="img-fluid d-block mx-auto"
                                   title="Car Oil Change"
                                   alt="Car Oil Change"
                                   src={"assets/front/services/" + element.image}
                                 />
-                              </Link>
+                              </a>
                             </div>
                             <div className="text_container">
                               <h3>

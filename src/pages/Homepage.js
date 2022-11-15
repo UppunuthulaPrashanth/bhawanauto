@@ -6,9 +6,11 @@ import Services from "./Services";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import { CURRENCY } from "../config/Constants";
+import { ASSETS, CURRENCY } from "../config/Constants";
 import { Link } from "react-router-dom";
 import How_its_work from "./service-pages/How_its_work";
+import { getBanners, getCarBrands, getClients, getParnters } from "../redux/features/cms/bannerSlice";
+import { useState } from "react";
 
 export default function Homepage() {
   var faqs = [
@@ -43,124 +45,98 @@ export default function Homepage() {
 
   useEffect(() => {
     dispatch(getHomePackage());
+    dispatch(getBanners());
+    dispatch(getCarBrands());
+    dispatch(getClients());
+    dispatch(getParnters()).then(()=>{});
   }, []);
 
   const { loading, data } = JSON.parse(
     JSON.stringify(useSelector((state) => state.homePackage))
   );
 
-  if (loading === "PENDING") {
+  const banners = JSON.parse(
+    JSON.stringify(useSelector((state) => state.banners))
+  );
+  const clients = JSON.parse(
+    JSON.stringify(useSelector((state) => state.clients))
+  );
+  const brands = JSON.parse(
+    JSON.stringify(useSelector((state) => state.brands))
+  );
+  const partners = JSON.parse(
+    JSON.stringify(useSelector((state) => state.partners))
+  );
+
+
+  if (loading === "PENDING" || banners.loading==="PENDING" || clients.loading==="PENDING" || partners.loading==="PENDING" || brands.loading==="PENDING") {
     return <Loader />;
   }
+
+
+  const options = {
+    margin: 30,
+    responsiveClass: true,
+    dots: true,
+    autoplay: true,
+    smartSpeed: 1000,
+    responsive: {
+        0: {
+            items: 1,
+        },
+        400: {
+            items: 1,
+        },
+        600: {
+            items: 2,
+        },
+        700: {
+            items: 2,
+        },
+        1000: {
+            items: 3,
+
+        }
+    },
+};
+
+
 
   return (
     <>
       {/* Banner Section */}
         <OwlCarousel className="owl-theme" items={1} slideBy={1} loop={true} autoplay={true}>
-          <div className="item one">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="23"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner1.jpg"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner1.jpg"
-                    alt="Values"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
+          {banners? banners.data.map((banner, key)=>{
+            return(
+            <div className="item one" key={key}>
+              <div className="af_slider">
+                <a
+                  href="book-service.html"
+                  package-id="23"
+                  package-type="SP"
+                  className="takeMeToBooking"
+                >
+                  <picture>
+                    <source
+                      media="(min-width:991px)"
+                      srcSet={ASSETS+'banners/'+banner.image}
+                    />
+                    <source
+                      media="(min-width:575px)"
+                      srcSet={ASSETS+'banners/'+banner.image}
+                    />
+                    <img
+                      src={ASSETS+'banners/'+banner.image}
+                      alt="Values"
+                      className="img-fluid"
+                    />
+                  </picture>
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="item two">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="0"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner5.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner5.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner5.png"
-                    alt="Car Ac Package "
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item three">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="0"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner6.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner6.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner6.png"
-                    alt="Flexi Service Contract"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
-          <div className="item three">
-            <div className="af_slider">
-              <a
-                href="book-service.html"
-                package-id="0"
-                package-type="SP"
-                className="takeMeToBooking"
-              >
-                <picture>
-                  <source
-                    media="(min-width:991px)"
-                    srcSet="assets/front/uploads/homeBanner/banner7.png"
-                  />
-                  <source
-                    media="(min-width:575px)"
-                    srcSet="assets/front/uploads/homeBanner/banner7.png"
-                  />
-                  <img
-                    src="assets/front/uploads/homeBanner/banner7.png"
-                    alt="Flexi Service Contract"
-                    className="img-fluid"
-                  />
-                </picture>
-              </a>
-            </div>
-          </div>
+            )
+           }):null}
+          
         </OwlCarousel>
       {/*End Banner Section */}
 
@@ -176,9 +152,9 @@ export default function Homepage() {
               <div className="text-center m-1">
                 <h5 className="mx-auto">Japanese / Korean / Chinese Brands</h5>
               </div>
-              <div className="row rect-owel">
+              <div className="row rect-owel package-one">
               {data?
-                  <OwlCarousel className="owl-theme" slideBy={3} loop  smartSpeed={700}  margin={20} autoplay={true}>
+                  <OwlCarousel className="owl-theme" {...options} loop  smartSpeed={700}  margin={20}>
                     {data.Japanese_Korean_Chinese
                       ? data.Japanese_Korean_Chinese.map(
                           (packageDetails, key) => {
@@ -235,9 +211,9 @@ export default function Homepage() {
               <div className="text-center m-1">
                 <h5 className="mx-auto">American & European Brands</h5>
               </div>
-              <div className="row ">
+              <div className="row packages_two ">
                 <div className="col-12 packages_caroseul_dsg_dots">
-                {data? <OwlCarousel className="owl-theme" slideBy={3} loop margin={20} autoplay={true}  >
+                {data? <OwlCarousel className="owl-theme" {...options} margin={20}>
                     {data.Americana_European
                       ? data.Americana_European.map(
                           (packageDetails, key) => {
@@ -316,311 +292,28 @@ export default function Homepage() {
                 className="et-icon-box-container column-8 et-make-container"
                 data-gap="8"
               >
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesc6cf.html?make=664">
+
+                {brands? brands.data.map((brand, key)=>{
+                return (
+                <div className="et-make et-icon-box" key={key}>
+                  <a className="d-block">
                     <div className="each_brand_category">
                       <div className="icon_container">
                         <img
                           className="img-fluid d-block mx-auto"
                           alt="Nissan"
-                          src="assets/front/uploads/car_brand/nissan.png"
+                          srcSet={ASSETS+'carbrands/'+brand.image}
                         />
                       </div>
                       <div className="text_container">
-                        <h3>Nissan</h3>
+                        <h3>Title</h3>
                       </div>
                     </div>
                   </a>
                 </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages7dc8.html?make=846">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="BMW"
-                          src="assets/front/uploads/car_brand/bmw.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>BMW</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages08cc.html?make=329">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Lincoln"
-                          src="assets/front/uploads/car_brand/audi1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Audi</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages08cc.html?make=329">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Lincoln"
-                          src="assets/front/uploads/car_brand/lincoln1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Lincoln</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages0653.html?make=639">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Lexus"
-                          src="assets/front/uploads/car_brand/lexus.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Lexus</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesc39b.html?make=753">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Volkswagen"
-                          src="assets/front/uploads/car_brand/ww.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Volkswagen</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages162d.html?make=711">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Ford"
-                          src="assets/front/uploads/car_brand/ford1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Ford</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages385f.html?make=874">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="GMC"
-                          src="assets/front/uploads/car_brand/gmc1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>GMC</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages63f5.html?make=476">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="DODGE"
-                          src="assets/front/uploads/car_brand/dodge1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>DODGE</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages6380.html?make=376">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Toyota"
-                          src="assets/front/uploads/car_brand/toyota1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Toyota</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesb860.html?make=348">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Chevrolet"
-                          src="assets/front/uploads/car_brand/chevrolet.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Chevrolet</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages2280.html?make=432">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Mitsubishi"
-                          src="assets/front/uploads/car_brand/mitsubishi1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Mitsubishi</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages997b.html?make=267">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Mazda"
-                          src="assets/front/uploads/car_brand/mazda.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Mazda</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesc937.html?make=78">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="honda"
-                          src="assets/front/uploads/car_brand/honda.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>honda</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages5e5b.html?make=33">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Suzuki"
-                          src="assets/front/uploads/car_brand/suzuki.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Suzuki</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packages7c0a.html?make=554">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="KIA"
-                          src="assets/front/uploads/car_brand/kia.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>KIA</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesd296.html?make=159">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="FIAT"
-                          src="assets/front/uploads/car_brand/fiat.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>FIAT</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesd296.html?make=159">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Hyundai"
-                          src="assets/front/uploads/car_brand/hyundai.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Hyundai</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div className="et-make et-icon-box">
-                  <a className="d-block" href="our-packagesd296.html?make=159">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="PEUGEOT"
-                          src="assets/front/uploads/car_brand/peugeot1.png"
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>PEUGEOT</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
+                )
+                }):null}
+               
               </div>
             </div>
           </div>
@@ -821,114 +514,21 @@ export default function Homepage() {
             <div className="col-12">
               <div className="our_partners_wrapper">
                 <OwlCarousel className="owl-theme" autoplaySpeed={10} items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
-                  <div className="item one">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/lukoil.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item two">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/cilajet.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item three">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/amaron.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item four">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/nexfil.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item five">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/autorent.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item six">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/general_tire.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item seven">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/global.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item nine">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="smy"
-                        src="assets/front/uploads/associates/updated/servicemycar.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item ten">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/deta.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item levan">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/jpc.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item twel">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/blackhawk.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item thirteen">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/gardox.png"
-                      />
-                    </div>
-                  </div>
+                  {partners? partners.data.map((partner, key)=>{
+
+                    return(
+                      <div className="item one" key={key}>
+                        <div className="each_item_wrapper">
+                          <img
+                            className="img-fluid"
+                            alt="Partners"
+                            src={ASSETS+'ourcarservices/'+partner.image}
+                          />
+                        </div>
+                      </div>
+                    )
+                  }) : null}
+                  
                 </OwlCarousel>
               </div>
             </div>
@@ -948,60 +548,19 @@ export default function Homepage() {
             <div className="col-12">
               <div className="our_partners_wrapper">
               <OwlCarousel className="owl-theme" items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
-                  <div className="item one">
+              {clients? clients.data.map((client, key)=>{
+                  return(
+                  <div className="item one" key={key}>
                     <div className="each_item_wrapper">
                       <img
                         className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/Al_Maha.png"
-                      />
+                        alt="Clients"
+                        src={ASSETS+'ourclients/'+client.image}
+                        />
                     </div>
                   </div>
-                  <div className="item two">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/Budget.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item three">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/Dollar.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item four">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/associates/updated/autorent.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item five">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/thrifty.png"
-                      />
-                    </div>
-                  </div>
-                  <div className="item six">
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Autofix Partners"
-                        src="assets/front/uploads/our_clients/popular_cars.png"
-                      />
-                    </div>
-                  </div>
+                  )
+                }) : null}
                 </OwlCarousel>
               </div>
             </div>

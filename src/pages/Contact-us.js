@@ -155,6 +155,101 @@ export default function Contact_us() {
               </div>
             </div>
 
+
+            <div className="contact-form-two mt-4 px-3 pt-3">
+                  <h3 className="common_heading mb-3">LEAVE A MESSAGE</h3>
+                  <form>
+                    <div className="row clearfix">
+                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
+                        <input
+                          type="text"
+                          name="name"
+                          id="id"
+                          value={formData.name}
+                          placeholder="Name"
+                          onChange={onChange}
+                          required=""
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
+                        <input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          value={formData.phone}
+                          onChange={onChange}
+                          placeholder="Phone"
+                          required=""
+                          data-parsley-minlength="9"
+                          data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
+                          data-parsley-type="digits"
+                          data-parsley-type-message="Mobile number should be only numbers"
+                          maxLength="12"
+                          data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$"
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          onChange={onChange}
+                          value={formData.email}
+                          placeholder="Email"
+                          required=""
+                        />
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
+                        <input
+                          type="text"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={onChange}
+                          placeholder="Subject"
+                          required=""
+                        />
+                      </div>
+                      <div className="col-lg-12 col-md-12 col-sm-12 form-group">
+                        <textarea
+                          name="message"
+                          id="message"
+                          value={formData.message}
+                          placeholder="Message"
+                          onChange={onChange}
+                        ></textarea>
+                      </div>
+                      <div className="col-lg-12 col-md-12 col-sm-12 form-group">
+                        {isLoading ? (
+                          <div className="text-center">
+                            <img
+                              className="mx-auto"
+                              src="/assets/front/loader/loader.gif"
+                              style={{ Height: "50px" }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="row">
+                            <div className="text-center mx-auto">
+                              <ReCAPTCHA
+                                ref={recaptchaRef}
+                                sitekey={SITE_KEY}
+                              />
+
+                              <button
+                                className="theme-btn btn-style-two text-center mt-4 submitFormButton"
+                                type="button"
+                                onClick={() => onsubmitContact()}
+                                name="submit-form"
+                              >
+                                <span className="btn-title">Send Message</span>
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                
             <div className="row">
               <div className="col-12 col-xl-12 col-lg-12 d-block mx-auto max1200 mb-5">
                 <div className="address_container text-center mb-0 mb-lg-5">
@@ -385,99 +480,7 @@ export default function Contact_us() {
                     </div>
                   </div>
                 ))}
-                <div className="contact-form-two mt-4 px-3 pt-3">
-                  <h3 className="common_heading mb-3">LEAVE A MESSAGE</h3>
-                  <form>
-                    <div className="row clearfix">
-                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="name"
-                          id="id"
-                          value={formData.name}
-                          placeholder="Name"
-                          onChange={onChange}
-                          required=""
-                        />
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="phone"
-                          id="phone"
-                          value={formData.phone}
-                          onChange={onChange}
-                          placeholder="Phone"
-                          required=""
-                          data-parsley-minlength="9"
-                          data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
-                          data-parsley-type="digits"
-                          data-parsley-type-message="Mobile number should be only numbers"
-                          maxLength="12"
-                          data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$"
-                        />
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="email"
-                          name="email"
-                          onChange={onChange}
-                          value={formData.email}
-                          placeholder="Email"
-                          required=""
-                        />
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                        <input
-                          type="text"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={onChange}
-                          placeholder="Subject"
-                          required=""
-                        />
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                        <textarea
-                          name="message"
-                          id="message"
-                          value={formData.message}
-                          placeholder="Message"
-                          onChange={onChange}
-                        ></textarea>
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                        {isLoading ? (
-                          <div className="text-center">
-                            <img
-                              className="mx-auto"
-                              src="/assets/front/loader/loader.gif"
-                              style={{ Height: "50px" }}
-                            />
-                          </div>
-                        ) : (
-                          <div className="row">
-                            <div className="text-center mx-auto">
-                              <ReCAPTCHA
-                                ref={recaptchaRef}
-                                sitekey={SITE_KEY}
-                              />
-
-                              <button
-                                className="theme-btn btn-style-two text-center mt-4 submitFormButton"
-                                type="button"
-                                onClick={() => onsubmitContact()}
-                                name="submit-form"
-                              >
-                                <span className="btn-title">Send Message</span>
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                
               </div>
             </div>
           </div>

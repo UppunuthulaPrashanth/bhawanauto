@@ -58,6 +58,14 @@
     .extra-table{
         margin-top: -15px;
     }
+
+    /* owl carouse packages */
+    .package-one{
+      margin-top: 55px;
+    }
+    .packages_two{
+      margin-top: 65px;
+    }
   }
   
   /* 
@@ -70,5 +78,13 @@
     /* CSS */
     .extra-table{
         margin-top: -15px;
+    }
+
+     /* owl carouse packages */
+     .package-one{
+      margin-top: 55px;
+    }
+    .packages_two{
+      margin-top: 65px;
     }
   }

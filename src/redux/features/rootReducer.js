@@ -18,6 +18,7 @@ import { resetPasswordSlice, forgetPasswordSlice } from "./auth/authSlice";
 import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice";
 import { getBlogSlice } from "./booking-data/blogSlice";
 import { getBookingSlice, getSingleBookingSlice, postBookingSlice } from "./booking-data/bookingSlice";
+import { getBannerSlice, getCarBrandSlice, getClientSlice, getPartnerSlice } from "./cms/bannerSlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -51,8 +52,12 @@ export default combineReducers({
     // booking slice
     booking:postBookingSlice.reducer,
     getBookings:getBookingSlice.reducer,
-    getSinglebookingDetails:getSingleBookingSlice.reducer
+    getSinglebookingDetails:getSingleBookingSlice.reducer,
 
-
+    // Images
+    banners:getBannerSlice.reducer,
+    brands:getCarBrandSlice.reducer,
+    partners:getPartnerSlice.reducer,
+    clients:getClientSlice.reducer,
 
 })

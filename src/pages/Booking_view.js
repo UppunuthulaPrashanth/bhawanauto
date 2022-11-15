@@ -70,8 +70,9 @@ export default function Booking_view() {
                     </table>
                   </div>
                 </div>
+                <div className="container"><a className="cl" href="#" style={{marginLeft:'8px'}}>Description</a> : {data.description}</div>
+
               </div>
-              <div className="container"><a className="cl" href="#" style={{marginLeft:'8px'}}>Description</a> : {data.description}</div>
             </div>
             {/* end card */}
 

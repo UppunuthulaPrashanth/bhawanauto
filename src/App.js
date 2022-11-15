@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -44,9 +44,23 @@ import PrivateRoute from "./components/ProtectedRoutes";
 import LoginPrivateRoute from "./components/LoginPrivateRoute";
 import Booking_view from "./pages/Booking_view";
 import Booking_list from "./pages/Booking_list";
+import { checkAuth } from "./redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 
 function App() {
+const disptach=useDispatch()
+
+  useEffect(()=>{
+    disptach(checkAuth()).then((res)=>{
+
+    }).catch((error)=>{
+      localStorage.clear();
+      window.location.reload();
+    })
+  },[])
+
+
   return (
     <div className="App">
       <Router>

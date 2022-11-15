@@ -67,7 +67,6 @@ export default function Login() {
     }
 
     if (errors_count == 0) {
-      setformSignupValues(empty_values)
       setIsLoading(true);
       setActiveTab(2)
       dispatch(register(formSignupValues)).then((res) => {
@@ -75,6 +74,7 @@ export default function Login() {
         if (res.payload.success) {
           setActiveTab(1)
         }
+        setformSignupValues(empty_values)
       });
     } else {
       for (var key in errors) {

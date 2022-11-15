@@ -1,5 +1,5 @@
 export const API_URL = "http://dev3.sbagh.com/api/v1";
-export const ASSETS = "http://dev3.sbagh.com/storage/image/";
+export const ASSETS = "http://dev3.sbagh.com/storage/images/";
 export const BLOG_ASSETS = "http://dev3.sbagh.com/storage/images/blog/";
 
 

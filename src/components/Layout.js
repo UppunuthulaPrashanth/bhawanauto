@@ -223,7 +223,7 @@ class Layout extends React.Component {
                     </div>
                   </div>
                   {/*Footer Column*/}
-                  <div className="footer-column col-lg-3 col-md-4 col-sm-6 col-12">
+                  <div className="footer-column col-lg-3 col-md-6 col-sm-6 col-12">
                     <div className="footer-widget links-widget">
                       <h2 className="widget-title color-white">Quick Links</h2>
 
@@ -258,7 +258,7 @@ class Layout extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="footer-column col-lg-3 col-md-4 col-sm-6 col-12">
+                  <div className="footer-column col-lg-3 col-md-6 col-sm-6 col-12">
                     <div className="footer-widget links-widget">
                       <h2 className="widget-title color-white">Our Services</h2>
 
@@ -300,7 +300,7 @@ class Layout extends React.Component {
                   </div>
 
                   {/*Footer Column*/}
-                  <div className="footer-column col-lg-3 col-md-4 col-sm-6 col-12">
+                  <div className="footer-column col-lg-3 col-md-6 col-sm-6 col-12">
                     <div className="footer-widget contact-widget white_dsg">
                       <h2 className="widget-title color-white">Get In Touch</h2>
                       <div className="widget-content">
