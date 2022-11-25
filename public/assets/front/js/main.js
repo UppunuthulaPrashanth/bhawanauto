@@ -99,8 +99,6 @@
 
   //Accordion Box
   $(".accordion-box").on("click", ".acc-btn", function () {
-    alert("console.log");
-    console.log("hellopra");
     var outerBox = $(this).parents(".accordion-box");
     var target = $(this).parents(".accordion");
 
@@ -579,7 +577,6 @@ $(document).ready(function () {
     },
     callbacks: {
       elementParse: function (item) {
-        console.log(item.el[0].className);
         if (item.el[0].className == "video") {
           (item.type = "iframe"),
             (item.iframe = {

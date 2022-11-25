@@ -9,8 +9,13 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { ASSETS, CURRENCY } from "../config/Constants";
 import { Link } from "react-router-dom";
 import How_its_work from "./service-pages/How_its_work";
-import { getBanners, getCarBrands, getClients, getParnters } from "../redux/features/cms/bannerSlice";
-import { useState } from "react";
+import {
+  getBanners,
+  getCarBrands,
+  getClients,
+  getParnters,
+} from "../redux/features/cms/bannerSlice";
+
 
 export default function Homepage() {
   var faqs = [
@@ -48,7 +53,7 @@ export default function Homepage() {
     dispatch(getBanners());
     dispatch(getCarBrands());
     dispatch(getClients());
-    dispatch(getParnters()).then(()=>{});
+    dispatch(getParnters());
   }, []);
 
   const { loading, data } = JSON.parse(
@@ -68,11 +73,15 @@ export default function Homepage() {
     JSON.stringify(useSelector((state) => state.partners))
   );
 
-
-  if (loading === "PENDING" || banners.loading==="PENDING" || clients.loading==="PENDING" || partners.loading==="PENDING" || brands.loading==="PENDING") {
+  if (
+    loading === "PENDING" ||
+    banners.loading === "PENDING" ||
+    clients.loading === "PENDING" ||
+    partners.loading === "PENDING" ||
+    brands.loading === "PENDING"
+  ) {
     return <Loader />;
   }
-
 
   const options = {
     margin: 30,
@@ -81,63 +90,67 @@ export default function Homepage() {
     autoplay: true,
     smartSpeed: 1000,
     responsive: {
-        0: {
-            items: 1,
-        },
-        400: {
-            items: 1,
-        },
-        600: {
-            items: 2,
-        },
-        700: {
-            items: 2,
-        },
-        1000: {
-            items: 3,
-
-        }
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      700: {
+        items: 2,
+      },
+      1000: {
+        items: 3,
+      },
     },
-};
-
-
+  };
 
   return (
     <>
       {/* Banner Section */}
-        <OwlCarousel className="owl-theme" items={1} slideBy={1} loop={true} autoplay={true}>
-          {banners? banners.data.map((banner, key)=>{
-            return(
-            <div className="item one" key={key}>
-              <div className="af_slider">
-                <a
-                  href="book-service.html"
-                  package-id="23"
-                  package-type="SP"
-                  className="takeMeToBooking"
-                >
-                  <picture>
-                    <source
-                      media="(min-width:991px)"
-                      srcSet={ASSETS+'banners/'+banner.image}
-                    />
-                    <source
-                      media="(min-width:575px)"
-                      srcSet={ASSETS+'banners/'+banner.image}
-                    />
-                    <img
-                      src={ASSETS+'banners/'+banner.image}
-                      alt="Values"
-                      className="img-fluid"
-                    />
-                  </picture>
-                </a>
-              </div>
-            </div>
-            )
-           }):null}
-          
-        </OwlCarousel>
+      <OwlCarousel
+        className="owl-theme"
+        items={1}
+        slideBy={1}
+        loop={true}
+        autoplay={true}
+      >
+        {banners
+          ? banners.data.map((banner, key) => {
+              return (
+                <div className="item one" key={key}>
+                  <div className="af_slider">
+                    <a
+                      href="book-service.html"
+                      package-id="23"
+                      package-type="SP"
+                      className="takeMeToBooking"
+                    >
+                      <picture>
+                        <source
+                          media="(min-width:991px)"
+                          srcSet={ASSETS + "banners/" + banner.image}
+                        />
+                        <source
+                          media="(min-width:575px)"
+                          srcSet={ASSETS + "banners/" + banner.image}
+                        />
+                        <img
+                          src={ASSETS + "banners/" + banner.image}
+                          alt="Values"
+                          className="img-fluid"
+                        />
+                      </picture>
+                    </a>
+                  </div>
+                </div>
+              );
+            })
+          : null}
+      </OwlCarousel>
       {/*End Banner Section */}
 
       {/* Packages*/}
@@ -153,8 +166,14 @@ export default function Homepage() {
                 <h5 className="mx-auto">Japanese / Korean / Chinese Brands</h5>
               </div>
               <div className="row rect-owel package-one">
-              {data?
-                  <OwlCarousel className="owl-theme" {...options} loop  smartSpeed={700}  margin={20}>
+                {data ? (
+                  <OwlCarousel
+                    className="owl-theme"
+                    {...options}
+                    loop
+                    smartSpeed={700}
+                    margin={20}
+                  >
                     {data.Japanese_Korean_Chinese
                       ? data.Japanese_Korean_Chinese.map(
                           (packageDetails, key) => {
@@ -178,20 +197,28 @@ export default function Homepage() {
                                     </span>
                                     <div className="points_container mt-1">
                                       <ul>
-                                      { packageDetails.features.split(',').map((subitem, i)=>(
-                                        <li className="included abs_content_wrapper" key={i}>
-                                          <span >{subitem}</span>
-                                        </li>
-                                      ))}
+                                        {packageDetails.features
+                                          .split(",")
+                                          .map((subitem, i) => (
+                                            <li
+                                              className="included abs_content_wrapper"
+                                              key={i}
+                                            >
+                                              <span>{subitem}</span>
+                                            </li>
+                                          ))}
                                       </ul>
                                     </div>
                                     <p className="btn_container pt-4">
                                       <Link
-                                        to={"/booking-service/"+packageDetails.id}
+                                        to={
+                                          "/booking-service/" +
+                                          packageDetails.id
+                                        }
                                         className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
                                       >
-                                        Book Now
-                                         &nbsp; <i className="fas fa-arrow-right"></i>
+                                        Book Now &nbsp;{" "}
+                                        <i className="fas fa-arrow-right"></i>
                                       </Link>
                                     </p>
                                   </div>
@@ -201,9 +228,8 @@ export default function Homepage() {
                           }
                         )
                       : null}
-                      
                   </OwlCarousel>
-                  :null}
+                ) : null}
               </div>
               {/* End Asian Brands */}
 
@@ -213,13 +239,16 @@ export default function Homepage() {
               </div>
               <div className="row packages_two ">
                 <div className="col-12 packages_caroseul_dsg_dots">
-                {data? <OwlCarousel className="owl-theme" {...options} margin={20}>
-                    {data.Americana_European
-                      ? data.Americana_European.map(
-                          (packageDetails, key) => {
+                  {data ? (
+                    <OwlCarousel className="owl-theme" {...options} margin={20}>
+                      {data.Americana_European
+                        ? data.Americana_European.map((packageDetails, key) => {
                             return (
                               <div className="item us">
-                                <div className="each_package_container" key={key}>
+                                <div
+                                  className="each_package_container"
+                                  key={key}
+                                >
                                   <div
                                     className="content_package"
                                     id={"package_" + key}
@@ -237,31 +266,38 @@ export default function Homepage() {
                                     </span>
                                     <div className="points_container mt-1">
                                       <ul>
-                                      { packageDetails.features.split(',').map((subitem, i)=>(
-                                        <li className="included abs_content_wrapper" key={i}>
-                                          <span >{subitem}</span>
-                                        </li>
-                                      ))}
+                                        {packageDetails.features
+                                          .split(",")
+                                          .map((subitem, i) => (
+                                            <li
+                                              className="included abs_content_wrapper"
+                                              key={i}
+                                            >
+                                              <span>{subitem}</span>
+                                            </li>
+                                          ))}
                                       </ul>
                                     </div>
                                     <p className="btn_container pt-4">
-                                    <Link
-                                        to={"/booking-service/"+packageDetails.id}
+                                      <Link
+                                        to={
+                                          "/booking-service/" +
+                                          packageDetails.id
+                                        }
                                         className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
                                       >
-                                        Book Now
-                                         &nbsp; <i className="fas fa-arrow-right"></i>
+                                        Book Now &nbsp;{" "}
+                                        <i className="fas fa-arrow-right"></i>
                                       </Link>
                                     </p>
                                   </div>
                                 </div>
                               </div>
                             );
-                          }
-                        )
-                      : null}
-                  </OwlCarousel>
-                  :null}
+                          })
+                        : null}
+                    </OwlCarousel>
+                  ) : null}
                 </div>
               </div>
               {/*End American & European Brands */}
@@ -271,16 +307,15 @@ export default function Homepage() {
       </div>
       {/* End Packages */}
 
-
       {/* How it's work  */}
-      <How_its_work/>
+      <How_its_work />
       {/* End How it's work */}
 
       {/* Car Brands We Work With */}
       <section className="certificate-section pt-4 pb-0 pt-sm-5">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2>Car Brands We Work With</h2>
+            <h2> Brands We Work on</h2>
             <div className="text">
               “Bahwan Automobiles Trading car service, repair all car brands and
               models at the most affordable prices in Oman.“
@@ -292,36 +327,36 @@ export default function Homepage() {
                 className="et-icon-box-container column-8 et-make-container"
                 data-gap="8"
               >
-
-                {brands? brands.data.map((brand, key)=>{
-                return (
-                <div className="et-make et-icon-box" key={key}>
-                  <a className="d-block">
-                    <div className="each_brand_category">
-                      <div className="icon_container">
-                        <img
-                          className="img-fluid d-block mx-auto"
-                          alt="Nissan"
-                          srcSet={ASSETS+'carbrands/'+brand.image}
-                        />
-                      </div>
-                      <div className="text_container">
-                        <h3>Title</h3>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                )
-                }):null}
-               
+                {brands
+                  ? brands.data.map((brand, key) => {
+                      return (
+                        <div className="et-make et-icon-box" key={key}>
+                          <a className="d-block">
+                            <div className="each_brand_category">
+                              <div className="icon_container">
+                                <img
+                                  className="img-fluid d-block mx-auto"
+                                  alt="Nissan"
+                                  srcSet={ASSETS + "carbrands/" + brand.image}
+                                />
+                              </div>
+                              <div className="text_container">
+                                <h3>Title</h3>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      );
+                    })
+                  : null}
               </div>
             </div>
           </div>
         </div>
       </section>
-     
+
       {/* End Car Brands We Work With */}
-    
+
       {/* WHY CHOOSE US */}
       <div className="mt-sm-5 mt-3">
         <section className="about-section-two pt-4 pb-0 pt-sm-5">
@@ -329,7 +364,7 @@ export default function Homepage() {
             <div className="container clearfix mb-4">
               <div className="inner-column">
                 <div className="no_after sec-title text-center">
-                  <h2>WHY CHOOSE US?</h2>
+                  <h2>Why Choose us?</h2>
                   <div className="text" style={{ fontSize: "15px" }}></div>
                 </div>
                 <div className="row">
@@ -346,7 +381,7 @@ export default function Homepage() {
                           <a href="#">Transparency</a>
                         </h4>
                         <div className="text">
-                          <p style={{textAlign: "justify"}}>
+                          <p style={{ textAlign: "justify" }}>
                             Honesty and Integrity are our Company’s values that
                             we reflect in all actions we perform. To foster
                             trust and customer loyalty, we provide Visibility
@@ -357,109 +392,6 @@ export default function Homepage() {
                       </div>
                     </div>
                   </div>
-                  {/* Feature Block */}
-                  <div className="row col-md-6">
-                    <div className="feature-block-three m-4">
-                      <div className="inner-box">
-                        <div className="icon-box">
-                          <span className="fa-2x fas fas fa-handshake"></span>
-                        </div>
-                        <h4>
-                          <a href="#">Trustworthy</a>
-                        </h4>
-                        <div className="text">
-                          <p style={{textAlign: "justify"}}>
-                            We strongly believe in long term customer
-                            relationship, credibility, reliability, and
-                            professionalism. To achieve this, we strive our best
-                            to Keep up our commitments and deliver quality
-                            service, with workmanship warranty for a period.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Feature Block */}
-                  <div className="row col-md-6">
-                    <div className="feature-block-three m-4 mr-3">
-                      <div className="inner-box">
-                        <div className="icon-box">
-                          <img
-                            src="assets/front/uploads/generalSection/Tailor_Made.png"
-                            style={{ height: "35px" }}
-                          />
-                        </div>
-                        <h4>
-                          <a href="#">Tailor made</a>
-                        </h4>
-                        <div className="text">
-                          <p style={{textAlign: "justify"}}>
-                            Each customer has specific needs and wants. We
-                            design flexibility options in systems and operation
-                            process, to customize to customer requirements
-                            matching deliverables of customer expectations.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Feature Block */}
-                  <div className="row col-md-6">
-                    <div className="feature-block-three m-4">
-                      <div className="inner-box">
-                        <div className="icon-box">
-                          <img
-                            src="assets/front/uploads/generalSection/Competitive.png"
-                            style={{ height: "35px" }}
-                          />
-                        </div>
-                        <h4>
-                          <a href="#">Competitive</a>
-                        </h4>
-                        <div className="text">
-                          <p style={{textAlign: "justify"}}>
-                            Our services are desirable to customers for the
-                            reasons of value proposition on quality to the cost.
-                            Customization to customer needs, repairing only what
-                            is necessary, seeking customer consent on workshop
-                            observation to proceed and smart repair, largely
-                            helps us to be competitive in the market.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Feature Block */}
-
-                  {/* Feature Block */}
-                  <div className="row col-md-6">
-                    <div className="feature-block-three m-4 mr-3">
-                      <div className="inner-box">
-                        <div className="icon-box">
-                          <img
-                            src="assets/front/uploads/whychoose/Convenience.png"
-                            style={{ height: "35px" }}
-                          />
-                        </div>
-                        <h4>
-                          <a href="#">Convenience</a>
-                        </h4>
-                        <div className="text">
-                          <p style={{textAlign: "justify"}}>
-                            We highly value Customer’s time and effort expend on
-                            service. Our services are easy to access and
-                            facilities are in appropriate atmosphere. We are
-                            present even in remote and desert location.
-                            Appointments, package purchase and vehicle reception
-                            are digital. We also offer value added services such
-                            as pick and drop, alternate mobility, express
-                            service at a very reasonable cost.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Feature Block */}
 
                   {/* Feature Block */}
                   <div className="row col-md-6">
@@ -475,7 +407,7 @@ export default function Homepage() {
                           <a href="#">Customer Oriented</a>
                         </h4>
                         <div className="text">
-                          <p style={{textAlign: "justify"}}>
+                          <p style={{ textAlign: "justify" }}>
                             Creating Customers for life is our company’s vision
                             and “Customer first” is our business philosophy. We
                             align customer needs with our business purpose and
@@ -488,6 +420,116 @@ export default function Homepage() {
                     </div>
                   </div>
                   {/* Feature Block */}
+
+
+                  {/* Feature Block */}
+                  <div className="row col-md-6">
+                    <div className="feature-block-three m-4">
+                      <div className="inner-box">
+                        <div className="icon-box">
+                          <span className="fa-2x fas fas fa-handshake"></span>
+                        </div>
+                        <h4>
+                          <a href="#">Trustworthy</a>
+                        </h4>
+                        <div className="text">
+                          <p style={{ textAlign: "justify" }}>
+                            We strongly believe in long term customer
+                            relationship, credibility, reliability, and
+                            professionalism. To achieve this, we strive our best
+                            to Keep up our commitments and deliver quality
+                            service, with workmanship warranty for a period.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Feature Block */}
+                  <div className="row col-md-6">
+                    <div className="feature-block-three m-4">
+                      <div className="inner-box">
+                        <div className="icon-box">
+                          <img
+                            src="assets/front/uploads/generalSection/Competitive.png"
+                            style={{ height: "35px" }}
+                          />
+                        </div>
+                        <h4>
+                          <a href="#">Competitive</a>
+                        </h4>
+                        <div className="text">
+                          <p style={{ textAlign: "justify" }}>
+                            Our services are desirable to customers for the
+                            reasons of value proposition on quality to the cost.
+                            Customization to customer needs, repairing only what
+                            is necessary, seeking customer consent on workshop
+                            observation to proceed and smart repair, largely
+                            helps us to be competitive in the market.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Feature Block */}
+
+
+                  {/* Feature Block */}
+                  <div className="row col-md-6">
+                    <div className="feature-block-three m-4 mr-3">
+                      <div className="inner-box">
+                        <div className="icon-box">
+                          <img
+                            src="assets/front/uploads/generalSection/Tailor_Made.png"
+                            style={{ height: "35px" }}
+                          />
+                        </div>
+                        <h4>
+                          <a href="#">Tailor made</a>
+                        </h4>
+                        <div className="text">
+                          <p style={{ textAlign: "justify" }}>
+                            Each customer has specific needs and wants. We
+                            design flexibility options in systems and operation
+                            process, to customize to customer requirements
+                            matching deliverables of customer expectations.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Feature Block */}
+                  <div className="row col-md-6">
+                    <div className="feature-block-three m-4 mr-3">
+                      <div className="inner-box">
+                        <div className="icon-box">
+                          <img
+                            src="assets/front/uploads/whychoose/Convenience.png"
+                            style={{ height: "35px" }}
+                          />
+                        </div>
+                        <h4>
+                          <a href="#">Convenience</a>
+                        </h4>
+                        <div className="text">
+                          <p style={{ textAlign: "justify" }}>
+                            We highly value Customer’s time and effort expend on
+                            service. Our services are easy to access and
+                            facilities are in appropriate atmosphere. We are
+                            present even in remote and desert location.
+                            Appointments, package purchase and vehicle reception
+                            are digital. We also offer value added services such
+                            as pick and drop, alternate mobility, express
+                            service at a very reasonable cost.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Feature Block */}
+
+                  
                 </div>
               </div>
             </div>
@@ -513,22 +555,30 @@ export default function Homepage() {
           <div className="row clearfix">
             <div className="col-12">
               <div className="our_partners_wrapper">
-                <OwlCarousel className="owl-theme" autoplaySpeed={10} items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
-                  {partners? partners.data.map((partner, key)=>{
-
-                    return(
-                      <div className="item one" key={key}>
-                        <div className="each_item_wrapper">
-                          <img
-                            className="img-fluid"
-                            alt="Partners"
-                            src={ASSETS+'ourcarservices/'+partner.image}
-                          />
-                        </div>
-                      </div>
-                    )
-                  }) : null}
-                  
+                <OwlCarousel
+                  className="owl-theme"
+                  autoplaySpeed={10}
+                  items={5}
+                  slideBy={1}
+                  loop={true}
+                  autoplay={true}
+                  dots={false}
+                >
+                  {partners
+                    ? partners.data.map((partner, key) => {
+                        return (
+                          <div className="item one" key={key}>
+                            <div className="each_item_wrapper">
+                              <img
+                                className="img-fluid"
+                                alt="Partners"
+                                src={ASSETS + "ourcarservices/" + partner.image}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })
+                    : null}
                 </OwlCarousel>
               </div>
             </div>
@@ -547,20 +597,29 @@ export default function Homepage() {
           <div className="row clearfix">
             <div className="col-12">
               <div className="our_partners_wrapper">
-              <OwlCarousel className="owl-theme" items={5} slideBy={1} loop={true} autoplay={true} dots={false}  >
-              {clients? clients.data.map((client, key)=>{
-                  return(
-                  <div className="item one" key={key}>
-                    <div className="each_item_wrapper">
-                      <img
-                        className="img-fluid"
-                        alt="Clients"
-                        src={ASSETS+'ourclients/'+client.image}
-                        />
-                    </div>
-                  </div>
-                  )
-                }) : null}
+                <OwlCarousel
+                  className="owl-theme"
+                  items={5}
+                  slideBy={1}
+                  loop={true}
+                  autoplay={true}
+                  dots={false}
+                >
+                  {clients
+                    ? clients.data.map((client, key) => {
+                        return (
+                          <div className="item one" key={key}>
+                            <div className="each_item_wrapper">
+                              <img
+                                className="img-fluid"
+                                alt="Clients"
+                                src={ASSETS + "ourclients/" + client.image}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })
+                    : null}
                 </OwlCarousel>
               </div>
             </div>
@@ -630,7 +689,10 @@ export default function Homepage() {
             <div className="image-column col-xl-5 col-lg-6 col-md-12 col-sm-12">
               <div className="inner-column">
                 <figure className="image">
-                  <img src="assets/front/uploads/faq/faq11.jpg" alt="AUTO FIX"  />
+                  <img
+                    src="assets/front/uploads/faq/faq11.jpg"
+                    alt="AUTO FIX"
+                  />
                 </figure>
                 <div className="caption-box mt-5">
                   <h4>
@@ -638,7 +700,7 @@ export default function Homepage() {
                       Toll Free Number : &nbsp;
                     </span>
                     <a href="tel:+968 800 500 11" className="bold-text ">
-                    800 500 11
+                      800 500 11
                     </a>
                   </h4>
                 </div>
@@ -659,7 +721,16 @@ export default function Homepage() {
           <div className="row clearfix">
             <div className="col-12">
               <div className="testimonials_container">
-              <OwlCarousel className="owl-theme" items={3} slideBy={1} loop={true} autoplay={true} dots={false}  >
+                <OwlCarousel
+                  className="owl-theme"
+                  items={3}
+                  slideBy={1}
+                  loop={true}
+                  autoplay={true}
+                  dots={false}
+                  {...options}
+
+                >
                   <div className="item one">
                     <div className="each_testimonial text-center">
                       <div className="testimonial_head">
@@ -874,9 +945,6 @@ export default function Homepage() {
         </div>
       </section>
       {/* End Testimonial */}
-
-      
-
     </>
   );
 }

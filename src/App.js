@@ -10,7 +10,7 @@ import Homepage from "./pages/Homepage";
 import About_us from "./pages/About_us";
 import Blogs from "./pages/Blogs";
 import Contact_us from "./pages/Contact-us";
-import Gallery from "./pages/Gallery";
+import Gallery from "./pages/Galleries";
 import Get_quote from "./pages/Get_quote";
 import Packages from "./pages/Packages";
 import Privacy_policy from "./pages/Privacy_policy";
@@ -45,27 +45,39 @@ import LoginPrivateRoute from "./components/LoginPrivateRoute";
 import Booking_view from "./pages/Booking_view";
 import Booking_list from "./pages/Booking_list";
 import { checkAuth } from "./redux/features/auth/authSlice";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getStaticData } from "./redux/features/cms/staticDataSlice";
+import Loader from "./components/loader/Loader";
 
 function App() {
-const disptach=useDispatch()
+  const disptach = useDispatch();
 
-  useEffect(()=>{
-    disptach(checkAuth()).then((res)=>{
+  useEffect(() => {
+    disptach(checkAuth())
+      .then((res) => {})
+      .catch((error) => {
+        localStorage.clear();
+        window.location.reload();
+      });
+  }, []);
 
-    }).catch((error)=>{
-      localStorage.clear();
-      window.location.reload();
-    })
-  },[])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getStaticData());
+  }, []);
 
+  const static_data = JSON.parse(
+    JSON.stringify(useSelector((state) => state.staticData))
+  );
+  if (static_data.loading == "PENDING") {
+    return <Loader />;
+  }
 
   return (
     <div className="App">
       <Router>
         <ScrollToTop />
-        <Layout>
+        <Layout {...static_data.data}>
           <Routes>
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="about" element={<About_us />} />
@@ -185,8 +197,6 @@ const disptach=useDispatch()
                 }
               />
             </Route>
-
-           
 
             <Route path="/booking-view/:id">
               <Route

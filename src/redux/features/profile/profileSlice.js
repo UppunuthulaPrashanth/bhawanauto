@@ -52,7 +52,6 @@ export const getProfileSlice = createSlice({
   export const updateProfile = createAsyncThunk(
     `${namespace}/updateProfile`,
     async (formData) => {
-      console.log(formData)
       try {
         const userToken = JSON.parse(localStorage.getItem("userToken"));
         const { data } = await axios.post(`${API_URL}/${namespace}/updateProfile`, formData,{

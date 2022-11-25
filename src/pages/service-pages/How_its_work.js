@@ -10,16 +10,9 @@ export default function How_its_work() {
               <div className="sec-title text-center mb-5">
                 <h2>How it Works</h2>
                 <div className="text">
-                  “Broad network, well equipped workshop infrastructure, trained
-                  service professionals, helps us to provide an outstanding
-                  quality service to our customers. <br/> While receiving  the vehicle,
-                  our service advisor will provide cost and time estimate of
-                  repairs requested. If there are any additional findings during
-                  workshop observation,<br/> Advisor will provide an additional time
-                  and cost estimate for further approval. On completion of all
-                  approved jobs proactive information is given<br/> on the vehicle
-                  readiness with invoice details for convenience and
-                  transparency.”
+                  Broad network, well equipped workshop infrastructure, trained
+                  service professionals,<br/> helps us to provide an outstanding
+                  quality service to our customers.
                 </div>
                 {/* <span className="devider">
                 <span></span>
@@ -28,7 +21,7 @@ export default function How_its_work() {
               <div className="row">
                 <div className="col-12">
                   <h3 className="medium-text bold-text text-center">
-                    Here's How Auto Fix Inspection Helps You.
+                    Here's How BAT Inspection Helps You.
                   </h3>
                   <div className="how_it_works_wrapper mt-4">
                     <div className="each_how_it_works_design">

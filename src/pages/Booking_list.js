@@ -19,7 +19,6 @@ export default function Booking_list() {
     return <Loader />;
   }
 
-  console.log(data);
   return (
     <div className="container booking-list">
       <div className="text-center  mb-3 mt-5">

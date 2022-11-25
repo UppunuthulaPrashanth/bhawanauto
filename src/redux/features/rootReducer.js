@@ -18,7 +18,8 @@ import { resetPasswordSlice, forgetPasswordSlice } from "./auth/authSlice";
 import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice";
 import { getBlogSlice } from "./booking-data/blogSlice";
 import { getBookingSlice, getSingleBookingSlice, postBookingSlice } from "./booking-data/bookingSlice";
-import { getBannerSlice, getCarBrandSlice, getClientSlice, getPartnerSlice } from "./cms/bannerSlice";
+import { getBannerSlice, getCarBrandSlice, getClientSlice, getGallerySlice, getPartnerSlice } from "./cms/bannerSlice";
+import { getStaticDataSlice } from "./cms/staticDataSlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -59,5 +60,8 @@ export default combineReducers({
     brands:getCarBrandSlice.reducer,
     partners:getPartnerSlice.reducer,
     clients:getClientSlice.reducer,
+    gallery:getGallerySlice.reducer,
+    // statis data
+    staticData:getStaticDataSlice.reducer,
 
 })

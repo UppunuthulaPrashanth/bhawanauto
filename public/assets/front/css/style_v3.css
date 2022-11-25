@@ -3119,7 +3119,9 @@ img {
   display: block;
   padding: 30px;
 }
-
+.services_wrapper .label_name{
+  min-height: 56px !important;
+}
 .service-block-three .inner-box {
   position: relative;
   max-width: 350px;
@@ -5413,7 +5415,7 @@ img {
 
 .main-footer .widgets-section {
   position: relative;
-  padding: 80px 0px 0px;
+  padding: 35px 0px 0px;
 }
 
 .main-footer .widgets-outer {
@@ -5505,7 +5507,7 @@ img {
   height: 35px;
   width: 35px;
   border-radius: 50px;
-  border: 1px solid #777777;
+  border: 1px solid #ffffff;
   text-align: center;
   display: inline-block;
   border-radius: 50%;

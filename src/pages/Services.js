@@ -91,8 +91,8 @@ export default function Services() {
           <div className="sec-title text-center">
             <h2>Our Services</h2>
             <div className="text">
-              We offer full car service, auto repair & car maintenance for all
-              brands and models
+              We offer services, repair & maintenance for all
+              brands make and models
             </div>
           </div>
           <div className="row main-services">
@@ -118,7 +118,11 @@ export default function Services() {
                             </div>
                             <div className="text_container">
                               <h3>
-                                <a href={element.link}>{element.title}</a>
+                                <a href={element.link}>
+                                  {element.title=='POD-Modification OPAL Certification'?<span>POD-Modification <br/>OPAL Certification</span>:
+                                  element.title
+                                   }
+                                  </a>
                               </h3>
                             </div>
                           </div>

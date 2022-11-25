@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css"; // import first
 import { toast, ToastContainer } from "react-toastify"; // then this
+import Parser from 'html-react-parser';
 
 
 class Layout extends React.Component {
@@ -11,13 +12,23 @@ class Layout extends React.Component {
 
     var userToken = localStorage.getItem("userToken");
     var userData = localStorage.getItem("userData");
-
+  
     const logout = () => {
       localStorage.clear();
       toast.error("Logout success")
       window.location.reload();
     };
 
+    if(this.props[0]){
+     var HEADER_PHONE=this.props[0].value;
+     var FOOTER_ADDRESS=this.props[1].value;
+     var FOOTER_EMAIL=this.props[2].value;
+     var FOOTER_TEXT=this.props[3].value;
+     var S_FACEBOOK=this.props[4].value;
+     var S_WHATSAPP=this.props[5].value;
+     var FOOTER_PHONE=this.props[6].value;
+     var S_INSTAGRAM=this.props[7].value;
+    }
     return (
       <div className="page-wrapper">
         <ToastContainer /> {/* <- add line */}
@@ -34,7 +45,7 @@ class Layout extends React.Component {
                         <div className="d-flex justify-content-end py-1 pr-3 pr-xl-0">
                           <div className="mr-sm-4 bold-text small-text my-auto d-none d-sm-block">
                             <span>CALL : </span>
-                            <Link to="tel:8002886349">800 2886 349</Link>&nbsp;
+                            <Link to="tel:8002886349">{HEADER_PHONE? HEADER_PHONE:"800 288 349"}</Link>&nbsp;
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
@@ -88,28 +99,28 @@ class Layout extends React.Component {
                             <ul className="social-icon-four">
                               {/* Site Setting Along with the social Icons are fetched at Header.php */}
                               <li>
-                                <Link
-                                  to="#"
+                                <a
+                                  href={S_FACEBOOK?S_FACEBOOK:"#"}
                                   target="_blank"
                                 >
                                   <span className="fab fa-facebook-f"></span>
-                                </Link>
+                                </a>
                               </li>
                               <li>
-                                <Link
-                                  to="#"
+                                <a
+                                  href={S_WHATSAPP?S_WHATSAPP:"#"}
                                   target="_blank"
                                 >
-                                  <span className="fab fa-twitter"></span>
-                                </Link>
+                                  <span className="fab fa-whatsapp"></span>
+                                </a>
                               </li>
                               <li>
-                                <Link
-                                  to="#"
+                                <a
+                                  href={S_INSTAGRAM?S_INSTAGRAM:"#"}
                                   target="_blank"
                                 >
                                   <span className="fab fa-instagram"></span>
-                                </Link>
+                                </a>
                               </li>
                             </ul>
                           </div>
@@ -197,30 +208,20 @@ class Layout extends React.Component {
                   <div className="footer-column col-lg-3 col-md-12 col-sm-12">
                     <div className="footer-widget logo-widget">
                       <div className="logo logo_footer mt-0">
-                        <Link to="#">
-                          BAT
-                          <br />
-                          <span className="small-text text-uppercase">
-                            Multi brand car service
-                          </span>
-                        </Link>
+                          <img
+                              src="/assets/front/logo/footer-logo.png"
+                              className="img-fluid abs_logo"
+                              alt=""
+                              title="Bahwanautomobiles"
+                              style={{height:"70px"}}
+                            />
                       </div>
                       <div className="text color-white">
-                        <p className="text color-white text-sm">
-                          Auto Fix is the most trusted car service center in
-                          Oman. We offer full range of garage services to
-                          vehicle owners in Oman.
-                        </p>
-                        <p className="text color-white text-sm mt-2">
-                          All our workshops are fitted with state-of-the-art
-                          tools where our team is always ready for providing a
-                          quality service for your car.
-                        </p>
+                      {Parser(FOOTER_TEXT?FOOTER_TEXT:"")}
+
                       </div>
-                      {/*  <div className="copyright color-white mt-3">© Copyright 2022 
-                                <br>All Rights Reserved by <Link to="https://autofix.ae" className="bold-text color-white">Auto Fix</Link>
-                            </div> */}
                     </div>
+                    
                   </div>
                   {/*Footer Column*/}
                   <div className="footer-column col-lg-3 col-md-6 col-sm-6 col-12">
@@ -306,52 +307,50 @@ class Layout extends React.Component {
                       <div className="widget-content">
                         <ul className="contact-info-list">
                           <li className="color-white">
-                            <span className="fa fa-location-arrow"></span>Bahwan Automobiles Service Center, Azaiba Muscat, <br/> Sultanate of Oman
+                            <span className="fa fa-location-arrow"></span>
+                            {Parser(FOOTER_ADDRESS?FOOTER_ADDRESS:"")}
                           </li>
                           <li>
                             <span className="fa fa-envelope-open"></span>
-                            <Link to="#">enquiries@bahwanautomobiles.com</Link>
+                            <a href={FOOTER_EMAIL?"to:"+FOOTER_EMAIL:'#'}>{FOOTER_EMAIL?FOOTER_EMAIL:"#"}</a>
                           </li>
                           <li>
                             <span className="fa fa-phone"></span>
-                            <Link to="tel:8002886349">800 2886 349</Link>
+                            <a to={FOOTER_PHONE?"tel:"+FOOTER_PHONE:'#'}>{FOOTER_PHONE?FOOTER_PHONE:"#"}</a>
                           </li>
                         </ul>
                       </div>
 
                       <ul className="social-icon-two">
-                        {/* Site Setting Along with the social Icons are fetched at Header.php */}
                         <li>
-                          <Link
-                            to="#"
+                          <a
+                            href={S_FACEBOOK?S_FACEBOOK:"#"}
                             target="_blank"
                           >
                             <span className="fab fa-facebook-f"></span>
-                          </Link>
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            to="#"
-                            target="_blank"
+                          <a
+                          href={S_WHATSAPP?S_WHATSAPP:"#"}
+                          target="_blank"
                           >
-                            <span className="fab fa-twitter"></span>
-                          </Link>
+                            <span className="fab fa-whatsapp"></span>
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            to="#"
+                          <a
+                            href={S_INSTAGRAM?S_INSTAGRAM:"#"}
                             target="_blank"
                           >
                             <span className="fab fa-instagram"></span>
-                          </Link>
+                          </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* <div className="man-image"><img src="images/resource/man-2.png" alt=""></div> */}
             </div>
           </div>
         </footer>

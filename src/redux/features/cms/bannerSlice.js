@@ -130,3 +130,36 @@ export const getClientSlice = createSlice({
     },
   },
 });
+
+
+
+// OurCarServiceParnters
+export const getGallery= createAsyncThunk(`${namespace}/Gallery`, async () => {
+  try {
+    const { data } = await axios.get(`${API_URL}/${namespace}/Gallery`);
+    return data;
+  } catch (error) {
+    return Checkerror(error);
+  }
+});
+
+export const getGallerySlice = createSlice({
+  name: namespace,
+  initialState: {
+    loading: "",
+    data: [],
+  },
+  reducers: {},
+  extraReducers: {
+    [getClients.pending](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+    },
+    [getClients.fulfilled](state, action) {
+      state.loading = HTTP_STATUS.FULFILLED;
+      state.data = action.payload;
+    },
+    [getClients.rejected](state, action) {
+      state.loading = HTTP_STATUS.REJECTED;
+    },
+  },
+});
