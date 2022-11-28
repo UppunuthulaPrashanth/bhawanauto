@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css"; // import first
 import { toast, ToastContainer } from "react-toastify"; // then this
 import Parser from 'html-react-parser';
+import { Modal } from "react-bootstrap";
 
 
 class Layout extends React.Component {
@@ -13,6 +14,7 @@ class Layout extends React.Component {
     var userToken = localStorage.getItem("userToken");
     var userData = localStorage.getItem("userData");
   
+
     const logout = () => {
       localStorage.clear();
       toast.error("Logout success")
@@ -359,6 +361,15 @@ class Layout extends React.Component {
         <div className="scroll-to-top scroll-to-target" data-target="html">
           <span className="fa fa-angle-up"></span>
         </div>
+
+
+        {/* promotion model */}
+        <Link to={"packages"}>
+        <div className="card floating">
+          <p className="my-4 font-weight-bold">Full body polish, Upholstery Cleaning, Headlight Polish, and Engine Room Cleaning
+            Only for 40 OMR !! book now.</p>
+        </div></Link>
+        {/* promoition model */}
       </div>
     );
   }

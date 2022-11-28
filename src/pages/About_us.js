@@ -18,8 +18,7 @@ export default function About_us() {
           <h3>History / purpose / Brand story</h3>
           <div className="sec-title text-left">
             <p className="text">
-              Bahwan Automobiles & Trading LLC (BAT) is a flagship company of
-              Bahwan International Group (BIG). BAT commenced its operations in
+              Bahwan Automobiles & Trading LLC (BAT) commenced its operations in
               April 2019 with an objective to provide Transparent, Trustworthy
               &Tailor-made service to all brand make and model at a Competitive
               price, Convenient facility with Committed quality. In a short span

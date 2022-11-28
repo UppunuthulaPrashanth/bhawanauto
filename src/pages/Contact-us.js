@@ -7,84 +7,19 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { SECRET_KEY, SITE_KEY } from "../config/Constants";
 import axios from "axios";
 import { useRef } from "react";
+import { useEffect } from "react";
+import { getAddressesData } from "../redux/features/cms/contactSlice";
 
 export default function Contact_us() {
-  const contacts_data = [
-    {
-      title: "AZAIBA Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "7:00AM - 7:00 PM. Saturday 8:00 AM - 5:30 PM",
-      email: "aznfroffinch@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233956.2914523457!2d58.1927478!3d23.6198552!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91ffe0ef0733d7%3A0xe465a95dc0fb66ae!2sNissan%20And%20Infiniti%20Service%20Center!5e0!3m2!1sen!2sin!4v1662718208694!5m2!1sen!2sin",
-    },
-    {
-      title: "WADIKABIR Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "7:00AM - 7:00 PM. Saturday 8:00 AM - 5:30 PM",
-      email: "wkfrofinchar@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1828.270233092649!2d58.5604328!3d23.5849423!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91f75c26409d25%3A0xa1ada37b0cfda08!2sNissan%20Service!5e0!3m2!1sen!2sin!4v1662718258290!5m2!1sen!2sin",
-    },
-    {
-      title: "MABELLAH Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "7:00AM - 7:00 PM. Saturday 8:00 AM - 5:30 PM",
-      email: "mabserviceincharge@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1828.270233092649!2d58.5604328!3d23.5849423!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91f75c26409d25%3A0xa1ada37b0cfda08!2sNissan%20Service!5e0!3m2!1sen!2sin!4v1662719134621!5m2!1sen!2sin",
-    },
-    {
-      title: "IBRA Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "8:00AM - 5:30 PM",
-      email: "Ibraservinch@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d58885.07661643893!2d58.5465955!3d22.7164453!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e90252c66101cb3%3A0x3b2f089ef05ccc8b!2sNissan%20Showroom%20Ibra!5e0!3m2!1sen!2sin!4v1662719156479!5m2!1sen!2sin",
-    },
-    {
-      title: "SUR Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "7:00AM - 5:30 PM. Saturday 8:00 AM - 5:30 PM",
-      email: "surservice@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d735.1763144439715!2d59.4979675!3d22.5687509!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e90a15a79108f49%3A0xa0ffebfdefc41980!2sNissan!5e1!3m2!1sen!2sin!4v1662719180874!5m2!1sen!2sin",
-    },
-    {
-      title: "SINAW Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: " 8:00AM - 5:30 PM.",
-      email: "sinawservice@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3685.7846942465203!2d58.0422765!3d22.5122599!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8feb0af2595213%3A0xb3ed638ac83bc940!2sNissan%20Suhail%20Bahwan%20Automobiles!5e0!3m2!1sen!2sin!4v1662719184161!5m2!1sen!2sin",
-    },
-    {
-      title: "BUREIMI Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: " 7:00AM - 5:30 PM.",
-      email: "bureimiservice@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d362.9448954988078!2d55.7696077!3d24.2509382!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8ab41cc65f3613%3A0x4f1da2a3df9025bd!2z2YjYsdi02Ycg2LPZh9mK2YQg2KjZh9mI2KfZhiDZhNmE2LXZitin2YbYqSAtINmF2LHZg9iyINmC2LfYuSDYutmK2KfYsSDZhtmK2LPYp9mG!5e1!3m2!1sen!2sin!4v1662719187767!5m2!1sen!2sin",
-    },
-    {
-      title: "SALALAH Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: "7:00AM - 5:30 PM. Saturday 8:00 AM - 5:30 PM",
-      email: "salalahservice3@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24361.18443220767!2d54.0254935!3d17.0173711!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3dd1607f9209cbcb%3A0xf0bc4546b6317fc1!2sNissan%20Service%20Salalah!5e1!3m2!1sen!2sin!4v1662719191406!5m2!1sen!2sin",
-    },
-    {
-      title: "Duqm Service",
-      phone: "80050011",
-      days: "Sunday - Thursday",
-      dateTime: " 8:00AM - 5:30 PM.",
-      email: "duqmservice@sbigh.com",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60161.08425683142!2d57.6381936!3d19.538704!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e8287b6d84dba95%3A0x961da24b8b87a66a!2sNISSAN%20SERVICE%20DUQM%20(Suhail%20Bahwan%20Automobiles%20LLC)!5e0!3m2!1sen!2sin!4v1662719194706!5m2!1sen!2sin",
-    },
-  ];
+  const [contacts_data, setContacts_data]=useState([]);
 
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getAddressesData()).then((data)=>{
+        setContacts_data(data.payload)
+    })
+  }, [])
   const empty_values = {
     name: "",
     email: "",
@@ -252,113 +187,10 @@ export default function Contact_us() {
                 
             <div className="row">
               <div className="col-12 col-xl-12 col-lg-12 d-block mx-auto max1200 mb-5">
-                <div className="address_container text-center mb-0 mb-lg-5">
-                  <div className="owl-carousel owl-theme">
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_2"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>AZAIBA </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_3"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>WADIKABIR </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_4"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-
-                        <p>
-                          <strong>MABELLAH </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_6"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>IBRA </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_7"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>SUR </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_8"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-
-                        <p>
-                          <strong>SINAW </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_9"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>BUREIMI </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div
-                        className="each_location_item move_to"
-                        moveto="#location_10"
-                      >
-                        <span className="icon fa fa-map-marker-alt"></span>
-                        <p>
-                          <strong>SALALAH </strong>
-                        </p>
-                        <p>80050011</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {contacts_data.map((item) => (
-                  <div className="location_wrapper_outer mt-2" id="location_2">
+                {contacts_data.map((item, key) => (
+                  <div className="location_wrapper_outer mt-2" id="location_2" key={key}>
                     <div className="location_wrapper">
-                      <h3>{item.title}</h3>
+                      <h3>{item.name}</h3>
                     </div>
                     <div className="contact_wrapper">
                       <div className="row">
@@ -392,9 +224,9 @@ export default function Contact_us() {
                                     className="bold-text primary-color"
                                     href="#"
                                   >
-                                    {item.title}
+                                    {item.name}
                                   </a>
-                                  <p>{item.title}</p>
+                                  <p>{item.name}</p>
                                 </div>
                               </div>
                             </div>
@@ -415,7 +247,7 @@ export default function Contact_us() {
                                     className="bold-text"
                                     href="tel:800 2886349"
                                   >
-                                    {item.phone}
+                                    {item.mobile}
                                   </a>
                                   <p>
                                     Call us any time from 08:00am till 06:30pm
@@ -439,7 +271,7 @@ export default function Contact_us() {
                                   <a className="bold-text" href="#">
                                     {item.days}
                                   </a>
-                                  <p>{item.dateTime}</p>
+                                  <p>{item.days_timing}</p>
                                 </div>
                               </div>
                             </div>

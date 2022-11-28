@@ -546,7 +546,7 @@ export default function Homepage() {
       <section className="py-5">
         <div className="auto-container">
           <div className="sec-title text-center mb-5">
-            <h2>Our Car Service Partners</h2>
+            <h2>Our Service Partners</h2>
             <div className="text">
               “Bahwan Automobiles Trading is proud to be associated with some
               well-known international brands”
