@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import { getAddon } from "../redux/features/booking-data/addonSlice";
 import { getLocation } from "../redux/features/booking-data/locationSlice";

@@ -5488,7 +5488,7 @@ img {
 
 .main-footer .logo-widget .text {
   position: relative;
-  font-size: 16px;
+  font-size: 0.9rem !important;
   color: #777777;
 }
 
@@ -11070,7 +11070,7 @@ img {
 }
 
 .signup_v4 .nav-tabs li.nav-item {
-  width: 50%;
+  width: 30%;
 }
 
 .signup_v4 .card-body {

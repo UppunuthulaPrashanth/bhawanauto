@@ -250,7 +250,7 @@ export default function Contact_us() {
                                     {item.mobile}
                                   </a>
                                   <p>
-                                    Call us any time from 08:00am till 06:30pm
+                                    {item.call_timing}
                                   </p>
                                 </div>
                               </div>
@@ -300,8 +300,7 @@ export default function Contact_us() {
                                     </span>
                                   </p>
                                   <p>
-                                    Email us anytime, we usually reply within 24
-                                    hours
+                                    {item.email_timing}
                                   </p>
                                 </div>
                               </div>

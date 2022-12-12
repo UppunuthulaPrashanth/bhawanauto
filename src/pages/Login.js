@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, register } from "../redux/features/auth/authSlice";
+import { login, register, guestlogin } from "../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 
@@ -18,6 +18,7 @@ export default function Login() {
 
   const [formSignupValues, setformSignupValues] = useState({
     firstname: "",
+    fullname:"",
     lastname: "",
     email: "",
     phone: "",
@@ -34,9 +35,11 @@ export default function Login() {
   const dispatch = useDispatch();
   const onChangeSignup = (e) => {
     const { name, value } = e.target;
+    console.log(value)
     setformSignupValues({ ...formSignupValues, [name]: value });
   };
 
+  // Signup
   const onSubmitSignup = async (e) => {
     e.preventDefault();
     const errors = {};
@@ -88,6 +91,42 @@ export default function Login() {
     const { name, value } = e.target;
     setFormSigninValues({ ...formSigninValues, [name]: value });
   };
+
+  // Guest Login
+  const onSubmitGuest = async (e) => {
+    console.log("guest form submmited")
+    e.preventDefault();
+    const errors = {};
+    var errors_count = 0;
+    if (!formSignupValues.fullname) {
+      errors.fullname = "Full name is required";
+      errors_count = 1;
+    }
+    if (!formSignupValues.email) {
+      errors.email = "Email is required";
+      errors_count = 1;
+    }
+    if (!formSignupValues.phone) {
+      errors.phone = "Phone is required";
+      errors_count = 1;
+    }
+    if (errors_count == 0) {
+      setIsLoading(true);
+      dispatch(guestlogin(formSignupValues)).then((res) => {
+        setIsLoading(false);
+        if (res.payload.success) {
+          navigate('/myaccount')
+          window.location.reload();
+        }
+      });
+    } else {
+      setActiveTab(3)
+      for (var key in errors) {
+        toast.error(errors[key]);
+      }
+    }
+  };
+
 
   const onSubmitSignin = (e) => {
     e.preventDefault();
@@ -155,12 +194,28 @@ export default function Login() {
                       Register
                     </a>
                   </li>
+                  <li className="nav-item" role="presentation">
+                    <a
+                      className="nav-link"
+                      id="guest-tab"
+                      data-toggle="tab"
+                      href="#guest"
+                      role="tab"
+                      aria-controls="guest"
+                      aria-selected="true"
+                    >
+                      Guest Login
+                    </a>
+                  </li>
+
                 </ul>
               </div>
             </div>
           </div>
 
           <div className="tab-content" id="myTabContent">
+
+            {/* Login Section */}
             <div
               className={activeTab==1 ? "tab-pane fade show active" : "tab-pane fade show"}
               id="login"
@@ -258,6 +313,8 @@ export default function Login() {
               </div>
             </div>
 
+
+            {/* Register Section */}
             <div
               className={activeTab==2? "tab-pane fade show active" : "tab-pane fade show"}
               id="register"
@@ -429,6 +486,126 @@ export default function Login() {
                 </div>
               </div>
             </div>
+
+
+            {/* guest Section */}
+            <div
+              className={activeTab==3 ? "tab-pane fade show active" : "tab-pane fade show"}
+              id="guest"
+              role="tabpanel"
+              aria-labelledby="guest-tab"
+            >
+              <h4 className="text-center mt-1 mb-1">Guest Login</h4>
+              <div className="login-container">
+                <form>
+                  <div className="form-container-login w-100" id="loginInitial">
+                    <div className="row">
+                      <div
+                        className="col-lg-11 col-xl-10 col-sm-12 col-12 d-block mx-auto listenMe"
+                        btntolisten="login"
+                      >
+                        <div className="row">
+                          <div
+                            className="col-12 col-sm-12 mt-2 text-center text-danger"
+                            id="login_message_box"
+                          ></div>
+                          <div className="col-12 col-sm-12 mt-2">
+                            <div className="form-wrapper">
+                              <label>
+                                <i className="far fa-address-card"></i>
+                              </label>
+                              <input
+                                placeholder="Please Enter Your Full Name"
+                                required
+                                className="input-field"
+                                name="fullname"
+                                id="fullname"
+                                type="text"
+                                onChange={onChangeSignup}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="col-12 col-sm-12 mt-4">
+                              <div className="form-wrapper">
+                                <label>
+                                  <i className="fas fa-envelope"></i>
+                                </label>
+                                <input
+                                  placeholder="Please Enter Your Email"
+                                  data-parsley-required-message="Your Email"
+                                  required
+                                  className="input-field"
+                                  type="email"
+                                  name="email"
+                                  id="email"
+                                  value={formSignupValues.email}
+                                  onChange={onChangeSignup}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-12 col-sm-12 mt-4">
+                              <div className="form-wrapper">
+                                <label style={{ minWidth: "40px" }}>
+                                  <i className="fas fa-phone"></i>
+                                </label>
+                                <label
+                                  id="cc_prefix"
+                                  className=" text-center text-dark small-text"
+                                >
+                                  +968
+                                </label>
+                                <input
+                                  placeholder="Please Enter Phone Number"
+                                  data-parsley-required-message="Your Phone"
+                                  required
+                                  className="input-field"
+                                  type="text"
+                                  name="phone"
+                                  id="phone"
+                                  value={formSignupValues.phone}
+                                  onChange={onChangeSignup}
+                                  data-parsley-minlength="9"
+                                  data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
+                                  data-parsley-type="digits"
+                                  data-parsley-type-message="Mobile number should be only numbers"
+                                  maxLength="12"
+                                  data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$"
+                                />
+                              </div>
+                            </div>
+
+
+                          <div className="col-12 mt-4 text-center">
+                            <div className="btns-container">
+                              {isLoading ? (
+                                <img
+                                  src="/assets/front/loader/loader.gif"
+                                  style={{ Height: "50px" }}
+                                />
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={(e) => onSubmitGuest(e)}
+                                  className=" common_button d-block w-100 py-2"
+                                >
+                                  <span className="bold-text" mytext="Gust Login">
+                                   Guest Login
+                                  </span>
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

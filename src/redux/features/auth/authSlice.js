@@ -92,6 +92,54 @@ export const loginSlice = createSlice({
 });
 
 
+// Guest Login
+export const guestlogin = createAsyncThunk(
+  `${namespace}/guest_login`,
+  async (formData) => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/${namespace}/guest_login`,
+        formData
+      );
+      if (data.token) {
+        localStorage.setItem("userToken", JSON.stringify(data.token));
+        localStorage.setItem("userData", data.firstname);
+        toast.success(data.message);
+      }
+      return data;
+    } catch (error) {
+      return Checkerror(error);
+    }
+  }
+);
+
+export const guestloginSlice = createSlice({
+  name: namespace,
+  initialState: {
+    loading: "",
+    data: [],
+  },
+  reducers: {},
+  extraReducers: {
+    [login.pending](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+    },
+    [login.fulfilled](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+           state.data = action.payload;
+
+    },
+    [login.rejected](state, action) {
+      state.loading = HTTP_STATUS.REJECTED;
+    },
+  },
+});
+
+
+
+
+
+
 
   // reset password request of otp
   export const forgetPassword = createAsyncThunk(

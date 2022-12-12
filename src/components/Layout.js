@@ -1,16 +1,14 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css"; // import first
 import { toast, ToastContainer } from "react-toastify"; // then this
 import Parser from 'html-react-parser';
-import { Modal } from "react-bootstrap";
 
 
 class Layout extends React.Component {
 
   render() {
-
     var userToken = localStorage.getItem("userToken");
     var userData = localStorage.getItem("userData");
   
@@ -31,6 +29,10 @@ class Layout extends React.Component {
      var FOOTER_PHONE=this.props[6].value;
      var S_INSTAGRAM=this.props[7].value;
     }
+
+ 
+
+
     return (
       <div className="page-wrapper">
         <ToastContainer /> {/* <- add line */}
@@ -370,6 +372,16 @@ class Layout extends React.Component {
             Only for 40 OMR !! book now.</p>
         </div></Link>
         {/* promoition model */}
+
+
+        {/* <Modal show={true} >
+        <p className="my-4 font-weight-bold">Full body polish, Upholstery Cleaning, Headlight Polish, and Engine Room Cleaning
+            Only for 40 OMR !! book now.</p>        <Modal.Footer>
+        </Modal.Footer>
+      </Modal> */}
+
+
+
       </div>
     );
   }

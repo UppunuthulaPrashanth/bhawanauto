@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 // login and register slices
-import { registerSlice, loginSlice, checkAuthSlice } from "./auth/authSlice";
+import { registerSlice, loginSlice, guestloginSlice, checkAuthSlice } from "./auth/authSlice";
 import { getProfileSlice, updateProfileSlice } from "./profile/profileSlice";
 import { getAddonSlice } from "./booking-data/addonSlice";
 import { getLocationSlice } from "./booking-data/locationSlice";
@@ -26,6 +26,7 @@ export default combineReducers({
 
     register:registerSlice.reducer,
     login:loginSlice.reducer,
+    guestlogin:guestloginSlice.reducer,
     forgetPassword:forgetPasswordSlice.reducer,
     checkAuth:checkAuthSlice.reducer,
     resetPassword:resetPasswordSlice.reducer,
