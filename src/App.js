@@ -88,7 +88,7 @@ function App() {
           <Helmet>
             {meta_data? meta_data.map((element, key)=>{
               return(
-                element.tag_name.substring(0, 3)=='geo'?
+                element.tag_name.substring(0, 2)=='og' ?
                   <meta property={element.tag_name} content={element.tag_content} />
                   :
                   <meta name={element.tag_name} content={element.tag_content} />
