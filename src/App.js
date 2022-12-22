@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -46,13 +46,19 @@ import Booking_view from "./pages/Booking_view";
 import Booking_list from "./pages/Booking_list";
 import { checkAuth } from "./redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getStaticData } from "./redux/features/cms/staticDataSlice";
+import { getMetaData, getStaticData } from "./redux/features/cms/staticDataSlice";
 import Loader from "./components/loader/Loader";
+import { Helmet } from "react-helmet";
+
 
 function App() {
   const disptach = useDispatch();
-
+  const [meta_data, setMedata_data]=useState([]);
   useEffect(() => {
+    disptach(getStaticData());
+    disptach(getMetaData()).then((res)=>{
+      setMedata_data(res.payload)
+    });
     disptach(checkAuth())
       .then((res) => {})
       .catch((error) => {
@@ -61,10 +67,10 @@ function App() {
       });
   }, []);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getStaticData());
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getStaticData());
+  // }, []);
 
   const static_data = JSON.parse(
     JSON.stringify(useSelector((state) => state.staticData))
@@ -74,9 +80,24 @@ function App() {
   }
 
 
+
+
   
   return (
     <div className="App">
+          <Helmet>
+            {meta_data? meta_data.map((element, key)=>{
+              return(
+                element.tag_name.substring(0, 3)=='geo'?
+                  <meta property={element.tag_name} content={element.tag_content} />
+                  :
+                  <meta name={element.tag_name} content={element.tag_content} />
+
+              )
+                })
+                :null}
+            </Helmet>
+
       <Router>
         <ScrollToTop />
         <Layout {...static_data.data}>

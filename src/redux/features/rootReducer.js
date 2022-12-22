@@ -19,7 +19,7 @@ import { submitRepairEnquirySlice } from "./customer-requests/repairEnquirySlice
 import { getBlogSlice } from "./booking-data/blogSlice";
 import { getBookingSlice, getSingleBookingSlice, postBookingSlice } from "./booking-data/bookingSlice";
 import { getBannerSlice, getCarBrandSlice, getClientSlice, getGallerySlice, getPartnerSlice } from "./cms/bannerSlice";
-import { getStaticDataSlice } from "./cms/staticDataSlice";
+import { getMetaDataSlice, getStaticDataSlice } from "./cms/staticDataSlice";
 
 // exporting slice to combined reducers
 export default combineReducers({
@@ -64,5 +64,6 @@ export default combineReducers({
     gallery:getGallerySlice.reducer,
     // statis data
     staticData:getStaticDataSlice.reducer,
+    metaData:getMetaDataSlice.reducer,
 
 })

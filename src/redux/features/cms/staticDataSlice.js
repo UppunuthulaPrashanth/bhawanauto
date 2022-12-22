@@ -35,3 +35,37 @@ export const getStaticDataSlice = createSlice({
     },
   },
 });
+
+
+
+
+// Get Meta data
+export const getMetaData= createAsyncThunk(`${namespace}/getSeo`, async () => {
+  try {
+    const { data } = await axios.get(`${API_URL}/${namespace}/getSeo`);
+    return data;
+  } catch (error) {
+    return Checkerror(error);
+  }
+});
+
+export const getMetaDataSlice = createSlice({
+  name: namespace,
+  initialState: {
+    loading: "",
+    data: [],
+  },
+  reducers: {},
+  extraReducers: {
+    [getStaticData.pending](state, action) {
+      state.loading = HTTP_STATUS.PENDING;
+    },
+    [getStaticData.fulfilled](state, action) {
+      state.loading = HTTP_STATUS.FULFILLED;
+      state.data = action.payload;
+    },
+    [getStaticData.rejected](state, action) {
+      state.loading = HTTP_STATUS.REJECTED;
+    },
+  },
+});

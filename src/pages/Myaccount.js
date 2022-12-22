@@ -52,6 +52,25 @@ if(isLoading){
           <h4 className="pb-4 border-bottom text-center">Account profile</h4>
           <div className="py-2">
             <div className="row py-2">
+            {gettingProfile.data?gettingProfile.data.role=='Guest'?
+            <>
+              <div className="col-md-6">
+                <label htmlFor="fullname">Full Name</label>
+                <input
+                  type="text"
+                  readOnly
+                  className="bg-light form-control"
+                  name="fullname"
+                  defaultValue={gettingProfile.data?gettingProfile.data.firstname:null}
+                  onChange={(e) => onChange(e)}
+                  />
+              </div>
+              <div className="col-md-6 pt-md-0 pt-3">
+                <p>You loggedin as : <span>Guest</span></p>
+              </div>
+              </>
+              :
+              <>
               <div className="col-md-6">
                 <label htmlFor="firstname">First Name</label>
                 <input
@@ -74,6 +93,8 @@ if(isLoading){
                   onChange={(e) => onChange(e)}
                   />
               </div>
+              </>
+              :null}
             </div>
             <div className="row py-2">
               <div className="col-md-6">

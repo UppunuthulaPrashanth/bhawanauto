@@ -67,10 +67,12 @@ class Layout extends React.Component {
                                   <div className="dropdown_inner ">
                                     <ul>
                                       <li>
+                                        {userData=='Guest'?'Guest':
                                       <Link
                                         to="profile"
                                       >Profile
                                       </Link>
+                                      }
                                       </li>
                                       <li>
                                       <Link
