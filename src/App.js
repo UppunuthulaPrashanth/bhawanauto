@@ -49,7 +49,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMetaData, getStaticData } from "./redux/features/cms/staticDataSlice";
 import Loader from "./components/loader/Loader";
 import { Helmet } from "react-helmet";
-
+import Payment_getway from "./pages/Payment_getway";
 
 function App() {
   const disptach = useDispatch();
@@ -199,6 +199,18 @@ function App() {
               />
             </Route>
 
+            {/* <Route path="/payment-getway">
+              <Route
+                path=""
+                element={
+                  <PrivateRoute>
+                    <Payment_getway />
+                  </PrivateRoute>
+                }
+              />
+            </Route> */}
+
+
             <Route path="/booking-service/:id">
               <Route
                 path=""
@@ -231,6 +243,7 @@ function App() {
                 }
               />
             </Route>
+            
 
             {/* if user logged in  redirect to profile */}
             <Route path="/auth">

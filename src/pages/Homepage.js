@@ -124,7 +124,7 @@ export default function Homepage() {
                 <div className="item one" key={key}>
                   <div className="af_slider">
                     <a
-                      href="book-service.html"
+                      href="#"
                       package-id="23"
                       package-type="SP"
                       className="takeMeToBooking"
@@ -162,145 +162,84 @@ export default function Homepage() {
                 <h2>Service Packages</h2>
               </div>
               {/* Asian Brands */}
-              <div className="text-center m-1">
-                <h5 className="mx-auto">Japanese / Korean / Chinese Brands</h5>
-              </div>
-              <div className="row rect-owel package-one">
-                {data ? (
-                  <OwlCarousel
-                    className="owl-theme"
-                    {...options}
-                    loop
-                    smartSpeed={700}
-                    margin={20}
-                  >
-                    {data.Japanese_Korean_Chinese
-                      ? data.Japanese_Korean_Chinese.map(
-                          (packageDetails, key) => {
-                            return (
-                              <div className="item japan" key={key}>
-                                <div className="each_package_container  ">
-                                  <div
-                                    className="content_package"
-                                    id={"package_" + key}
-                                  >
-                                    <h3 className="bold-text">
-                                      {packageDetails.name}
-                                    </h3>
-                                    <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                                      <span className="medium-text">
-                                        {CURRENCY} &nbsp;
-                                      </span>
-                                      <span className="biggest-text bold-text primary-color">
-                                        {packageDetails.price}
-                                      </span>
-                                    </span>
-                                    <div className="points_container mt-1">
-                                      <ul>
-                                        {packageDetails.features
-                                          .split(",")
-                                          .map((subitem, i) => (
-                                            <li
-                                              className="included abs_content_wrapper"
-                                              key={i}
-                                            >
-                                              <span>{subitem}</span>
-                                            </li>
-                                          ))}
-                                      </ul>
-                                    </div>
-                                    <p className="btn_container pt-4">
-                                      <Link
-                                        to={
-                                          "/booking-service/" +
-                                          packageDetails.id
-                                        }
-                                        className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
+              {data? data.map((singleCountrypackages, singlekey)=>{
+                return(
+                <>
+                  <div className="text-center m-1" key={singlekey}>
+                    <h5 className="mx-auto">{singleCountrypackages[singlekey].country}</h5>
+                  </div>
+                  <div className="row rect-owel package-one" key={singlekey}>
+                    {data ? (
+                      <OwlCarousel
+                        className="owl-theme"
+                        {...options}
+                        loop
+                        smartSpeed={700}
+                        margin={20}
+                      >
+                        {singleCountrypackages
+                          ? singleCountrypackages.map(
+                              (packageDetails, key) => {
+                                return (
+                                  <div className="item japan" key={key}>
+                                    <div className="each_package_container  ">
+                                      <div
+                                        className="content_package"
+                                        id={"package_" + key}
                                       >
-                                        Book Now &nbsp;{" "}
-                                        <i className="fas fa-arrow-right"></i>
-                                      </Link>
-                                    </p>
+                                        <h3 className="bold-text">
+                                          {packageDetails.name}
+                                        </h3>
+                                        <span className="price_wrapper d-block mt-4 mb-4 text-center">
+                                          <span className="medium-text">
+                                            {CURRENCY} &nbsp;
+                                          </span>
+                                          <span className="biggest-text bold-text primary-color">
+                                            {packageDetails.price}
+                                          </span>
+                                        </span>
+                                        <div className="points_container mt-1">
+                                          <ul>
+                                            {packageDetails.features
+                                              .split(",")
+                                              .map((subitem, i) => (
+                                                <li
+                                                  className="included abs_content_wrapper"
+                                                  key={i}
+                                                >
+                                                  <span>{subitem}</span>
+                                                </li>
+                                              ))}
+                                          </ul>
+                                        </div>
+                                        <p className="btn_container pt-4">
+                                          <Link
+                                            to={
+                                              "/booking-service/" +
+                                              packageDetails.id
+                                            }
+                                            className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
+                                          >
+                                            Book Now &nbsp;{" "}
+                                            <i className="fas fa-arrow-right"></i>
+                                          </Link>
+                                        </p>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                            );
-                          }
-                        )
-                      : null}
-                  </OwlCarousel>
-                ) : null}
-              </div>
+                                );
+                              }
+                            )
+                          : null}
+                      </OwlCarousel>
+                    ) : null}
+                  </div>
+                </>
+                )
+              }):null}
               {/* End Asian Brands */}
 
-              {/* American & European Brands */}
-              <div className="text-center m-1">
-                <h5 className="mx-auto">American & European Brands</h5>
-              </div>
-              <div className="row packages_two ">
-                <div className="col-12 packages_caroseul_dsg_dots">
-                  {data ? (
-                    <OwlCarousel className="owl-theme" {...options} margin={20}>
-                      {data.Americana_European
-                        ? data.Americana_European.map((packageDetails, key) => {
-                            return (
-                              <div className="item us">
-                                <div
-                                  className="each_package_container"
-                                  key={key}
-                                >
-                                  <div
-                                    className="content_package"
-                                    id={"package_" + key}
-                                  >
-                                    <h3 className="bold-text">
-                                      {packageDetails.name}
-                                    </h3>
-                                    <span className="price_wrapper d-block mt-4 mb-4 text-center">
-                                      <span className="medium-text">
-                                        {CURRENCY} &nbsp;
-                                      </span>
-                                      <span className="biggest-text bold-text primary-color">
-                                        {packageDetails.price}
-                                      </span>
-                                    </span>
-                                    <div className="points_container mt-1">
-                                      <ul>
-                                        {packageDetails.features
-                                          .split(",")
-                                          .map((subitem, i) => (
-                                            <li
-                                              className="included abs_content_wrapper"
-                                              key={i}
-                                            >
-                                              <span>{subitem}</span>
-                                            </li>
-                                          ))}
-                                      </ul>
-                                    </div>
-                                    <p className="btn_container pt-4">
-                                      <Link
-                                        to={
-                                          "/booking-service/" +
-                                          packageDetails.id
-                                        }
-                                        className="theme-btn btn-style-two takeMeToBooking  d-block w-100 text-center"
-                                      >
-                                        Book Now &nbsp;{" "}
-                                        <i className="fas fa-arrow-right"></i>
-                                      </Link>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })
-                        : null}
-                    </OwlCarousel>
-                  ) : null}
-                </div>
-              </div>
-              {/*End American & European Brands */}
+            
             </div>
           </div>
         </section>

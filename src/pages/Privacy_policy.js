@@ -7,9 +7,6 @@ export default function Privacy_policy() {
         <div className="auto-container">
           <div className="sec-title text-center mb-0">
             <h2>Privacy Policy</h2>
-            {/* <span className="devider">
-              <span></span>
-            </span> */}
           </div>
         </div>
       </section>

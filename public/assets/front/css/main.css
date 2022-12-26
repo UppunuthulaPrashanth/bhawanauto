@@ -486,4 +486,21 @@
 
 
 
+/* Paymentgeway css */
+.payment_getway  .form-control:focus {
+    border-color: #4ca746;
+}
 
+.payment_getway .padding{
+    padding: 5rem !important;
+}
+
+.rccs__card--front{
+background-color: #36096d  !important;
+background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%) !important;
+}
+.App-payment{
+    background-color:#E6E6E6;
+    border-radius: 10px;
+    margin:20px
+}
