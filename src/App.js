@@ -199,7 +199,7 @@ function App() {
               />
             </Route>
 
-            {/* <Route path="/payment-getway">
+            <Route path="/payment-getway">
               <Route
                 path=""
                 element={
@@ -208,7 +208,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-            </Route> */}
+            </Route>
 
 
             <Route path="/booking-service/:id">

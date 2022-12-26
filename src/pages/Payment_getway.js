@@ -7,34 +7,34 @@ import {
   import Card from 'react-credit-cards'
 
 
-export default function Payment_getway() {
+  export default class Payment_getway extends React.Component {
 
 
- const [state, setState]=useState({
-    number: '',
-    name: '',
-    expiry: '',
-    cvc: '',
-    issuer: '',
-    focused: '',
-    formData: ''
-  });
 
+    state = {
+      number: '',
+      name: '',
+      expiry: '',
+      cvc: '',
+      issuer: '',
+      focused: '',
+      formData: null
+    }
 
-  const handleCallback = ({ issuer }, isValid) => {
+   handleCallback = ({ issuer }, isValid) => {
     if (isValid) {
-      setState({ issuer })
+      this.setState({ issuer })
     }
   }
   
 
-  // const handleInputFocus = ({ target }) => {
-  //   setState({
-  //     focused: target.name
-  //   })
-  // }
+  handleInputFocus = ({ target }) => {
+    this.setState({
+      focused: target.name
+    })
+  }
 
-  const handleInputChange = ({ target }) => {
+   handleInputChange = ({ target }) => {
     
     if (target.name === 'number') {
       target.value = formatCreditCardNumber(target.value)
@@ -43,17 +43,18 @@ export default function Payment_getway() {
     } else if (target.name === 'cvc') {
       target.value = formatCVC(target.value)
     }
-
-    setState({ ...state, [target.name]: target.value })
+    if(target.value){
+      this.setState({ ...this.state, [target.name]: target.value })
+    }
   }
 
-  const handleSubmit = e => {
+   handleSubmit = e => {
     e.preventDefault()
     alert('You have finished payment!')
   }
 
-
-  const { name, number, expiry, cvc, focused, issuer } = state
+  render() {
+  const { name, number, expiry, cvc, focused, issuer } = this.state
 
 
   return (
@@ -67,12 +68,12 @@ export default function Payment_getway() {
               expiry={expiry}
               cvc={cvc}
               focused={focused}
-              callback={handleCallback}
+              callback={this.handleCallback}
             />
           </div>
 
           <div className="col-md-5 mt-5 mb-5">
-            <form  onSubmit={handleSubmit} className="row">
+            <form  onSubmit={this.handleSubmit} className="row">
               <div className='form-group col-12'>
                 <small>Name on card:</small>
 
@@ -84,7 +85,7 @@ export default function Payment_getway() {
                   pattern='[a-z A-Z-]+'
                   maxLength="29"
                   required
-                  onChange={handleInputChange}
+                  onChange={this.handleInputChange}
                 />
               </div>
               <div className='form-group col-12'>
@@ -98,7 +99,9 @@ export default function Payment_getway() {
                   pattern='[\d| ]{16,22}'
                   maxLength='19'
                   required
-                  onChange={handleInputChange}
+                  onChange={this.handleInputChange}
+                  onFocus={this.handleInputFocus}
+
                 />
               </div>
 
@@ -112,7 +115,9 @@ export default function Payment_getway() {
                   placeholder='Valid Thru'
                   pattern='\d\d/\d\d'
                   required
-                  onChange={handleInputChange}
+                  onChange={this.handleInputChange}
+                  onFocus={this.handleInputFocus}
+
                 />
               </div>
               <div className='form-group col-6'>
@@ -125,7 +130,9 @@ export default function Payment_getway() {
                   placeholder='CVC'
                   pattern='\d{3}'
                   required
-                  onChange={handleInputChange}
+                  onChange={this.handleInputChange}
+                  onFocus={this.handleInputFocus}
+
                 />
               </div>
               <input type='hidden' name='issuer' value={issuer} />
@@ -137,4 +144,5 @@ export default function Payment_getway() {
         </div>
       </div>
   );
+  }
 }
