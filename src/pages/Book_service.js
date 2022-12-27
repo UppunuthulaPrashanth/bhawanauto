@@ -112,11 +112,13 @@ export default function Book_service() {
 
   var package_price = 0;
   var package_name = "loading";
+  var package_country="loading";
   if (package_data) {
     for (var item of package_data.data) {
       if (item.id === active_package) {
         package_price = item.price;
         package_name = item.name;
+        package_country=item.country;
       }
     }
   }
@@ -396,7 +398,7 @@ export default function Book_service() {
                       ? package_data.data.map((element, key) => {
                           return (
                             <div
-                              className="col-lg-4 col-md-4 col-sm-4 col-6 mt-4 "
+                              className="col-lg-4 col-md-6 col-sm-12  mt-4 "
                               key={key}
                               onClick={() => onChangePlan(element)}
                             >
@@ -409,6 +411,7 @@ export default function Book_service() {
                               >
                                 <label className="label_name">
                                   {element.name}
+
                                 </label>
                                 <div className="d-inline-block ml-2 dropdown_wrapper">
                                   <i className="fas fa-info-circle"></i>
@@ -417,6 +420,7 @@ export default function Book_service() {
                                       <h3 className="text-center normal-text bold-text mb-3 text-primary">
                                         Service Includes
                                       </h3>
+
                                       <ul>
                                         {element.features
                                           .split(",")
@@ -435,13 +439,16 @@ export default function Book_service() {
                                   </div>
                                 </div>
                                 <span className="d-block mt-3 mb-4">
+                                  
                                   <span className="small-text">
                                     {CURRENCY}&nbsp;
                                   </span>
                                   <span className="bold-text big-text price_text">
                                     {element.price}
                                   </span>
+
                                 </span>
+                                <p>{element.country}</p>
 
                                 <label className="label_booking">
                                   <input
@@ -533,6 +540,7 @@ export default function Book_service() {
                                       <tr>
                                         <td>
                                           <p className="m-0">{package_name}</p>
+                                          <span id="package_country"> {package_country} </span>
                                         </td>
                                         <td>
                                           <span>{CURRENCY}</span>{" "}
