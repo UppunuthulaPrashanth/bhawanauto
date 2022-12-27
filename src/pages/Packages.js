@@ -186,10 +186,7 @@ export default function Packages() {
                                         className="mt-4"
                                         style={{ fontSize: "10px" }}
                                       >
-                                        {value.country ==
-                                        "Japanese_Korean_Chinese"
-                                          ? "(Japanese/Korean/Chinese Brands)"
-                                          : "(American & European Brands)"}
+                                        {value.country}
                                       </span>
                                     </span>
 
