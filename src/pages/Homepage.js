@@ -164,11 +164,11 @@ export default function Homepage() {
               {/* Asian Brands */}
               {data? data.map((singleCountrypackages, singlekey)=>{
                 return(
-                <>
-                  <div className="text-center m-1" key={singlekey}>
+                <div key={singlekey}>
+                  <div className="text-center m-1">
                     <h5 className="mx-auto">{singleCountrypackages[singlekey].country}</h5>
                   </div>
-                  <div className="row rect-owel package-one" key={singlekey}>
+                  <div className="row rect-owel package-one">
                     {data ? (
                       <OwlCarousel
                         className="owl-theme"
@@ -234,7 +234,7 @@ export default function Homepage() {
                       </OwlCarousel>
                     ) : null}
                   </div>
-                </>
+                </div>
                 )
               }):null}
               {/* End Asian Brands */}

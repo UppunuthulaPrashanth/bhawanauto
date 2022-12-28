@@ -79,7 +79,7 @@ function App() {
     return <Loader />;
   }
 
-
+console.clear()
 
 
   
@@ -89,14 +89,14 @@ function App() {
             {meta_data? meta_data.map((element, key)=>{
               return(
                 element.tag_name.substring(0, 2)=='og' ?
-                  <meta property={element.tag_name} content={element.tag_content} />
+                  <meta property={element.tag_name} content={element.tag_content} key={key}/>
                   :
-                  <meta name={element.tag_name} content={element.tag_content} />
+                  <meta name={element.tag_name} content={element.tag_content} key={key}/>
 
               )
                 })
                 :null}
-            </Helmet>
+          </Helmet>
 
       <Router>
         <ScrollToTop />
@@ -199,7 +199,7 @@ function App() {
               />
             </Route>
 
-            <Route path="/payment-getway">
+            {/* <Route path="/payment-getway">
               <Route
                 path=""
                 element={
@@ -208,7 +208,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-            </Route>
+            </Route> */}
 
 
             <Route path="/booking-service/:id">
