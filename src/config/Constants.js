@@ -1,6 +1,6 @@
-export const API_URL = "https://dev3.sbagh.com/api/v1";
-export const ASSETS = "https://dev3.sbagh.com/storage/images/";
-export const BLOG_ASSETS = "https://dev3.sbagh.com/storage/images/blog/";
+export const API_URL = "https://admin.bat-oman.com/api/v1";
+export const ASSETS = "https://admin.bat-oman.com/storage/images/";
+export const BLOG_ASSETS = "https://admin.bat-oman.com/storage/images/blog/";
 
 
 // for reCaptcha
