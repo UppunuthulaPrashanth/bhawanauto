@@ -47,11 +47,14 @@ export default function Contact_us() {
     recaptchaRef.current.reset();
     if (captchaToken) {
       await axios
-        .post(
-          `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${captchaToken}`
+        .get(
+          `https://dev3.sbagh.com/api/v1/customer/verifyCaptcha/${captchaToken}`,
+          {headers : {
+            'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+        }}
         )
         .then((res) => {
-          if (res.data.success) {
+          if (res.data.success && res.data.message.success) {
             setIsLoading(true);
             dispatch(submitContact(formData)).then((res) => {
               if (res.payload.success) {

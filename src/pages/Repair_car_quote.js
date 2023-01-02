@@ -53,11 +53,14 @@ export default function Repair_car_quote() {
     recaptchaRef.current.reset();
     if (captchaToken) {
       await axios
-        .post(
-          `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${captchaToken}`
-        )
-        .then((res) => {
-          if (res.data.success) {
+      .get(
+        `https://dev3.sbagh.com/api/v1/customer/verifyCaptcha/${captchaToken}`,
+        {headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      }}
+      )
+      .then((res) => {
+        if (res.data.success && res.data.message.success) {
             setIsLoading(true);
             const convertedForm = new FormData();
             for (var key in formData) {
