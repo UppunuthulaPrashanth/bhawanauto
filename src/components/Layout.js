@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css"; // import first
@@ -7,11 +7,14 @@ import Parser from 'html-react-parser';
 
 
 class Layout extends React.Component {
+  state = {isOpen: true};
+  updateState = () => {this.setState({isOpen: (!this.state.isOpen)})
+  console.log(this.state.isOpen)
+};
 
   render() {
     var userToken = localStorage.getItem("userToken");
     var userData = localStorage.getItem("userData");
-  
 
     const logout = () => {
       localStorage.clear();
@@ -238,7 +241,7 @@ class Layout extends React.Component {
                         <ul className="list clearfix">
                           <li className="d-block">
                             <Link to="/">
-                              Home
+                              Home {this.state.isOpen}
                             </Link>
                           </li>
                           <li className="d-block">
@@ -313,7 +316,7 @@ class Layout extends React.Component {
                       <div className="widget-content">
                         <ul className="contact-info-list">
                           <li className="color-white">
-                            <span className="fa fa-location-arrow"></span>
+                            <span className="fa fa-map-marker"></span>
                             {Parser(FOOTER_ADDRESS?FOOTER_ADDRESS:"")}
                           </li>
                           <li>
@@ -368,11 +371,16 @@ class Layout extends React.Component {
 
 
         {/* promotion model */}
+        {this.state.isOpen ?
+        <>
         <Link to={"packages"}>
+       
         <div className="card floating">
-          <p className="my-4 font-weight-bold">Full body polish, Upholstery Cleaning, Headlight Polish, and Engine Room Cleaning
+          <p className="my-4 font-weight-bold">Full body polish, <i className="fa fa-times fa-lg" onClick={this.updateState}style={{backgroundColor:"#27A3E2", color:"black", borderRadius:"2px", width:"20px", height:"20px"}}></i>Upholstery Cleaning, Headlight Polish, and Engine Room Cleaning
             Only for 40 OMR !! book now.</p>
         </div></Link>
+        </>
+        : null }
         {/* promoition model */}
 
 

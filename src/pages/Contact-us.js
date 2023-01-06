@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { submitContact } from "../redux/features/customer-requests/contactusSlice";
 import ReCAPTCHA from "react-google-recaptcha";
-import { SECRET_KEY, SITE_KEY } from "../config/Constants";
+import { API_URL, SECRET_KEY, SITE_KEY } from "../config/Constants";
 import axios from "axios";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -48,7 +48,7 @@ export default function Contact_us() {
     if (captchaToken) {
       await axios
         .get(
-          `https://dev3.sbagh.com/api/v1/customer/verifyCaptcha/${captchaToken}`,
+          `${API_URL}/customer/verifyCaptcha/${captchaToken}`,
           {headers : {
             'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
         }}

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import Loader from './components/loader/Loader';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Suspense fallback={<Loader/>}>

@@ -50,6 +50,7 @@ import { getMetaData, getStaticData } from "./redux/features/cms/staticDataSlice
 import Loader from "./components/loader/Loader";
 import { Helmet } from "react-helmet";
 import Payment_getway from "./pages/Payment_getway";
+import Offers from "./pages/Offers";
 
 function App() {
   const disptach = useDispatch();
@@ -109,6 +110,7 @@ console.clear()
             <Route exact path="gallery" element={<Gallery />} />
             <Route exact path="get-quote" element={<Get_quote />} />
             <Route exact path="packages" element={<Packages />} />
+            <Route exact path="offers" element={<Offers />} />
             <Route exact path="privacy-policy" element={<Privacy_policy />} />
             <Route
               exact

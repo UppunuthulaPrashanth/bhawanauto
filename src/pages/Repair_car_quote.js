@@ -6,7 +6,7 @@ import { getPackage } from "../redux/features/booking-data/packagesSlice";
 import ReCAPTCHA from "react-google-recaptcha";
 import { getMake } from "../redux/features/booking-data/makeSlice";
 import { getModal } from "../redux/features/booking-data/makeModelSlice";
-import { SECRET_KEY, SITE_KEY } from "../config/Constants";
+import { API_URL, SECRET_KEY, SITE_KEY } from "../config/Constants";
 import axios from "axios";
 import { useRef } from "react";
 import { submitRepairEnquiry } from "../redux/features/customer-requests/repairEnquirySlice";
@@ -54,7 +54,7 @@ export default function Repair_car_quote() {
     if (captchaToken) {
       await axios
       .get(
-        `https://dev3.sbagh.com/api/v1/customer/verifyCaptcha/${captchaToken}`,
+        `${API_URL}/customer/verifyCaptcha/${captchaToken}`,
         {headers : {
           'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
       }}

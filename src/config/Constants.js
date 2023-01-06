@@ -1,7 +1,7 @@
 export const API_URL = "https://admin.bat-oman.com/api/v1";
 export const ASSETS = "https://admin.bat-oman.com/storage/images/";
 export const BLOG_ASSETS = "https://admin.bat-oman.com/storage/images/blog/";
-
+export const OFFERS = "https://admin.bat-oman.com/storage/images/offers/";
 
 // for reCaptcha
 export const SITE_KEY="6LcwB8QjAAAAAJTz681s_NuEWCgLu-pyG3zhONA3"

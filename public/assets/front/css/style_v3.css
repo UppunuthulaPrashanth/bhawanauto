@@ -5535,7 +5535,7 @@ img {
   height: 35px;
   width: 35px;
   border-radius: 50px;
-  border: 1px solid #ffffff;
+  border: 1.5px solid #ffffff;
   text-align: center;
   display: inline-block;
   border-radius: 50%;
@@ -11303,5 +11303,58 @@ p{
     font-size: 0.8rem !important;
     font-weight: 400;
     }
+
+
+
+    /* Offers page css */
     
-  
+    .offer {
+      border: none;
+      background-color: white;
+      padding-bottom: 5px;
+  }
+
+
+
+
+.hurry {
+  margin-top: 20px;
+}
+
+.booking {
+  background-color: white;
+  border: 2px solid lightgray;
+  width: 150px;
+  border-radius: 0px;
+}
+
+.booking:hover {
+  background-color: #ECEFF1;
+  border: 2px solid black;
+}
+
+@media (min-width:599px) {
+  .modal-dialog {
+      max-width: 47rem;
+  }
+
+  .details {
+      padding: 0 40px;
+  }
+
+  .off {
+      position: absolute;
+      bottom: 150px;
+      left: 25px;
+  }
+}
+
+.details{
+  background-color: #eaedee;
+  border-radius: 10px;
+  min-height: 245px !important;
+}
+
+.details p{
+  margin: 8px;
+}
