@@ -240,8 +240,8 @@ class Layout extends React.Component {
                       <div className="widget-content white_dsg">
                         <ul className="list clearfix">
                           <li className="d-block">
-                            <Link to="/">
-                              Home {this.state.isOpen}
+                            <Link to="offers">
+                              Offers
                             </Link>
                           </li>
                           <li className="d-block">

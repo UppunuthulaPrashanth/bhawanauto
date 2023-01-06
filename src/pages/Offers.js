@@ -6,15 +6,19 @@ import { getOffersData } from "../redux/features/cms/offerSlice";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import parse from 'html-react-parser';
+import Loader from "../components/loader/Loader";
 
 export default function Offers() {
   const [offers, setOffers] = useState();
   const [tempOffer, setTempOffer] = useState();
+  const [isLoading, setIsLoading]=useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setIsLoading(true)
     dispatch(getOffersData()).then((response) => {
       setOffers(response.payload);
+      setIsLoading(false)
     });
   }, []);
 
@@ -26,6 +30,12 @@ export default function Offers() {
     setTempOffer(data[0]);
     setShow(true);
   };
+
+
+  if(isLoading){
+    return <Loader/>
+  }
+
 
   return (
     <>
