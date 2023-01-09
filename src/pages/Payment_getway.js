@@ -53,6 +53,8 @@ import {
     alert('You have finished payment!')
   }
 
+
+  
   render() {
   const { name, number, expiry, cvc, focused, issuer } = this.state
 
@@ -71,7 +73,7 @@ import {
               callback={this.handleCallback}
             />
           </div>
-
+          <div id="checkout"></div>
           <div className="col-md-5 mt-5 mb-5">
             <form  onSubmit={this.handleSubmit} className="row">
               <div className='form-group col-12'>

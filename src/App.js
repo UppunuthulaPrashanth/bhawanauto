@@ -51,7 +51,7 @@ import Loader from "./components/loader/Loader";
 import { Helmet } from "react-helmet";
 import Payment_getway from "./pages/Payment_getway";
 import Offers from "./pages/Offers";
-
+ 
 function App() {
   const disptach = useDispatch();
   const [meta_data, setMedata_data]=useState([]);
@@ -201,7 +201,7 @@ console.clear()
               />
             </Route>
 
-            {/* <Route path="/payment-getway">
+            <Route path="/payment-getway">
               <Route
                 path=""
                 element={
@@ -210,7 +210,7 @@ console.clear()
                   </PrivateRoute>
                 }
               />
-            </Route> */}
+            </Route>
 
 
             <Route path="/booking-service/:id">
