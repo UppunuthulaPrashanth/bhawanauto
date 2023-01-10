@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const GoogleTranslate = () => {
+
+  var duplicate_google_translate_counter = 0;//this stops google adding button multiple times
+
+
   const googleTranslateElementInit = () => {
+    if (duplicate_google_translate_counter == 0) {
+
     new window.google.translate.TranslateElement(
       {
         pageLanguage: 'en',
@@ -9,6 +15,8 @@ const GoogleTranslate = () => {
       },
       'google_translate_element'
     );
+    }
+    duplicate_google_translate_counter++;
   };
 
   useEffect(() => {

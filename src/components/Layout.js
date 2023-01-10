@@ -4,9 +4,11 @@ import Navbar from "./Navbar";
 import "react-toastify/dist/ReactToastify.css"; // import first
 import { toast, ToastContainer } from "react-toastify"; // then this
 import Parser from 'html-react-parser';
+import GoogleTranslate from "../pages/GoogleTranslate";
 
 
 class Layout extends React.Component {
+  
   state = {isOpen: true};
   updateState = () => {this.setState({isOpen: (!this.state.isOpen)})
   console.log(this.state.isOpen)
@@ -33,12 +35,15 @@ class Layout extends React.Component {
      var S_INSTAGRAM=this.props[7].value;
     }
 
- 
+
+   
+
 
 
     return (
       <div className="page-wrapper">
-        <ToastContainer /> {/* <- add line */}
+        <ToastContainer />
+        {/* <- add line */}
         {/* Preloader */}
         {/* Main Header*/}
         <header className="sticky-header-top">
@@ -46,10 +51,11 @@ class Layout extends React.Component {
             <div className="row">
               <div className="col-12">
                 <div className="row">
-                  <div className="col-lg-12">
+                  <div className="col-lg-12"> 
                     <div className="row">
                       <div className="col-12 max1200 min1200 d-block mx-auto">
                         <div className="d-flex justify-content-end py-1 pr-3 pr-xl-0">
+                          <GoogleTranslate/>
                           <div className="mr-sm-4 bold-text small-text my-auto d-none d-sm-block">
                             <span>CALL : </span>
                             <Link to="tel:8002886349">{HEADER_PHONE? HEADER_PHONE:"800 288 349"}</Link>&nbsp;

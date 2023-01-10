@@ -5,19 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
 import Loader from './components/loader/Loader';
-import GoogleTranslate from './pages/GoogleTranslate';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Suspense fallback={<Loader/>}>
-    {/* <React.StrictMode> */}
       <Provider store={store}>
-      <GoogleTranslate/>
         <App />
       </Provider>
-    {/* </React.StrictMode> */}
   </Suspense>
 );
 
