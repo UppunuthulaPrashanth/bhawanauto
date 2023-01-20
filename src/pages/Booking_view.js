@@ -40,7 +40,8 @@ export default function Booking_view() {
           Your Booking Details <br />
           Booking ID : {data.order_id}
         </h3>
-        <span class="stamp is-nope">{data.payment_status}</span>
+        
+        <span class={data.payment_status=='failed'|| data.payment_status=='cancelled' ? "stamp is-nope" : "stamp is-approved"}>{data.payment_status}</span>
 
       </div>
       <div className="col-md-12 booking-details">
@@ -52,9 +53,9 @@ export default function Booking_view() {
                 <div className="col-lg-4">
                   <div className="table-responsive booking-table">
                     <table className="table" >
-                      <tr><td><a className="cl" href="#">Date</a></td><td>{data.date}</td></tr>
-                      <tr><td><a className="cl" href="#">Make</a></td><td>{data.make}</td></tr>
-                      <tr><td><a className="cl" href="#">Plate No</a></td><td>{data.plate_number}</td></tr>
+                      <tr><td><span>Date</span></td><td>{data.date}</td></tr>
+                      <tr><td><span>Make</span></td><td>{data.make}</td></tr>
+                      <tr><td><span>Plate No</span></td><td>{data.plate_number}</td></tr>
                     </table>
                   </div>
                 </div>
@@ -62,19 +63,19 @@ export default function Booking_view() {
                 <div className="col-lg-4 extra-table">
                   <div className="table-responsive booking-table">
                     <table className="table">
-                      <tr><td><a className="cl" href="#">Time Slot</a></td><td>{data.timeslot}</td></tr>
-                      <tr><td><a className="cl" href="#">Model</a></td><td>{data.model}</td></tr>
-                      <tr><td><a className="cl" href="#">Plate Code</a></td><td>{data.plate_code}</td></tr>
+                      <tr><td><span>Time Slot</span></td><td>{data.timeslot}</td></tr>
+                      <tr><td><span>Model</span></td><td>{data.model}</td></tr>
+                      <tr><td><span>Plate Code</span></td><td>{data.plate_code}</td></tr>
                     </table>
                   </div>
                 </div>
                 <div className="col-lg-4 extra-table">
                   <div className="table-responsive booking-table">
                     <table className="table">
-                      <tr><td><a className="cl" href="#">Location</a></td><td>{data.location}</td></tr>
-                      <tr><td><a className="cl" href="#">Model Year</a></td><td>{data.model_year}</td></tr>
-                      <tr><td><a className="cl" href="#">State</a></td><td>{data.state}</td></tr>
-                      <tr><td><a className="cl" href="#">Payment Status</a></td><td className="watermark">{data.payment_status}</td></tr>
+                      <tr><td><span>Location</span></td><td>{data.location}</td></tr>
+                      <tr><td><span>Model Year</span></td><td>{data.model_year}</td></tr>
+                      <tr><td><span>State</span></td><td>{data.state}</td></tr>
+                      <tr><td><span>Payment Status</span></td><td className="watermark">{data.payment_status}</td></tr>
                     </table>
                   </div>
                 </div>

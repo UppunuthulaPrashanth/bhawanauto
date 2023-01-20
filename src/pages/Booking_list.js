@@ -46,7 +46,7 @@ export default function Booking_list() {
                     <td>{item.model}</td>
                     <td>OMR {item.total_with_tax}</td>
                     <td>{item.date}</td>
-                    <td>{item.booking_type}</td>
+                    <td>{item.payment_status ? item.payment_status : "Failed"}</td>
                     <td>
                       <Link to={"/booking-view/" + item.id}>
                         {" "}
