@@ -23,6 +23,7 @@ export default function Book_service() {
   const [active_package, setActive_package] = useState(parseInt(params.id));
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState(false);
 
   // hitting booking related data from apis
   const disptach = useDispatch();
@@ -148,13 +149,20 @@ export default function Book_service() {
     formData.addons = selected_addons;
     disptach(postBooking(formData)).then((res) => {
       if (res.payload.success) {
-        navigate(`/booking-view/${res.payload.booking_id}`)
-        toast.success(res.payload.message);
+        // navigate(`/booking-view/${res.payload.booking_id}`)
+        // toast.success(res.payload.message);
+        setPaymentMethods(res.payload.result.result.payment_methods);
+        // console.log(res.payload)
+        // if(res.payload.result.status){
+        //   window.open(res.payload.result.result.url);
+        //   return (<div></div>);
+        // }
       }
       setIsLoading(false);
     });
   };
 
+  // console.log(paymentMethods)
   // render view
   return (
     <div className="container">
@@ -173,7 +181,7 @@ export default function Book_service() {
               <div className="col-12 mt-5">
                 <h3 className="common_heading">Booking Details</h3>
               </div>
-              <div className="col-12 col-xl-6 col-lg-6 d-block mx-auto mb-5">
+              <div className="col-12 col-xl-5 col-lg-5 d-block mx-auto mb-5">
                 <div className="form_wrapper_booking">
                   <div className="row">
                     <div className="col-lg-6 mt-4 col-sm-6 col-12">
@@ -301,7 +309,7 @@ export default function Book_service() {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-6 col-lg-6">
+              <div className="col-xl-7 col-lg-7">
                 <div className="form_wrapper_booking">
                   <div className="row">
                     <div className="col-lg-4 mt-4 col-sm-6 col-12">
@@ -609,7 +617,7 @@ export default function Book_service() {
                         </div>
                       </div>
                     </div>
-                    <div className="payment-button text-center mb-5">
+                    <div className={paymentMethods?"row text-center":"payment-button text-center mb-5"}>
                       {isLoading ? (
                         <div className="text-center">
                           <img
@@ -619,13 +627,36 @@ export default function Book_service() {
                           />
                         </div>
                       ) : (
+
+                        paymentMethods ?
+                        
+                          paymentMethods.map((element, key)=>{
+                            return (
+                              <div className="col-md-6 mb-4" key={key}>
+                                {key==1 ? <p>Debit Card</p> : <p>Credit Card</p> }
+                                  <img src={element.icon} style={{height:"61px"}}/> &nbsp;&nbsp;&nbsp;
+                                  <a href={element.redirect_url}>
+                                    <button
+                                      className="btn btn-primary"
+                                      type="button"
+                                      
+                                    >
+                                      Pay now <i className="fas fa-money"></i>
+                                    </button>
+                                  </a>
+                              </div>
+                            )
+                          })
+
+                          :
                         <button
                           className="btn btn-primary btn-lg submitBtn"
                           type="button"
                           onClick={DoBooking}
                         >
-                          Pay Now <i className="fas fa-money"></i>
+                          Pay with online <i className="fas fa-money"></i>
                         </button>
+                        
                       )}
                     </div>
                   </div>

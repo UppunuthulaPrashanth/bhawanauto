@@ -11,7 +11,7 @@ class Layout extends React.Component {
   
   state = {isOpen: true};
   updateState = () => {this.setState({isOpen: (!this.state.isOpen)})
-  console.log(this.state.isOpen)
+  // console.log(this.state.isOpen)
 };
 
   render() {
@@ -377,7 +377,7 @@ class Layout extends React.Component {
 
 
         {/* promotion model */}
-        {this.state.isOpen ?
+        {/* {this.state.isOpen ?
         <>
         <Link to={"packages"}>
        
@@ -386,7 +386,7 @@ class Layout extends React.Component {
             Only for 40 OMR !! book now.</p>
         </div></Link>
         </>
-        : null }
+        : null } */}
         {/* promoition model */}
 
 

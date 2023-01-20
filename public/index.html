@@ -64,14 +64,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     />
-
-    <script
-      src="https://assets.ottu.net/checkout/v2/checkout.min.js"
-      data-error="errorCallback"
-      data-cancel="cancelCallback"
-      data-success="successCallback"
-      data-beforeredirect="beforeRedirect"
-    ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -94,77 +86,6 @@
     <script src="%PUBLIC_URL%/assets/front/js/main.js"></script>
     <script src="%PUBLIC_URL%/assets/front/js/owl.js"></script>
 
-    <script>
-            // JS
-
-          // Error callback function
-          // Possible values:
-          error=
-          {
-              "status": "error",
-              "message": "create_session error."
-          }
-
-          window.errorCallback = function(error) {
-              console.log('applw pay error callback',error)
-              if (error.redirect_url)
-                  window.location.href = error.redirect_url
-          }
-             // JS
-
-          // Success callback function
-          // Possible values:
-          success=
-          {
-              "status": "success",
-              "message": "Payment operation completed successfully.",
-              "session_id": "",
-              "order_no": "",
-              "operation": "pay",
-              "reference_number": "",
-              "redirect_url": ""
-          }
-
-
-          window.successCallback = function(success) {
-              window.location.href = success.redirect_url
-              if(success.data.redirect_url)
-                  window.location.href = success.data.redirect_url
-          }
-            // JS
-
-          // Cancel callback function
-          // Possible values:
-          cancel=
-          {
-              "status": "canceled",
-              "message": "payment operation is cancelled.",
-              "session_id": "",
-              "order_no": "",
-              "operation": "pay",
-              "reference_number": "",
-              "redirect_url": ""
-          }
-
-
-          window.cancelCallback = function(cancel) {
-              Checkout.reload()
-              console.log('cancel callback', cancel)
-          }
-      // JS
-
-          // Checkout init function
-
-          Checkout.init({
-            selector: 'checkout',
-            merchant_id: 'ksa.ottu.dev',
-            session_id: '51436d465f77e59242ef25f15409c2f23fe54761',
-            apiKey: 'L0Fc5f81.dLqByodGesaD9pJdzoKpo6rP1FQBkVzr',
-            enableCHD: false, // false or true default false
-            CHDonly: false, // false or true default false
-            lang: 'en', // en or ar default en
-          });
-    </script>
     <!-- end scripts -->
   </body>
 </html>

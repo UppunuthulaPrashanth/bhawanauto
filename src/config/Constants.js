@@ -11,6 +11,7 @@ export const REACT_CAPTCH="https://www.google.com/recaptcha/api/siteverify?secre
 // export const API_URL = "http://localhost:8000/api/v1";
 // export const ASSETS = "http://localhost:8000/storage/images/";
 // export const BLOG_ASSETS = "http://localhost:8000/storage/images/blog/";
+// export const OFFERS = "https://localhost:8000/storage/images/offers/";
 
 export const PROFILE = `${ASSETS}/profile/`;
 

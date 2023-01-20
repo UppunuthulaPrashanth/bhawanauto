@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import { CURRENCY } from "../config/Constants";
 import { getSingleBooking } from "../redux/features/booking-data/bookingSlice";
@@ -10,12 +10,17 @@ import SimpleDateTime from "react-simple-timestamp-to-date";
 
 export default function Booking_view() {
   const params = useParams();
+  const navigate = useNavigate();
+
   const [packageName, setPackageName] = useState("");
   const [addons, setAddons] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleBooking(params.id)).then((res) => {
+      if(!res.payload){
+        navigate('/booking-list')
+      }
       setPackageName(JSON.parse(res.payload.package));
       setAddons(JSON.parse(res.payload.extra_packages));
     });
@@ -35,6 +40,8 @@ export default function Booking_view() {
           Your Booking Details <br />
           Booking ID : {data.order_id}
         </h3>
+        <span class="stamp is-nope">{data.payment_status}</span>
+
       </div>
       <div className="col-md-12 booking-details">
         <div className="row">
@@ -67,6 +74,7 @@ export default function Booking_view() {
                       <tr><td><a className="cl" href="#">Location</a></td><td>{data.location}</td></tr>
                       <tr><td><a className="cl" href="#">Model Year</a></td><td>{data.model_year}</td></tr>
                       <tr><td><a className="cl" href="#">State</a></td><td>{data.state}</td></tr>
+                      <tr><td><a className="cl" href="#">Payment Status</a></td><td className="watermark">{data.payment_status}</td></tr>
                     </table>
                   </div>
                 </div>

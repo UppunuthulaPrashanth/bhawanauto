@@ -35,7 +35,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const onChangeSignup = (e) => {
     const { name, value } = e.target;
-    console.log(value)
+    // console.log(value)
     setformSignupValues({ ...formSignupValues, [name]: value });
   };
 
@@ -94,7 +94,7 @@ export default function Login() {
 
   // Guest Login
   const onSubmitGuest = async (e) => {
-    console.log("guest form submmited")
+    // console.log("guest form submmited")
     e.preventDefault();
     const errors = {};
     var errors_count = 0;
