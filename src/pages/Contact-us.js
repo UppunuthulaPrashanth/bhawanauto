@@ -215,21 +215,20 @@ export default function Contact_us() {
                           <div className="p-3 p-md-3">
                             <div className="icons-wrapper-contact-page-wrapper">
                               <div className="row no-gutters">
-                                <div className="col-sm-2 col-12 text-sm-right pr-3">
+                                <div className="col-sm-2 col-12 text-sm-right pr-3 mb-3">
                                   <a href="#">
                                     <span className="icon-wrapper-contact-us hovicon effect-7 sub-b">
                                       <i className="fas fa-map-marker-alt"></i>
                                     </span>
                                   </a>
                                 </div>
-                                <div className="col-sm-10 col-12">
+                                <div className="col-sm-10 col-12 mt-2">
                                   <a
                                     className="bold-text primary-color"
                                     href="#"
                                   >
                                     {item.name}
                                   </a>
-                                  <p>{item.name}</p>
                                 </div>
                               </div>
                             </div>
@@ -238,14 +237,14 @@ export default function Contact_us() {
                               data-aos-delay="300"
                             >
                               <div className="row no-gutters mt-3">
-                                <div className="col-sm-2 col-12 text-sm-right pr-3">
+                                <div className="col-sm-2 col-12 text-sm-right pr-3 mb-3">
                                   <a href=" tel:+97143397533">
                                     <span className="icon-wrapper-contact-us hovicon effect-7 sub-b">
                                       <i className="fas fa-phone"></i>
                                     </span>
                                   </a>
                                 </div>
-                                <div className="col-sm-10 col-12">
+                                <div className="col-sm-10 col-12 mt-2">
                                   <a
                                     className="bold-text"
                                     href="tel:800 2886349"
@@ -263,18 +262,19 @@ export default function Contact_us() {
                               data-aos-delay="300"
                             >
                               <div className="row no-gutters mt-3">
-                                <div className="col-sm-2 col-12 text-sm-right pr-3">
+                                <div className="col-sm-2 col-12 text-sm-right pr-3 mb-3">
                                   <a href=" tel:+97143397533">
                                     <span className="icon-wrapper-contact-us hovicon effect-7 sub-b">
                                       <i className="fas fa-calendar-week"></i>
                                     </span>
                                   </a>
                                 </div>
-                                <div className="col-sm-10 col-12">
-                                  <a className="bold-text" href="#">
-                                    {item.days}
+                                <div className="col-sm-10 col-12 mt-2">
+                                  <a className="bold-text opening-days">
+                                    <span>{item.days_timing}</span> &nbsp;  {item.days} 
                                   </a>
-                                  <p>{item.days_timing}</p>
+                                  <br/>
+                                  <a className="bold-text opening-days-second opening-days"><span>{item.days_timing2}</span> &nbsp;  {item.days2} </a>
                                 </div>
                               </div>
                             </div>
@@ -283,28 +283,17 @@ export default function Contact_us() {
                               data-aos-delay="600"
                             >
                               <div className="row no-gutters mt-3">
-                                <div className="col-sm-2 col-12 text-sm-right pr-3">
-                                  <a href="mailto:er.info@arcs-me.com">
+                                <div className="col-sm-2 col-12 text-sm-right pr-3 mb-3">
+                                  <a>
                                     <span className="icon-wrapper-contact-us hovicon effect-7 sub-b">
                                       <i className="far fa-envelope"></i>
                                     </span>
                                   </a>
                                 </div>
-                                <div className="col-sm-10 col-12">
+                                <div className="col-sm-10 col-12 mt-2">
                                   <a className="bold-text" href={item.email}>
                                     {item.email}
                                   </a>
-                                  <p className="m-0">
-                                    <span
-                                      className="copyEmail"
-                                      email={item.email}
-                                    >
-                                      Click here to copy
-                                    </span>
-                                  </p>
-                                  <p>
-                                    {item.email_timing}
-                                  </p>
                                 </div>
                               </div>
                             </div>

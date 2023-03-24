@@ -79,148 +79,24 @@ export default function Body_repair_repainting() {
                           <div className="col-12">
                             <div className="row">
                               <div className="col-12 content_wrapper_service_page">
-                                <div className="text-justify">
-                                  <h3 className="pt-3">
-                                    What does a car diagnostic check do? Car
-                                    Scanning Diagnostics
-                                  </h3>
-                                  
-                                  <p className="pt-1">
-                                    A diagnostic check is carried out on your
-                                    vehicle by a technician, who will plug your
-                                    vehicle into a specialized Diagnostic
-                                    reader. It can detect problems with your
-                                    vehicle which may be difficult to spot
-                                    manually.
-                                  </p>
-                                  <p className="pt-3 pb-2">
-                                    The main components which are tested in a
-                                    diagnostic check are the car’s:
-                                  </p>
+                              <div className="text-justify">
+                              <h3 className="pt-2">Body Repair & Painting</h3>
+                                  <p>There are many reasons to repair & repaint your car. Having your car dripping in different shade with a full color change, repair and repainting your car post-accident, to fix rust, peeling or to give your old car that new car shines. The most important reasons of all is that When a vehicle's paint is damaged, it leaves the vehicle vulnerable.</p>
+                                  <h3 className="pt-2">When you need to paint your car</h3>
                                   <ul>
-                                    <li>
-                                      Electronic control units (ECUs) - these
-                                      units control various element of the car
-                                      and its performance.
-                                    </li>
-                                    <li>
-                                      Emissions and exhaust sensors & Actuators.
-                                    </li>
-                                    <li>
-                                      Electronic braking & Electronic suspension
-                                      systems.
-                                    </li>
-                                    <li>
-                                      Electrical Body components such as locking
-                                      & Security systems.
-                                    </li>
-                                    <li>
-                                      Transmission & Drive train control units.
-                                    </li>
-                                    <li>Ignition & Injection systems.</li>
-                                    <li>throttle tuning and other settings</li>
-                                    <li>fuel injectors</li>
-                                    <li>
-                                      air flow and Engine management controls.
-                                    </li>
+                                    <li>Your vehicle has suffered scratches.</li>
+                                    <li>The paint has become faded and dull.</li>
+                                    <li>Following an auto accident.</li>
+                                    <li>To change the color of your car.</li>
                                   </ul>
-                                  <h3 className="pt-2">
-                                    Why is a car diagnostic check important?
-                                  </h3>
-                                  <p className="pt-1">
-                                    A diagnostic check is very important as it
-                                    can detect a potential problem with your
-                                    car, even before a breakdown. The
-                                    computerized Diagnostic tool scans your
-                                    vehicle’s system to check for any stored or
-                                    live faults. This will help us to discover
-                                    any faults and will give you the chance to
-                                    get them fixed before they turn into bigger
-                                    and more expensive issues. When your car has
-                                    a fault, this may show as a warning light on
-                                    the dashboard. If the light goes out the
-                                    system will store the fault code so the
-                                    garage will find this when they do the
-                                    diagnostic check.
-                                  </p>
-                                  <h3 className="pt-3">
-                                    What are the possible signs that your car
-                                    needs a diagnostic check?
-                                  </h3>
-                                  <p className="pt-1">
-                                    There are many different signs which will
-                                    indicate that your vehicle needs a
-                                    diagnostic check. Essentially, if you
-                                    suspect that there is an issue with your car
-                                    but don’t know what, you will probably want
-                                    to do a diagnostic check to find out what
-                                    the problem is. Here are some of the key
-                                    signs:
-                                  </p>
+                                  <h3 className="pt-2">Why you need to paint your car</h3>
                                   <ul>
-                                    <li>
-                                      Engine warning light - if the engine
-                                      warning light appears on your dashboard,
-                                      it’s important to take your vehicle to a
-                                      garage as soon as possible as there is a
-                                      wide variety of problems which the light
-                                      may be flagging up.
-                                    </li>
-                                    <li>
-                                      Strange noises – any strange noises coming
-                                      from your car need to be checked out
-                                      before they turn into more serious
-                                      problem. Some of these sounds may include
-                                      abnormally loud exhaust, uneven engine
-                                      noise, gear crunching, other loud noise
-                                      during the vehicle in operation.
-                                    </li>
-                                    <li>
-                                      Smoke - if you see smoke or steam coming
-                                      from under the bonnet, your vehicle may be
-                                      overheating.
-                                    </li>
-                                    <li>
-                                      Vibrating - if you notice any vibrating or
-                                      jerking with or without warning lights,
-                                      these issues must check immediately. It
-                                      could be an indication of a problem with
-                                      your suspension, steering or braking
-                                      systems.
-                                    </li>
+                                    <li>To protect your car from rust and other atmospheric reactions.</li>
+                                    <li>To enhance the durability of the car.</li>
+                                    <li>To give a brand new look to your car.</li>
+                                    <li>To increase the resale value.</li>
                                   </ul>
-                                  <h3 className="pt-3">
-                                    How long do car diagnostics take?
-                                  </h3>
-                                  <p className="pt-1">
-                                    You can expect a diagnostic check on your
-                                    car to take approximately 60 minutes. You
-                                    may want to allow for more time depending
-                                    upon the nature of complaint and
-                                    availability of technician who will be
-                                    carrying out the check.
-                                  </p>
-                                  <h3 className="pt-3">Why to Visit Us</h3>
-                                  <p className="pt-1">
-                                    Because car diagnostic tests require
-                                    specific devices and special skills to read
-                                    correctly, most tests are performed by
-                                    experts. Our expert technicians perform
-                                    diagnostic checks using the latest computer
-                                    diagnostic equipment to learn more about why
-                                    the vehicle components not functioning
-                                    correctly and perform suggested repair
-                                    solution.
-                                  </p>
-                                  <h3 className="pt-3">
-                                    How much does a car diagnostic check cost?
-                                  </h3>
-                                  <p className="pt-1">
-                                    The price of a car diagnostic test can vary,
-                                    depending on the nature of the defect. Basic
-                                    Diagnosis charges has a fixed price, ranging
-                                    from XXXXX – XXXXXX.
-                                  </p>
+                                  <p>BAT advanced body paint facilities are fully equipped to handle all kind of body repair, of your car needs including, restoration of vehicles after minor or major collisions, painting restoration such as, straighten metal panels, straighten chasis, remove dents, and replace parts that cannot be fixed. Our paint protection products will further enhance car’s appearance and glossiness.</p> 
                                 </div>
                               </div>
                             </div>

@@ -7520,8 +7520,8 @@ img {
 .contactUsInformation .icon-wrapper-contact-us {
   display: inline-block;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   text-align: center;
   position: relative;
@@ -7557,7 +7557,7 @@ img {
 
 .contactUsInformation .icon-wrapper-contact-us i {
   font-size: 1.2rem;
-  line-height: 50px;
+  line-height: 40px;
   color: white;
 }
 
@@ -11418,3 +11418,15 @@ p{
 	transform: rotate(-14deg);
   border-radius: 0;
 } 
+
+
+.opening-days{
+  color:black !important;
+}
+
+.opening-days span{
+  color:#ce1432 !important;
+}
+.opening-days-second{
+  color: #ce1432;
+}
