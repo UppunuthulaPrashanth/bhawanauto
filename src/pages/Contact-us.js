@@ -191,7 +191,7 @@ export default function Contact_us() {
             <div className="row">
               <div className="col-12 col-xl-12 col-lg-12 d-block mx-auto max1200 mb-5">
                 {contacts_data.map((item, key) => (
-                  <div className="location_wrapper_outer mt-2" id="location_2" key={key}>
+                  <div className="location_wrapper_outer mt-4" id="location_2" key={key}>
                     <div className="location_wrapper">
                       <h3>{item.name}</h3>
                     </div>
@@ -251,9 +251,9 @@ export default function Contact_us() {
                                   >
                                     {item.mobile}
                                   </a>
-                                  <p>
+                                  {/* <p>
                                     {item.call_timing}
-                                  </p>
+                                  </p> */}
                                 </div>
                               </div>
                             </div>

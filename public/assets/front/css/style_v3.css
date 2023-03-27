@@ -7713,6 +7713,11 @@ img {
   padding: 8px 15px;
 }
 
+#location_2{
+  border: 2px solid #f4ecec;
+  border-radius: 5px;
+}
+
 .location_wrapper h3 {
   color: white;
   font-weight: 600;
