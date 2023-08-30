@@ -14,7 +14,7 @@ export default function Contact_us() {
   const [contacts_data, setContacts_data]=useState([]);
 
   const dispatch = useDispatch();
-
+  
   useEffect(()=>{
     dispatch(getAddressesData()).then((data)=>{
         setContacts_data(data.payload)

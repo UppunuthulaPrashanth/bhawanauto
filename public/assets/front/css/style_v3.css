@@ -4364,13 +4364,7 @@ img {
   transition: all 300ms ease !important;
 }
 
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-/* Horizontal line */
+
 .collapsible-link::before {
   content: "";
   width: 14px;
