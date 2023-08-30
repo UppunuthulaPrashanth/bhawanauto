@@ -24,6 +24,7 @@ export default function Book_service() {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
 
   // hitting booking related data from apis
   const disptach = useDispatch();
@@ -72,10 +73,11 @@ export default function Book_service() {
   const onChangeLocation = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
     disptach(getTimeslot(value)).then((res) => {
       setTime_slot(res.payload);
     });
+    setSelectedDate("");
+
   };
 
   // dynamic adding addons
@@ -135,10 +137,61 @@ export default function Book_service() {
     return <Loader />;
   }
 
+  const isFriday = (date) => {
+    if (!formData.locationId) {
+      alert("Please select a location first");
+      return true;
+    }
+    var isblock=false;
+    location_data.data.forEach(element => {
+      if(element.id==formData.locationId){
+        console.log(element.name)
+        if(element.name==='BUREIMI Service'
+          || element.name==='MAWALAH Service'
+          || element.name==='IBRA Service'
+          || element.name==='IBRI Service'
+          || element.name==='JALAN Service'
+          || element.name==='AMERAT Service')
+          isblock=true
+      }}
+    )
+
+  
+    const selectedDay = new Date(date).getDay();
+    if (selectedDay === 5) {
+      alert("Service Center will be closed on this day");
+      return true;
+    }
+    if( selectedDay === 6 && isblock ){
+      alert("Service Center will be closed on this day");
+      return true;
+    }
+  
+    return false;
+  };
+
+
+ 
   const formChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if(name==="date"){
+      // Blocking the friend of date selection
+      const selectedDate = new Date(e.target.value);
+      if (selectedDate < new Date() || isFriday(e.target.value)) {
+        e.target.value = "";
+      }
+      setSelectedDate(e.target.value);
+    }
   };
+
+  const today = new Date().toISOString().substr(0, 10);
+  const maxDate = new Date();
+  maxDate.setDate(maxDate.getDate() + 7);
+
+
+
+
   // Do Booking
   const DoBooking = (e) => {
     setIsLoading(true);
@@ -162,8 +215,10 @@ export default function Book_service() {
     });
   };
 
-  // console.log(paymentMethods)
-  // render view
+
+
+
+
   return (
     <div className="container">
       <div className="booking_form">
@@ -321,7 +376,7 @@ export default function Book_service() {
                           onChange={onChangeLocation}
                           required=""
                         >
-                          <option disabled="" defaultValue="">
+                          <option disabled="" value="">
                             Choose Location
                           </option>
                           {location_data
@@ -344,6 +399,9 @@ export default function Book_service() {
                           className="inp_field"
                           id="dateTimePicker date"
                           name="date"
+                          value={selectedDate}
+                          min={today}
+                          max={maxDate.toISOString()}
                           onChange={formChange}
                           placeholder="Choose Date"
                           required=""
