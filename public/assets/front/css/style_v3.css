@@ -10889,8 +10889,8 @@ img {
 /* nav items spacing */
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 1.3rem !important;
-    padding-left: 1.3rem !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
   }
 }
 

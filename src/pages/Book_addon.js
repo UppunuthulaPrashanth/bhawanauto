@@ -14,7 +14,7 @@ import { CURRENCY, TAX_PERCENTAGE } from "../config/Constants";
 import { postBooking } from "../redux/features/booking-data/bookingSlice";
 import { toast } from "react-toastify";
 
-export default function Book_service() {
+export default function Book_addon() {
   // states
   const [modal_data, setModal_data] = useState(null);
   const [time_slot, setTime_slot] = useState(null);
@@ -107,28 +107,12 @@ export default function Book_service() {
     });
   });
 
-  // dynamic active selected plan
-  const onChangePlan = (value) => {
-    setActive_package(value.id);
-    setFormData({ ...formData, ["package"]: value.id });
-  };
 
-  var package_price = 0;
-  var package_name = "loading";
-  var package_country="loading";
-  if (package_data) {
-    for (var item of package_data.data) {
-      if (item.id === active_package) {
-        package_price = item.price;
-        package_name = item.name;
-        package_country=item.country;
-      }
-    }
-  }
+
+ 
 
   // calculating payments
-  const total_without_tax =
-    parseFloat(package_price) + parseFloat(addons_total);
+  const total_without_tax = parseFloat(addons_total);
   const tax = (parseFloat(total_without_tax) * TAX_PERCENTAGE) / 100;
   const total_with_tax = parseFloat(total_without_tax) + parseFloat(tax);
 
@@ -459,91 +443,6 @@ export default function Book_service() {
                 </div>
               </div>
 
-              {/* Packages section */}
-              <div className="col-12 col-xl-12 d-block mx-auto ">
-                <div className="form_wrapper_booking checkBox_wrapper packagesWrapper">
-                  <div className="row">
-                    <div className="col-12 mt-5">
-                      <h3 className="common_heading">Selected Package</h3>
-                    </div>
-                    {package_data
-                      ? package_data.data.map((element, key) => {
-                          return (
-                            <div
-                              className="col-lg-4 col-md-6 col-sm-12  mt-4 "
-                              key={key}
-                              onClick={() => onChangePlan(element)}
-                            >
-                              <div
-                                className={
-                                  element.id === active_package
-                                    ? "packages_wrapper_service text-center active"
-                                    : "packages_wrapper_service text-center"
-                                }
-                              >
-                                <label className="label_name">
-                                  {element.name}
-
-                                </label>
-                                <div className="d-inline-block ml-2 dropdown_wrapper">
-                                  <i className="fas fa-info-circle"></i>
-                                  <div className="hidden-inital dropdown_container dropdown_sm">
-                                    <div className="dropdown_inner ">
-                                      <h3 className="text-center normal-text bold-text mb-3 text-primary">
-                                        Service Includes
-                                      </h3>
-
-                                      <ul>
-                                        {element.features
-                                          .split(",")
-                                          .map((subitem, i) => {
-                                            return (
-                                              <li
-                                                className="included abs_content_wrapper text-dark"
-                                                key={i}
-                                              >
-                                                <span>{subitem}</span>
-                                              </li>
-                                            );
-                                          })}
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </div>
-                                <span className="d-block mt-3 mb-4">
-                                  
-                                  <span className="small-text">
-                                    {CURRENCY}&nbsp;
-                                  </span>
-                                  <span className="bold-text big-text price_text">
-                                    {element.price}
-                                  </span>
-
-                                </span>
-                                <p>{element.country}</p>
-
-                                <label className="label_booking">
-                                  <input
-                                    name="packages"
-                                    id="packages"
-                                    data-parsley-required-message="Please Choose At least One Service"
-                                    className="trigger_checkbox"
-                                    defaultValue="64"
-                                    type="radio"
-                                    onChange={() => formChange}
-                                    price_value="1"
-                                    data-parsley-multiple="packages"
-                                  />
-                                </label>
-                              </div>
-                            </div>
-                          );
-                        })
-                      : null}
-                  </div>
-                </div>
-              </div>
-              {/* end Packages section */}
 
               {/* Addon section */}
               <div className="col-12 col-xl-12 d-block mx-auto mb-4 ">
@@ -609,19 +508,6 @@ export default function Book_service() {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      {/* package */}
-                                      <tr>
-                                        <td>
-                                          <p className="m-0">{package_name}</p>
-                                          <span id="package_country"> {package_country} </span>
-                                        </td>
-                                        <td>
-                                          <span>{CURRENCY}</span>{" "}
-                                          {package_price}
-                                        </td>
-                                      </tr>
-                                      {/* end package */}
-
                                       {/* addons */}
                                       {active_addons
                                         ? active_addons.map(

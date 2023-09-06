@@ -27,6 +27,16 @@ export default function Navbar() {
       </li>
       <li className="nav-item  ">
         <Link
+          to="book_addon"
+          className={
+            location.pathname === "/book_addon" ? "nav-link active" : "nav-link"
+          }
+        >
+          <span>Addons</span>
+        </Link>
+      </li>
+      <li className="nav-item  ">
+        <Link
           to="services"
           className={
             location.pathname === "/services" ? "nav-link active" : "nav-link"

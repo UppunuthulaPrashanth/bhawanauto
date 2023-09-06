@@ -19,7 +19,7 @@ import Terms_conditions from "./pages/Terms_conditions";
 import Book_service from "./pages/Book_service";
 import ScrollToTop from "./components/ScrollToTop";
 import Repair_car_quote from "./pages/Repair_car_quote";
-
+import Book_addon from "./pages/Book_addon";
 // services
 import Periodic_maintenance from "./pages/service-pages/Periodic_maintenance";
 import Prepurchase_inspection from "./pages/service-pages/Prepurchase_inspection";
@@ -219,6 +219,17 @@ console.clear()
                 element={
                   <PrivateRoute>
                     <Book_service />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+
+            <Route path="/book_addon">
+            <Route
+                path=""
+                element={
+                  <PrivateRoute>
+                    <Book_addon />
                   </PrivateRoute>
                 }
               />
