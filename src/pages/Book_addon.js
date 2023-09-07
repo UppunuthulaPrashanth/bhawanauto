@@ -13,6 +13,8 @@ import { getYear } from "../redux/features/booking-data/yearSlice";
 import { CURRENCY, TAX_PERCENTAGE } from "../config/Constants";
 import { postBooking } from "../redux/features/booking-data/bookingSlice";
 import { toast } from "react-toastify";
+import parse from "html-react-parser";
+
 
 export default function Book_addon() {
   // states
@@ -449,8 +451,8 @@ export default function Book_addon() {
                 <div className="form_wrapper_booking checkBox_wrapper">
                   <div className="row">
                     <div className="col-12 mt-5">
-                      <h3 className="common_heading">
-                        Add Extra Services To Your Package
+                      <h3 className="common_heading text-center">
+                        Value Added Services
                       </h3>
                     </div>
                     {addon_data
@@ -469,7 +471,7 @@ export default function Book_addon() {
                                 onClick={() => onChangeAddon(element)}
                               >
                                 <label className="label_name">
-                                  {element.name}
+                                  {parse(element.name)}
                                 </label>
                                 <span className="d-block mt-3 mb-4">
                                   <span className="small-text">{CURRENCY}</span>{" "}
@@ -491,8 +493,8 @@ export default function Book_addon() {
               {/* Payment section */}
               <div className="container">
                 <div className="row gutters">
-                  <div className="col-md-6"></div>
-                  <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div className="col-md-5"></div>
+                  <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                     <div className="card">
                       <div className="card-body p-0">
                         <div className="invoice-container">

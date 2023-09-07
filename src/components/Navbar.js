@@ -32,7 +32,7 @@ export default function Navbar() {
             location.pathname === "/book_addon" ? "nav-link active" : "nav-link"
           }
         >
-          <span>Addons</span>
+          <span>VAS</span>
         </Link>
       </li>
       <li className="nav-item  ">

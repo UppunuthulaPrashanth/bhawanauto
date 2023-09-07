@@ -6974,6 +6974,9 @@ img {
   background-color: #27a3e2;
   color: white;
 }
+.services_wrapper.active p{
+  color:white;
+}
 
 .services_wrapper.active label,
 .packages_wrapper_service.active label {
