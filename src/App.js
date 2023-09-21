@@ -228,9 +228,7 @@ console.clear()
             <Route
                 path=""
                 element={
-                  <PrivateRoute>
                     <Book_addon />
-                  </PrivateRoute>
                 }
               />
             </Route>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Loader from "../components/loader/Loader";
 import { getAddon } from "../redux/features/booking-data/addonSlice";
 import { getLocation } from "../redux/features/booking-data/locationSlice";
@@ -60,6 +60,8 @@ export default function Book_addon() {
   const package_data = JSON.parse(
     JSON.stringify(useSelector((state) => state.package))
   );
+  const location = useLocation();
+  localStorage.setItem("lastLocation", location.pathname);
 
   // user changing make
   const onChangeMake = (e) => {
@@ -84,6 +86,12 @@ export default function Book_addon() {
 
   // dynamic adding addons
   const onChangeAddon = (value) => {
+    const userToken = JSON.parse(localStorage.getItem("userToken"));
+    if(!userToken){
+      
+      navigate(`/auth`)
+    }
+
     var index = active_addons.findIndex((x) => x.id == value.id);
     if (index == -1) {
       setActive_addons([
@@ -180,6 +188,12 @@ export default function Book_addon() {
 
   // Do Booking
   const DoBooking = (e) => {
+
+    const userToken = JSON.parse(localStorage.getItem("userToken"));
+    if(!userToken){
+      navigate(`/auth`)
+    }
+
     setIsLoading(true);
     var selected_addons = [];
     active_addons.map((item) => {
@@ -470,7 +484,7 @@ export default function Book_addon() {
                                 }
                                 onClick={() => onChangeAddon(element)}
                               >
-                                <label className="label_name">
+                                <label className="label_name" id="addon_name">
                                   {parse(element.name)}
                                 </label>
                                 <span className="d-block mt-3 mb-4">
@@ -493,8 +507,8 @@ export default function Book_addon() {
               {/* Payment section */}
               <div className="container">
                 <div className="row gutters">
-                  <div className="col-md-5"></div>
-                  <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                <div className="col-md-6"></div>
+                  <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div className="card">
                       <div className="card-body p-0">
                         <div className="invoice-container">
@@ -518,7 +532,7 @@ export default function Book_addon() {
                                                 <tr key={key}>
                                                   <td>
                                                     <p className="m-0">
-                                                      {singleItem.name}
+                                                      {parse(singleItem.name)}
                                                     </p>
                                                   </td>
                                                   <td>
@@ -570,7 +584,13 @@ export default function Book_addon() {
                         </div>
                       </div>
                     </div>
-                    <div className={paymentMethods?"row text-center":"payment-button text-center mb-5"}>
+                    <div 
+                    
+                    className={
+                      paymentMethods
+                        ? "row container"
+                        : "container payment-button mb-5"
+                    }>
                       {isLoading ? (
                         <div className="text-center">
                           <img
@@ -602,21 +622,29 @@ export default function Book_addon() {
                           })
 
                           :
-                        <div className="row"><button
-                          className="btn btn-primary btn-lg submitBtn col-4 mx-auto"
-                          type="button"
-                          onClick={(e) => DoBooking('OFFLINE')}
-                        >
-                          Pay Later <i className="fas fa-money"></i>
-                        </button>
-                        <button
-                          className="btn btn-primary btn-lg submitBtn col-4 mx-auto"
-                          type="button"
-                          onClick={(e) => DoBooking('ONLINE')}
-                          >
-                          Pay with online <i className="fas fa-money"></i>
-                        </button>
-                        </div>  
+                      
+                        <div className="row">
+                          <div className="col-md-6">
+                            <button
+                              className="btn btn-warning btn-lg submitBtn text-white  float-left"
+                              type="button"
+                              onClick={(e) => DoBooking("OFFLINE")}
+                              style={{minWidth:'170px'}}
+                            >
+                              Pay Later <i className="fas fa-money"></i>
+                            </button>
+                          </div>
+                          <div className="col-md-6">
+                            <button
+                              className="btn btn-success btn-lg submitBtn float-right"
+                              type="button"
+                              onClick={(e) => DoBooking("ONLINE")}
+                            >
+                              Pay with online <i className="fas fa-money"></i>
+                            </button>
+                          </div>
+                        </div>
+
                         
                       )}
                     </div>

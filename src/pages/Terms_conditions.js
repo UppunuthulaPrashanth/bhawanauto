@@ -335,7 +335,7 @@ export default function Terms_conditions() {
                                 basket and the time you purchase it
                               </li>
                               <li>
-                                AutoFix classifies cars as per their engine oil
+                                Bahwan Automobiles and Trading classifies cars as per their engine oil
                                 requirement. Generally, car is considered
                                 "COMPACT" if oil requirement is upto 4 litres,
                                 "SEDAN" (or "COUPE") if oil requirement is
@@ -343,7 +343,7 @@ export default function Terms_conditions() {
                                 requirement is 6 litres and above
                               </li>
                               <li>
-                                Autofix reserves the right to refuse servicing
+                                Bahwan Automobiles and Trading reserves the right to refuse servicing
                                 (at the ordered prices) against an order where
                                 car classification specified by the user while
                                 ordering the services is found to be inaccurate
@@ -360,7 +360,7 @@ export default function Terms_conditions() {
                               </li>
                               <li>
                                 The promotional code is valid for a limited time
-                                only. Autofix reserves the right to modify or
+                                only. Bahwan Automobiles and Trading reserves the right to modify or
                                 cancel it at any time without prior notice
                               </li>
                               <li>
@@ -397,7 +397,7 @@ export default function Terms_conditions() {
                                 offers using promotional code
                               </li>
                               <li>
-                                Autofix reserves the right to void the
+                                Bahwan Automobiles and Trading reserves the right to void the
                                 transactions where prohibited
                               </li>
                               <li>
@@ -406,7 +406,7 @@ export default function Terms_conditions() {
                                 promotional code discount will not apply
                               </li>
                               <li>
-                                Autofix reserves the right to update these terms
+                                Bahwan Automobiles and Trading reserves the right to update these terms
                                 and conditions without prior notice
                               </li>
                               <li>Cancellation & Refund Policy</li>
@@ -437,10 +437,10 @@ export default function Terms_conditions() {
                             <h3 className="big-text mt-5">Warranty Policy</h3>
                             <p>
                               Warranties are applicable only for the parts and
-                              services that autofix has provided.
+                              services that Bahwan Automobiles and Trading has provided.
                             </p>
                             <p>
-                              If the customer does not order all autofix
+                              If the customer does not order all Bahwan Automobiles and Trading
                               recommended "Must Have" services, the customer
                               forfeits any promised warranties. No claims will
                               be entertained in this scenario.
@@ -453,9 +453,9 @@ export default function Terms_conditions() {
 
                             <h3 className="big-text mt-5">Child Seat Policy</h3>
                             <p>
-                              If you have ordered any autofix interior cleaning
+                              If you have ordered any Bahwan Automobiles and Trading interior cleaning
                               service for your car, it is your responsibility to
-                              remove and reattach the child safety seat. Autofix
+                              remove and reattach the child safety seat. Bahwan Automobiles and Trading
                               staff will not remove or change the position of
                               child seats, even if instructed by the customer.
                               The Company is not and will not be held
@@ -794,7 +794,7 @@ export default function Terms_conditions() {
 
                             <p>
                               You are responsible for all damages to your
-                              property and autofix is not liable for any loss or
+                              property and Bahwan Automobiles and Trading is not liable for any loss or
                               damage incurred.
                             </p>
 
@@ -819,7 +819,7 @@ export default function Terms_conditions() {
                               privacy. If you have any questions relating to our
                               Privacy Policy contact us
                             </p>
-                            <p>Toll Free Number 800AUTOFIX</p>
+                            <p>Toll Free Number 800</p>
                             <p>Email: customer@dev2.sbagh.com</p>
                             <p>
                               To Locate our showroom on map, kindly check our

@@ -6977,7 +6977,9 @@ img {
 .services_wrapper.active p{
   color:white;
 }
-
+#addon_name{
+  font-weight: 700 !important;
+}
 .services_wrapper.active label,
 .packages_wrapper_service.active label {
   color: white;

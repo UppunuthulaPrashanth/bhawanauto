@@ -7,7 +7,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { ASSETS, CURRENCY } from "../config/Constants";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import How_its_work from "./service-pages/How_its_work";
 import {
   getBanners,
@@ -72,6 +72,9 @@ export default function Homepage() {
   const partners = JSON.parse(
     JSON.stringify(useSelector((state) => state.partners))
   );
+
+  localStorage.setItem("lastLocation", '/packages');
+
 
   if (
     loading === "PENDING" ||
@@ -638,8 +641,8 @@ export default function Homepage() {
                     <span className="small-text">
                       Toll Free Number : &nbsp;
                     </span>
-                    <a href="tel:+968 800 500 11" className="bold-text ">
-                      800 500 11
+                    <a href="tel:+968 800 500 111" className="bold-text ">
+                      800 500 111
                     </a>
                   </h4>
                 </div>

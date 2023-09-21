@@ -13,6 +13,7 @@ import { getYear } from "../redux/features/booking-data/yearSlice";
 import { CURRENCY, TAX_PERCENTAGE } from "../config/Constants";
 import { postBooking } from "../redux/features/booking-data/bookingSlice";
 import { toast } from "react-toastify";
+import parse from "html-react-parser";
 
 export default function Book_service() {
   // states
@@ -77,7 +78,6 @@ export default function Book_service() {
       setTime_slot(res.payload);
     });
     setSelectedDate("");
-
   };
 
   // dynamic adding addons
@@ -115,13 +115,13 @@ export default function Book_service() {
 
   var package_price = 0;
   var package_name = "loading";
-  var package_country="loading";
+  var package_country = "loading";
   if (package_data) {
     for (var item of package_data.data) {
       if (item.id === active_package) {
         package_price = item.price;
         package_name = item.name;
-        package_country=item.country;
+        package_country = item.country;
       }
     }
   }
@@ -142,40 +142,39 @@ export default function Book_service() {
       alert("Please select a location first");
       return true;
     }
-    var isblock=false;
-    location_data.data.forEach(element => {
-      if(element.id==formData.locationId){
-        console.log(element.name)
-        if(element.name==='BUREIMI Service'
-          || element.name==='MAWALAH Service'
-          || element.name==='IBRA Service'
-          || element.name==='IBRI Service'
-          || element.name==='JALAN Service'
-          || element.name==='AMERAT Service')
-          isblock=true
-      }}
-    )
+    var isblock = false;
+    location_data.data.forEach((element) => {
+      if (element.id == formData.locationId) {
+        console.log(element.name);
+        if (
+          element.name === "BUREIMI Service" ||
+          element.name === "MAWALAH Service" ||
+          element.name === "IBRA Service" ||
+          element.name === "IBRI Service" ||
+          element.name === "JALAN Service" ||
+          element.name === "AMERAT Service"
+        )
+          isblock = true;
+      }
+    });
 
-  
     const selectedDay = new Date(date).getDay();
     if (selectedDay === 5) {
       alert("Service Center will be closed on this day");
       return true;
     }
-    if( selectedDay === 6 && isblock ){
+    if (selectedDay === 6 && isblock) {
       alert("Service Center will be closed on this day");
       return true;
     }
-  
+
     return false;
   };
 
-
- 
   const formChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if(name==="date"){
+    if (name === "date") {
       // Blocking the friend of date selection
       const selectedDate = new Date(e.target.value);
       if (selectedDate < new Date() || isFriday(e.target.value)) {
@@ -189,9 +188,6 @@ export default function Book_service() {
   const maxDate = new Date();
   maxDate.setDate(maxDate.getDate() + 7);
 
-
-
-
   // Do Booking
   const DoBooking = (e) => {
     setIsLoading(true);
@@ -200,30 +196,26 @@ export default function Book_service() {
       selected_addons.push(item.id);
     });
     formData.addons = selected_addons;
-    formData.booking_type=e
+    formData.booking_type = e;
     disptach(postBooking(formData)).then((res) => {
       if (res.payload.success) {
-        if(res.payload.booking_type=='ONLINE'){
-        // navigate(`/booking-view/${res.payload.booking_id}`)
-        // toast.success(res.payload.message);
-        setPaymentMethods(res.payload.result.result.payment_methods);
-        // console.log(res.payload)
-        // if(res.payload.result.status){
-        //   window.open(res.payload.result.result.url);
-        //   return (<div></div>);
-        // }
-        }else{
-          navigate(`/booking-view/${res.payload.booking_id}`)
+        if (res.payload.booking_type == "ONLINE") {
+          // navigate(`/booking-view/${res.payload.booking_id}`)
+          // toast.success(res.payload.message);
+          setPaymentMethods(res.payload.result.result.payment_methods);
+          // console.log(res.payload)
+          // if(res.payload.result.status){
+          //   window.open(res.payload.result.result.url);
+          //   return (<div></div>);
+          // }
+        } else {
+          navigate(`/booking-view/${res.payload.booking_id}`);
           toast.success(res.payload.message);
         }
       }
       setIsLoading(false);
     });
   };
-
-
-
-
 
   return (
     <div className="">
@@ -460,7 +452,7 @@ export default function Book_service() {
               </div>
 
               {/* Packages section */}
-              <div className="col-12 col-xl-12 d-block mx-auto ">
+              <div className="col-12 col-xl-12 d-block mx-auto mb-5">
                 <div className="form_wrapper_booking checkBox_wrapper packagesWrapper">
                   <div className="row">
                     <div className="col-12 mt-5">
@@ -483,7 +475,6 @@ export default function Book_service() {
                               >
                                 <label className="label_name">
                                   {element.name}
-
                                 </label>
                                 <div className="d-inline-block ml-2 dropdown_wrapper">
                                   <i className="fas fa-info-circle"></i>
@@ -511,14 +502,12 @@ export default function Book_service() {
                                   </div>
                                 </div>
                                 <span className="d-block mt-3 mb-4">
-                                  
                                   <span className="small-text">
                                     {CURRENCY}&nbsp;
                                   </span>
                                   <span className="bold-text big-text price_text">
                                     {element.price}
                                   </span>
-
                                 </span>
                                 <p>{element.country}</p>
 
@@ -546,7 +535,7 @@ export default function Book_service() {
               {/* end Packages section */}
 
               {/* Addon section */}
-              <div className="col-12 col-xl-12 d-block mx-auto mb-4 ">
+              <div className="col-12 col-xl-12 d-block mx-auto mb-4 mt-5 ">
                 <div className="form_wrapper_booking checkBox_wrapper">
                   <div className="row">
                     <div className="col-12 mt-5">
@@ -570,7 +559,7 @@ export default function Book_service() {
                                 onClick={() => onChangeAddon(element)}
                               >
                                 <label className="label_name">
-                                  {element.name}
+                                  {parse(element.name)}
                                 </label>
                                 <span className="d-block mt-3 mb-4">
                                   <span className="small-text">{CURRENCY}</span>{" "}
@@ -613,7 +602,10 @@ export default function Book_service() {
                                       <tr>
                                         <td>
                                           <p className="m-0">{package_name}</p>
-                                          <span id="package_country"> {package_country} </span>
+                                          <span id="package_country">
+                                            {" "}
+                                            {package_country}{" "}
+                                          </span>
                                         </td>
                                         <td>
                                           <span>{CURRENCY}</span>{" "}
@@ -682,7 +674,13 @@ export default function Book_service() {
                         </div>
                       </div>
                     </div>
-                    <div className={paymentMethods?"row text-center":"payment-button text-center mb-5"}>
+                    <div
+                      className={
+                        paymentMethods
+                          ? "row container"
+                          : "container payment-button mb-5"
+                      }
+                    >
                       {isLoading ? (
                         <div className="text-center">
                           <img
@@ -691,45 +689,53 @@ export default function Book_service() {
                             style={{ Height: "50px" }}
                           />
                         </div>
+                      ) : paymentMethods ? (
+                        paymentMethods.map((element, key) => {
+                          return (
+                            <div className="col-md-6 mb-4" key={key}>
+                              {key == 1 ? (
+                                <p>Debit Card</p>
+                              ) : (
+                                <p>Credit Card</p>
+                              )}
+                              <img
+                                src={element.icon}
+                                style={{ height: "61px" }}
+                              />{" "}
+                              &nbsp;&nbsp;&nbsp;
+                              <a href={element.redirect_url}>
+                                <button
+                                  className="btn btn-primary"
+                                  type="button"
+                                >
+                                  Pay now <i className="fas fa-money"></i>
+                                </button>
+                              </a>
+                            </div>
+                          );
+                        })
                       ) : (
-
-                        paymentMethods ?
-                        
-                          paymentMethods.map((element, key)=>{
-                            return (
-                              <div className="col-md-6 mb-4" key={key}>
-                                {key==1 ? <p>Debit Card</p> : <p>Credit Card</p> }
-                                  <img src={element.icon} style={{height:"61px"}}/> &nbsp;&nbsp;&nbsp;
-                                  <a href={element.redirect_url}>
-                                    <button
-                                      className="btn btn-primary"
-                                      type="button"
-                                      
-                                    >
-                                      Pay now <i className="fas fa-money"></i>
-                                    </button>
-                                  </a>
-                              </div>
-                            )
-                          })
-
-                          :
-                        <div className="row"><button
-                          className="btn btn-primary btn-lg submitBtn col-4 mx-auto"
-                          type="button"
-                          onClick={(e) => DoBooking('OFFLINE')}
-                        >
-                          Pay Later <i className="fas fa-money"></i>
-                        </button>
-                        <button
-                          className="btn btn-primary btn-lg submitBtn col-4 mx-auto"
-                          type="button"
-                          onClick={(e) => DoBooking('ONLINE')}
-                          >
-                          Pay with online <i className="fas fa-money"></i>
-                        </button>
-                        </div>  
-                        
+                        <div className="row">
+                          <div className="col-md-6">
+                            <button
+                              className="btn btn-warning btn-lg submitBtn text-white  float-left"
+                              type="button"
+                              onClick={(e) => DoBooking("OFFLINE")}
+                              style={{minWidth:'170px'}}
+                            >
+                              Pay Later <i className="fas fa-money"></i>
+                            </button>
+                          </div>
+                          <div className="col-md-6">
+                            <button
+                              className="btn btn-success btn-lg submitBtn float-right"
+                              type="button"
+                              onClick={(e) => DoBooking("ONLINE")}
+                            >
+                              Pay with online <i className="fas fa-money"></i>
+                            </button>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>

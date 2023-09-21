@@ -9,13 +9,12 @@ export default function About_us() {
             <img src="assets/front/uploads/about/banner.png" />
           </div>
           <div className="sec-title mb-0 mt-5">
-            <h2>About Bahwan Automobiles & Trading</h2>
+            <h2>Bahwan Automobiles & Trading</h2>
           </div>
         </div>
       </section>
       <section>
         <div className="auto-container">
-          <h3>History / purpose / Brand story</h3>
           <div className="sec-title text-left">
             <p className="text">
               Bahwan Automobiles & Trading LLC (BAT) commenced its operations in

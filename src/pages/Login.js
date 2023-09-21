@@ -7,24 +7,25 @@ import Loader from "../components/loader/Loader";
 
 export default function Login() {
   // states
-  const empty_values= {
+  const empty_values = {
     firstname: "",
     lastname: "",
     email: "",
     phone: "",
     country: "",
-    password: ""
+    password: "",
   };
 
   const [formSignupValues, setformSignupValues] = useState({
     firstname: "",
-    fullname:"",
+    fullname: "",
     lastname: "",
     email: "",
     phone: "",
     country: "",
-    password: ""
+    password: "",
   });
+
   const navigate = useNavigate();
 
   const [formSigninValues, setFormSigninValues] = useState({});
@@ -71,13 +72,13 @@ export default function Login() {
 
     if (errors_count == 0) {
       setIsLoading(true);
-      setActiveTab(2)
+      setActiveTab(2);
       dispatch(register(formSignupValues)).then((res) => {
         setIsLoading(false);
         if (res.payload.success) {
-          setActiveTab(1)
+          setActiveTab(1);
         }
-        setformSignupValues(empty_values)
+        setformSignupValues(empty_values);
       });
     } else {
       for (var key in errors) {
@@ -115,18 +116,21 @@ export default function Login() {
       dispatch(guestlogin(formSignupValues)).then((res) => {
         setIsLoading(false);
         if (res.payload.success) {
-          navigate('/myaccount')
-          window.location.reload();
+          const lastLocation = localStorage.getItem("lastLocation");
+          if (lastLocation) {
+            window.location.href = lastLocation;
+          } else {
+            window.location.href = "/myaccount";
+          }
         }
       });
     } else {
-      setActiveTab(3)
+      setActiveTab(3);
       for (var key in errors) {
         toast.error(errors[key]);
       }
     }
   };
-
 
   const onSubmitSignin = (e) => {
     e.preventDefault();
@@ -142,10 +146,15 @@ export default function Login() {
     if (Object.keys(errors).length === 0) {
       setIsLoading(true);
       dispatch(login(formSigninValues)).then((res) => {
-        setIsLoading(false);
         if (res.payload.success) {
-          navigate('/myaccount')
-          window.location.reload();
+          const lastLocation = localStorage.getItem("lastLocation");
+          if (lastLocation) {
+            window.location.href = lastLocation;
+          } else {
+            window.location.href = "/myaccount";
+          }
+        } else {
+          setIsLoading(false);
         }
       });
     } else {
@@ -155,10 +164,9 @@ export default function Login() {
     }
   };
 
-  if(isLoading){
-    return <Loader/>
+  if (isLoading) {
+    return <Loader />;
   }
-  
 
   return (
     <>
@@ -207,17 +215,19 @@ export default function Login() {
                       Guest Login
                     </a>
                   </li>
-
                 </ul>
               </div>
             </div>
           </div>
 
           <div className="tab-content" id="myTabContent">
-
             {/* Login Section */}
             <div
-              className={activeTab==1 ? "tab-pane fade show active" : "tab-pane fade show"}
+              className={
+                activeTab == 1
+                  ? "tab-pane fade show active"
+                  : "tab-pane fade show"
+              }
               id="login"
               role="tabpanel"
               aria-labelledby="login-tab"
@@ -313,10 +323,13 @@ export default function Login() {
               </div>
             </div>
 
-
             {/* Register Section */}
             <div
-              className={activeTab==2? "tab-pane fade show active" : "tab-pane fade show"}
+              className={
+                activeTab == 2
+                  ? "tab-pane fade show active"
+                  : "tab-pane fade show"
+              }
               id="register"
               role="tabpanel"
               aria-labelledby="register-tab"
@@ -487,10 +500,13 @@ export default function Login() {
               </div>
             </div>
 
-
             {/* guest Section */}
             <div
-              className={activeTab==3 ? "tab-pane fade show active" : "tab-pane fade show"}
+              className={
+                activeTab == 3
+                  ? "tab-pane fade show active"
+                  : "tab-pane fade show"
+              }
               id="guest"
               role="tabpanel"
               aria-labelledby="guest-tab"
@@ -527,55 +543,54 @@ export default function Login() {
                           </div>
 
                           <div className="col-12 col-sm-12 mt-4">
-                              <div className="form-wrapper">
-                                <label>
-                                  <i className="fas fa-envelope"></i>
-                                </label>
-                                <input
-                                  placeholder="Please Enter Your Email"
-                                  data-parsley-required-message="Your Email"
-                                  required
-                                  className="input-field"
-                                  type="email"
-                                  name="email"
-                                  id="email"
-                                  value={formSignupValues.email}
-                                  onChange={onChangeSignup}
-                                />
-                              </div>
+                            <div className="form-wrapper">
+                              <label>
+                                <i className="fas fa-envelope"></i>
+                              </label>
+                              <input
+                                placeholder="Please Enter Your Email"
+                                data-parsley-required-message="Your Email"
+                                required
+                                className="input-field"
+                                type="email"
+                                name="email"
+                                id="email"
+                                value={formSignupValues.email}
+                                onChange={onChangeSignup}
+                              />
                             </div>
+                          </div>
 
-                            <div className="col-12 col-sm-12 mt-4">
-                              <div className="form-wrapper">
-                                <label style={{ minWidth: "40px" }}>
-                                  <i className="fas fa-phone"></i>
-                                </label>
-                                <label
-                                  id="cc_prefix"
-                                  className=" text-center text-dark small-text"
-                                >
-                                  +968
-                                </label>
-                                <input
-                                  placeholder="Please Enter Phone Number"
-                                  data-parsley-required-message="Your Phone"
-                                  required
-                                  className="input-field"
-                                  type="text"
-                                  name="phone"
-                                  id="phone"
-                                  value={formSignupValues.phone}
-                                  onChange={onChangeSignup}
-                                  data-parsley-minlength="9"
-                                  data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
-                                  data-parsley-type="digits"
-                                  data-parsley-type-message="Mobile number should be only numbers"
-                                  maxLength="12"
-                                  data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$"
-                                />
-                              </div>
+                          <div className="col-12 col-sm-12 mt-4">
+                            <div className="form-wrapper">
+                              <label style={{ minWidth: "40px" }}>
+                                <i className="fas fa-phone"></i>
+                              </label>
+                              <label
+                                id="cc_prefix"
+                                className=" text-center text-dark small-text"
+                              >
+                                +968
+                              </label>
+                              <input
+                                placeholder="Please Enter Phone Number"
+                                data-parsley-required-message="Your Phone"
+                                required
+                                className="input-field"
+                                type="text"
+                                name="phone"
+                                id="phone"
+                                value={formSignupValues.phone}
+                                onChange={onChangeSignup}
+                                data-parsley-minlength="9"
+                                data-parsley-minlength-message="Mobile number should be at least 9 to 12 long"
+                                data-parsley-type="digits"
+                                data-parsley-type-message="Mobile number should be only numbers"
+                                maxLength="12"
+                                data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$"
+                              />
                             </div>
-
+                          </div>
 
                           <div className="col-12 mt-4 text-center">
                             <div className="btns-container">
@@ -590,8 +605,11 @@ export default function Login() {
                                   onClick={(e) => onSubmitGuest(e)}
                                   className=" common_button d-block w-100 py-2"
                                 >
-                                  <span className="bold-text" mytext="Gust Login">
-                                   Guest Login
+                                  <span
+                                    className="bold-text"
+                                    mytext="Gust Login"
+                                  >
+                                    Guest Login
                                   </span>
                                 </button>
                               )}
@@ -604,12 +622,9 @@ export default function Login() {
                 </form>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
-
     </>
   );
 }

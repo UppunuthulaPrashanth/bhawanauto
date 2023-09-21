@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import { getPackage } from "../redux/features/booking-data/packagesSlice";
@@ -69,6 +69,9 @@ export default function Packages() {
   };
 
   const recaptchaRef = useRef(null);
+  
+  const location = useLocation();
+  localStorage.setItem("lastLocation", location.pathname);
 
   const onsubmitEnquiry = async(e) => {
     const captchaToken = recaptchaRef.current.getValue();

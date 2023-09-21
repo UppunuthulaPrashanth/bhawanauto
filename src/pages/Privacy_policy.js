@@ -22,7 +22,7 @@ export default function Privacy_policy() {
             </p>
             <p className="text">
               The privacy practices of this statement apply to our services
-              available under the domain and sub-domains of www.autofix.ae (Auto
+              available under the domain and sub-domains of www.bat-oman.com (Auto
               fix or "Site") and apply generally to our parent, affiliates,
               subsidiaries or joint venture websites whose specific privacy
               policies are available from their Privacy pages.
@@ -499,7 +499,7 @@ export default function Privacy_policy() {
                               days in advance of implementation. You may also
                               note that you may at any time, in writing to us,
                               withdraw your consent to use your information in
-                              which case Autofix.ae will desist from using it
+                              which case bat-oman.com will desist from using it
                               anymore. However, please note that Auto Fix
                               reserves the right to discontinue all services in
                               the event you withdraw your consent.

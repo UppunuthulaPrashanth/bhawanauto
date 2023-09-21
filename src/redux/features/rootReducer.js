@@ -46,6 +46,7 @@ export default combineReducers({
     package:getPackageSlice.reducer,
     homePackage:getHomePackageSlice.reducer,
     getBlog:getBlogSlice.reducer,
+    
     // contact and enquiry requests
     submitContact:submitContactSlice.reducer,
     submitEnquiry:submitEnquirySlice.reducer,

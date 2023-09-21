@@ -55,10 +55,15 @@ class Layout extends React.Component {
                     <div className="row">
                       <div className="col-12 max1200 min1200 d-block mx-auto">
                         <div className="d-flex justify-content-end py-1 pr-3 pr-xl-0">
-                          <GoogleTranslate/>
+                          
+                            <select  name="" id="">
+                              <option>English</option>
+                              <option>Arabic</option>
+                            </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          {/* <GoogleTranslate/> */}
                           <div className="mr-sm-4 bold-text small-text my-auto d-none d-sm-block">
                             <span>CALL : </span>
-                            <Link to="tel:8002886349">{HEADER_PHONE? HEADER_PHONE:"800 288 349"}</Link>&nbsp;
+                            <Link to={"tel:"+HEADER_PHONE}>{HEADER_PHONE? HEADER_PHONE:"800 500 111"}</Link>&nbsp;
                           </div>
                           <div className="mr-sm-4 bold-text small-text my-auto ">
                             <span></span>
