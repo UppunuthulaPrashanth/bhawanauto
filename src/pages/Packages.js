@@ -204,7 +204,7 @@ export default function Packages() {
                                         {value.price}
                                       </span>
                                     </span>
-                                    <ul className="features dropdown_inner limitBox">
+                                    <ul className="features dropdown_inner">
                                       {value.features
                                         .split(",")
                                         .map((subitem, i) => (

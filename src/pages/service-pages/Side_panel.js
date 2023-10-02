@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Side_panel() {
+  
   return (
     <>
       {/*Sidebar Side*/}
@@ -21,7 +22,7 @@ export default function Side_panel() {
                     <div className="each_package_item_sidebar">
                       <div className="image_wrapper">
                         <a
-                          href="/services"
+                          href="/book_addon"
                           package-id="42"
                           package-type="AS"
                           className="takeMeToBooking d-block text-center w-100"
@@ -35,9 +36,7 @@ export default function Side_panel() {
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
                           <a
-                            href="/services"
-                            package-id="42"
-                            package-type="AS"
+                            href="/book_addon"
                             className="takeMeToBooking"
                           >
                             Headlamp Polishing
@@ -48,9 +47,7 @@ export default function Side_panel() {
                     <div className="each_package_item_sidebar">
                       <div className="image_wrapper">
                         <a
-                          href="/services"
-                          package-id="46"
-                          package-type="AS"
+                          href="/book_addon"
                           className="takeMeToBooking d-block text-center w-100"
                         >
                           <img
@@ -62,12 +59,12 @@ export default function Side_panel() {
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
                           <a
-                            href="/services"
+                            href="/packages"
                             package-id="46"
                             package-type="AS"
                             className="takeMeToBooking"
                           >
-                            Vehicle AC Car Service{" "}
+                            Lube Service - 5000 Kms
                           </a>
                         </h3>
                       </div>
@@ -75,7 +72,7 @@ export default function Side_panel() {
                     <div className="each_package_item_sidebar">
                       <div className="image_wrapper">
                         <a
-                          href="/services"
+                          href="/packages"
                           package-id="16"
                           package-type="AS"
                           className="takeMeToBooking d-block text-center w-100"
@@ -89,39 +86,10 @@ export default function Side_panel() {
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
                           <a
-                            href="/services"
-                            package-id="16"
-                            package-type="AS"
+                            href="/packages"
                             className="takeMeToBooking"
                           >
-                            Body Polishing
-                          </a>
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="each_package_item_sidebar">
-                      <div className="image_wrapper">
-                        <a
-                          href="/services"
-                          package-id="15"
-                          package-type="AS"
-                          className="takeMeToBooking d-block text-center w-100"
-                        >
-                          <img
-                            className="img-fluid d-block mx-auto"
-                            src="/assets/uploads/packages/L3RtcC9waHBuNW9XUUE%3d.svg"
-                          />
-                        </a>
-                      </div>
-                      <div className="text-container d-block my-auto">
-                        <h3 className="medium-text text-shadow">
-                          <a
-                            href="/services"
-                            package-id="15"
-                            package-type="AS"
-                            className="takeMeToBooking"
-                          >
-                            Interior Detailing
+                            Periodic Service - 10000 kms
                           </a>
                         </h3>
                       </div>
@@ -145,7 +113,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/car-ac-repair"
                         >
                           <picture>
                             <source
@@ -167,10 +135,10 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">Car AC Repair</a>
+                          <a href="/services/car-ac-repair">Car AC Repair</a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/car-ac-repair"
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
@@ -181,7 +149,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/periodic-maintenance"
                         >
                           <picture>
                             <source
@@ -203,10 +171,10 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">Car Maintenance</a>
+                          <a href="/services/periodic-maintenance">Car Maintenance</a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/periodic-maintenance"
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
@@ -217,7 +185,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/transmission_repair"
                         >
                           <picture>
                             <source
@@ -239,12 +207,12 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">
+                          <a href="/services/transmission_repair">
                             Car Transmission Repair
                           </a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/transmission_repair "
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
@@ -255,7 +223,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/engine-repair"
                         >
                           <picture>
                             <source
@@ -277,10 +245,10 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">Car Engine Repair</a>
+                          <a href="/services/engine-repair">Car Engine Repair</a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/engine-repair"
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
@@ -291,7 +259,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/car-battery-tire-replacement"
                         >
                           <picture>
                             <source
@@ -313,12 +281,12 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">
+                          <a href="/services/car-battery-tire-replacement">
                             Car Battery Replacement
                           </a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/car-battery-tire-replacement"
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
@@ -329,7 +297,7 @@ export default function Side_panel() {
                       <div className="image_wrapper">
                         <a
                           className="d-block w-100"
-                          href="/services"
+                          href="/services/car-scanning"
                         >
                           <picture>
                             <source
@@ -351,12 +319,12 @@ export default function Side_panel() {
                       </div>
                       <div className="text-container d-block my-auto">
                         <h3 className="medium-text text-shadow">
-                          <a href="/services">
+                          <a href="/services/car-scanning">
                             Car Scanning Diagnostics
                           </a>
                         </h3>
                         <a
-                          href="/services"
+                          href="/services/car-scanning"
                           className="btn btn-light py-1 px-3 small-text btn-white"
                         >
                           <span className="btn-title">Read More</span>
